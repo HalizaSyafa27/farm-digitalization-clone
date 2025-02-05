@@ -1,0 +1,22 @@
+.containerLogo{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9.075px;
+}
+
+.logo{
+    display: flex; /* Opsional jika ingin memastikan icon berada di tengah */
+    align-items: center;
+    width: 34px; /* Sesuaikan ukuran logo */
+    height: 34px;
+    fill: #248543;
+}
+
+.logoTitle{
+    display: flex;
+    color: var(--Brand-Primary, #248543);
+    font-size: 31.274px;
+    font-style: normal;
+    font-weight: 600;
+}

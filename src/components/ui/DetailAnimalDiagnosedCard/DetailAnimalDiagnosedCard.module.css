@@ -1,0 +1,79 @@
+.card {
+    border: 1px solid #e0e0e0;
+    border-radius: 16px;
+    padding: 16px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    max-height: 303px;
+  }
+  
+  .title {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 19.2px; 
+    color: #248543;
+    margin-bottom: 16px;
+  }
+  
+  
+  .ekor{
+    font-size: 14px;
+    color: #757575;
+    margin-bottom: 32px;
+  }
+  .totalNumber {
+    color: #000;
+  }
+  
+  .details {
+    display: flex;
+    font-size: 14px;
+    color: #757575;
+    margin-bottom: 32px;
+  }
+  
+  .details p {
+    margin-right: 40px;
+  }
+
+  .sakit{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    color: #000;
+  }
+
+  .sehat{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    color: #000;
+  }
+
+  .hilang{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    color: #000;
+  }
+  
+  .tersedia{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    color: #000;
+  }
+
+  .mati{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    color: #000;
+  }

@@ -1,0 +1,112 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 236px; 
+  background-color: #ffffff;
+  border-radius: 50px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  text-align: center;
+  position: relative; 
+  margin: 10px;
+}
+
+.icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 12px;
+}
+
+.title {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 38.4px; 
+  margin-right: auto;
+  color: #248543;
+  /* margin-top: 100px; */
+  text-align: left;
+}
+
+.body{
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.totalSection {
+  display: flex;
+  flex-direction: column;
+  margin-right: auto;
+  margin-bottom: 16px;
+}
+
+.total {
+  margin-right: auto;
+  font-size: 32px;
+  font-weight: bold;
+  color: #000000;
+}
+
+.totalLabel {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  color: #808080;
+}
+
+.genderSection {
+  display: flex;
+  width: 100%;
+}
+
+.gender {
+  display: flex;
+  flex-direction: column;
+}
+
+.genderCount {
+  display: flex;
+  font-size: 20px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 24px;
+  color: #000000;
+}
+
+.genderLabel {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 19.2px;
+  color: #808080;
+}
+
+.arrow {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+}
+
+.iconArrow {
+  width: 24px;
+  height: 24px;
+  color: #28a745;
+}
+
+.header{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.icon{
+  width: 97px;
+  height: 86px;
+}
+
+.spaceGender{
+  margin: 10%;
+}

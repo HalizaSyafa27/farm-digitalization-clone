@@ -1,0 +1,64 @@
+.customidForm {
+    justify-content: space-between;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    border-radius: 8px;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+    font-family: Arial, sans-serif;
+    align-items: center;
+  }
+  
+  .formTitle {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+  
+  .idRow {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .livestockIcon {
+    width: 60.898px;
+    height: 54.096px;
+    margin-right: 1rem;
+  }
+  
+  .livestockName {
+    color: #248543;
+    font-size: 24.375px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 69.875px;
+    width: 100px;
+    flex-shrink: 0;
+    margin-left: 10px;
+  }
+  
+  .prefixInput {
+    width: 10%;
+    flex: 1;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-right: 1rem;
+    margin-left: 3rem;
+    box-sizing: border-box;
+  }
+  
+  .idInput {
+    width: 61px;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    text-align: center;
+    background-color: #f5f5f5; /* Light gray background for disabled input */
+    color: #777;
+  }

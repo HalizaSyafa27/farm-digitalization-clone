@@ -1,0 +1,91 @@
+.header{
+  display: flex;
+  flex-shrink: 0;
+  position: sticky;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  max-width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  border-bottom: 1px solid #ddd; 
+}
+
+.searchbar {
+  flex: 1 1 50%;
+  background-color: #fff; 
+  padding: 16px;
+  overflow: hidden;
+}
+
+.operatorProfile{
+  overflow: hidden; 
+  margin-right: 1vw;
+}
+
+.profile{
+  overflow: hidden; 
+  margin-right: 8vw;
+}
+
+/* TopBar.module.css */
+.dropdown {
+  position: absolute;
+  top: 60px; /* Adjust position */
+  right: 20px; /* Adjust position */
+  background-color: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  border-radius: 4px;
+  width: 400px;
+  padding: 20px;
+}
+
+.dropdown {
+  font-weight: 600;
+}
+
+.notificationRow {
+  display: flex;
+  width: 381px;
+  align-items: center;
+  gap: 18px;
+  padding: 10px 0px;
+}
+
+.notificationRow img {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  object-fit: cover;
+}
+
+.notificationRow p {
+  color: #000;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+}
+
+.notificationRow {
+  display: flex;
+  align-items: center;
+  gap: 12px; 
+  margin-bottom: 8px; 
+}
+
+.notificationText {
+  text-align: left;
+  flex: 1;
+}
+
+.notificationActionsWrapper {
+  margin-top: 8px;
+  width: 100%; 
+  display: flex;
+  justify-content: flex-start; 
+  gap: 12px; 
+}

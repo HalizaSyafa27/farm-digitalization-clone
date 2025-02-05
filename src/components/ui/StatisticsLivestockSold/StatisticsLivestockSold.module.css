@@ -1,0 +1,138 @@
+.container {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 1025px;
+    height: 418px;
+    margin: auto;
+  }
+  
+  .tittle{
+    color: #248543;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 19.2px;
+  }
+  
+  .header {
+    display: flex;
+    margin-bottom: 16px;
+    justify-content: space-between;
+  }
+  
+  .header h3 {
+    color: green;
+    font-size: 16px;
+    margin: 0;
+  }
+  
+  .header h1 {
+    font-size: 36px;
+    margin: 4px 0;
+    font-weight: bold;
+  }
+  
+  .header p {
+    color: #808080;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 19.2px;
+  }
+  
+  .chartContainer {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px; 
+  }
+  
+  .yAxis {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    height: 205px; 
+    margin-right: 8px; 
+  }
+  
+  .yAxisLabel {
+    font-size: 12px; 
+    color: #888888; 
+    margin: 0; 
+    text-align: right; 
+  }
+  
+  .chart {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 200px; 
+    margin-bottom: 16px;
+    gap: 16px;
+    border-left: 2px solid #e0e0e0;
+    padding-left: 16px;
+  }
+  
+  .barContainer {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 4px; 
+    width: 50px; 
+  }
+  
+  .greenBar {
+    width: 20px; 
+    background-color: #33CC66; 
+    border-radius: 10px;
+    position: absolute;
+    z-index: 1; 
+  }
+  
+  .bar {
+    width: 20px; 
+    background-color: #6fcf97;
+    border-radius: 4px; 
+    z-index: 0; 
+  }
+  
+  .month {
+    margin-bottom: -50px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    color: #000000;
+  }
+  
+  .minMonth{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+  }
+  
+  .maxMonth{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+  }
+  
+  .footer {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .footer p {
+    margin: 0;
+    font-size: 12px;
+    color: #888;
+  }
+  
+  .footer h4 {
+    margin: 4px 0 0;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  

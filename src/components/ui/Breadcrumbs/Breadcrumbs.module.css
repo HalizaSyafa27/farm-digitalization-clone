@@ -1,0 +1,40 @@
+.breadcrumbs {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+  }
+  
+  .separator {
+    margin: 0 8px;
+    color: #999;
+  }
+  
+  .breadcrumb a {
+    text-decoration: none;
+    color: #248543;
+  }
+  
+  .link {
+    text-decoration: none; 
+    color: #000;
+    transition: color 0.2s, text-decoration 0.2s;
+  }
+  
+  .link:hover {
+    text-decoration: underline;
+    color: #248543;
+  }
+  
+  .active {
+    text-decoration: underline; 
+    color: #248543; 
+    font-weight: 500;
+  }
+  

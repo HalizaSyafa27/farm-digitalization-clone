@@ -1,0 +1,127 @@
+.container {
+    display: flex;
+    gap: 2px;
+  }
+  
+  .tabContainer {
+    position: relative;
+  }
+  
+  .tab {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #FFF;
+    color: #248543;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px 0px 0px 10px;
+border: 1px solid #248543;
+  }
+
+  .tab svg{
+    margin-left: 8px;
+    display: block;
+    height: 1em;
+    width: auto;
+  }
+  
+  .leftTab {
+    border-radius: 8px 0 0 8px; /* Border kiri */
+  }
+  
+  .rightTab {
+    border-radius: 0 8px 8px 0; /* Border kanan */
+  }
+  
+  .tab:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+
+  .dropdownIcon {
+    color: #248543;
+    width: 17.324px;
+    height: 10.4px;
+  }
+
+  .dropdownItem span {
+    margin-left: 8px; /* Space between the text and the icon */
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .dropdown {
+    position: absolute;
+    left: 0;
+    gap: 16px;
+    background-color: white;
+    border: 1px solid #248543;
+    border-radius: 10px;
+    z-index: 20;
+    margin-top: 8px;
+    width: 200px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.30);
+    overflow: hidden;
+  }
+  
+  .dropdownItem {
+    position: relative;
+    margin-top: 4px;
+    display: block;
+    padding: 12px 16px;
+    background-color: white;
+    color: #248543;
+    border: none;
+    text-align: left;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+/* Dropdown item for tab1 */
+.dropdownItem.tab1 + .dropdownItem.tab1::before {
+    color: #248543;
+    content: '';
+    display: block;
+    height: 1px;
+    width: 72px; /* Width for Tab 1 */
+    margin: 0 auto;
+    background-color: #28a745; /* Green color */
+    position: absolute;
+    top: -4px; /* Adjust spacing above the next item */
+    left: 50%; /* Center the line horizontally */
+    transform: translateX(-50%);
+  }
+  
+  
+  /* Dropdown item for tab2 */
+  .dropdownItem.tab2 + .dropdownItem.tab2::before {
+    color: #248543;
+    content: '';
+    display: block;
+    height: 1px;
+    width: 121px; /* Width for Tab 2 */
+    margin: 0 auto;
+    background-color: #28a745; /* Green color */
+    position: absolute;
+    top: -4px; /* Adjust spacing above the next item */
+    left: 50%; /* Center the line horizontally */
+    transform: translateX(-50%);
+  }
+  
+  /* Optional: Add hover or active state styles for better UI feedback */
+  .dropdownItem.tab1:hover,
+  .dropdownItem.tab2:hover {
+    background-color: #248543; /* Highlight the item */
+  }
+  
+  /* Optional: Add an indicator for the selected item */
+  .dropdownItem.selected {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+  }
+  

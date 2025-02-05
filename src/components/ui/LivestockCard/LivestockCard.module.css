@@ -1,0 +1,208 @@
+.hamil {
+  text-decoration: none;
+  position: relative;
+  font-size: var(--sub-header-1-size);
+  line-height: 19.2px;
+  font-weight: 500;
+  font-family: var(--sub-header-1);
+  color: var(--brand-primary);
+  text-align: left;
+}
+.livestockPhase {
+  cursor: pointer;
+  border: 0;
+  padding: 4px 8px;
+  background-color: var(--base-surface);
+  position: absolute;
+  top: 16px;
+  right: 8px;
+  border-radius: 10px;
+  width: 100px;
+  height: 28px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+.livestockDetails,
+.brownSwiss,
+.shj015 {
+  align-self: stretch;
+  position: relative;
+  color: #248543;
+}
+.livestockDetails {
+  height: 197px;
+  border-radius: var(--br-xl) var(--br-xl) 0 0;
+  overflow: hidden;
+  flex-shrink: 0;
+  background-image: url(/animal-details@3x.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+.brownSwiss,
+.shj015 {
+  line-height: 121.07%;
+}
+.shj015 {
+  font-weight: 600;
+}
+.brownSwiss {
+  color: var(--Text-Text-Secondary, #808080);
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 121.071%; /* 19.371px */
+}
+.breedName {
+  display: flex;
+  width: 96px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+.starfill1Icon {
+  height: 19px;
+  width: 18.9px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.aa {
+  color: var(--Text-Text-Primary, #000);
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 121.071%;
+}
+.weightIcons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+}
+.weightChild {
+  align-self: stretch;
+  width: 1px;
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: contain;
+}
+.kg,
+.riscales2FillIcon {
+  height: 19px;
+  position: relative;
+}
+.riscales2FillIcon {
+  width: 19px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.kg {
+  color: var(--Text-Text-Primary, #000);
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 121.071%; /* 19.371px */
+}
+.weightIcons1 {
+  flex-direction: row;
+  align-items: center;
+  gap: 7px;
+}
+.breedInfo,
+.weight,
+.weightIcons1 {
+  display: flex;
+  justify-content: flex-start;
+}
+.weight {
+  align-self: stretch;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--gap-5xs);
+  font-size: var(--sub-header-1-size);
+  color: var(--text-text-primary);
+}
+.breedInfo {
+  display: flex;
+  width: 141.943px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+.heartfill3Icon,
+.materialSymbolsfemaleRoundeIcon {
+  height: 26px;
+  width: 26px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.heartfill3Icon {
+  width: 27.4px;
+}
+.healthCondition {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-5xs);
+}
+.LivestockCard,
+.characteristics,
+.details {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.characteristics {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
+}
+.LivestockCard,
+.details {
+  flex-direction: column;
+}
+.details {
+  align-self: stretch;
+  border-radius: 0 0 var(--br-xl) var(--br-xl);
+  background-color: var(--base-surface);
+  overflow: hidden;
+  padding: 15px 13px;
+  text-align: left;
+  font-size: 20px;
+  color: var(--brand-primary);
+  font-family: var(--sub-header-1);
+}
+.LivestockCard {
+  width: 237px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.verticalLine {
+  width: 1px; 
+  height: 100%;
+  background-color: #000;
+  margin: 0 10px; 
+}
+
+.livestockImage {
+  width: '100%';
+  height: '200px';
+  object-fit: 'cover';
+  border-radius: '10px';
+}

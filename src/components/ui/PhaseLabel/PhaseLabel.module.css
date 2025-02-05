@@ -1,0 +1,60 @@
+/* PhaseLabel.module.css */
+.container {
+    display: flex;
+    /* width: 100px;
+    height: 28px; */
+    justify-content: center;
+    align-items: center;
+    /* gap: 10px; */
+    height: 20px;
+  }
+  
+  .button {
+    width: 100px;
+    height: 0px;
+    padding: 4px 8px;
+    border-radius: 10px;
+    font-size: 16px; 
+    font-style: normal; 
+    font-weight: 500;
+     gap: 10px; 
+    color: #248543;
+
+    gap: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .button:hover {
+    opacity: 0.8;
+  }
+  
+  .active {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .tag {
+    /* width: 50px; */
+    height: 30px;
+    padding: 4px 8px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    color: #248543;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .label {
+    text-align: center;
+    display: inline-block; 
+    overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis; 
+    width: 100px; 
+  }
+  
+  

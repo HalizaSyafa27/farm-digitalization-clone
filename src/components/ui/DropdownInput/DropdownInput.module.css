@@ -1,0 +1,130 @@
+.dropdownfase {
+    display: flex;
+    position: relative;
+    width: 100%;
+    /* max-width: 250px; */
+    
+  }
+  
+  .dropdownfaseHeader {
+    /* display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #aaa; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+  gap: 20px;
+  }
+  
+  .dropdownfaseHeader:hover {
+    border-color: #248543;
+  }
+  
+  .dropdownfaseIcon {
+    color: "#B1B1B4";
+    transition: transform 0.2s ease;
+  }
+  
+  .dropdownfaseIcon.rotate {
+    transform: rotate(180deg);
+  }
+  
+  .dropdownfaseList {
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 5px 0;
+    background-color: #fff;
+    border: 1px solid #248543;
+    border-radius: 4px;
+    list-style: none;
+    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dropdownfaseItem {
+    padding: 10px 15px;
+    color: var(--Text-Text-Primary, #000);
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    cursor: pointer;
+  }
+  
+  .dropdownfaseItem:hover {
+    background-color: #EBFAF0;
+    color: #006400;
+  }
+  
+  .customInput {
+    width: calc(100% - 28px); 
+    border: none; /* Hilangkan border input */
+    outline: none; /* Hilangkan outline biru */
+    font-size: 14px;
+    color: #333; /* Warna teks */
+    background-color: transparent; /* Buat background transparan */
+    padding: 0; /* Hilangkan padding tambahan */
+  }
+
+  .dropdowninputSeparator {
+    height: 1px;
+    background-color: #248543; /* Warna hijau */
+    margin: 5px 0;
+  }
+
+  .dropdownContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .dropdownIcon {
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .placeholder {
+    font-size: 14px;
+    color: #aaa; /* Warna placeholder */
+  }
+  
+  .selected {
+    color: var(--Text-Text-Tertiary, #333);
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+  }
+
+  .addButton {
+    margin-left: 10px;
+  }
+
+  .dropdownfieldLabel{
+    gap: 20px;
+  }
+
+  .dropdownContainer {
+    gap: 16px; /* Jarak antar dropdown */
+  }

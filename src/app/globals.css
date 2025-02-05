@@ -1,0 +1,1408 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  /* font-family: Arial, Helvetica, sans-serif; */
+  --font-inter: "Inter", sans-serif;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+@layer base {
+  :root {
+    /* --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem; */
+    --font-inter: "Inter", sans-serif;
+    --background: #248543;
+    /* --foreground: #0a0a0a; */
+    --card: #e3e3e3;
+    --card-foreground: #0a0a0a;
+    --primary: #248543; /* Warna HEX */
+    --primary-foreground: #248543;
+    --secondary: #e3e3e3;
+    --secondary-foreground: #0a0a0a;
+    --muted: #e3e3e3;
+    --muted-foreground: #737373;
+    --border: #248543;
+    --input: #248543;
+  }
+  .dark {
+    --font-inter: "Inter", sans-serif;
+    --background: #248543;
+    --foreground: #0a0a0a;
+    --card: #e3e3e3;
+    --card-foreground: #0a0a0a;
+    --primary: #248543; /* Warna HEX */
+    --primary-foreground: #248543;
+    --secondary: #e3e3e3;
+    --secondary-foreground: #0a0a0a;
+    --muted: #e3e3e3;
+    --muted-foreground: #737373;
+    --border: #248543;
+    --input: #248543;
+  }
+  .tittle-login{
+    text-align: center;
+    /* padding-bottom: 10%; */
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 48px;
+    font-style: normal;
+  }
+  
+  .tittle-register, .tittle-register2{
+    text-align: center;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 48px;
+    font-style: normal;
+  }
+
+  .tittle-step, .tittle-step2{
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #808080;
+  }
+
+  .space-y-4{
+    padding-top: 32;
+  }
+
+  .button-register, .button-register2{
+    display: flex;
+    justify-content: center;
+    padding-top: 18px;
+  }
+
+  .button-login{
+    display: flex;
+    justify-content: center;
+  }
+
+  .mt-6{
+    text-align: center;
+  }
+
+  .card-login{
+    float: right;
+  }
+
+  .form-password{
+    padding-top: 4%;
+    padding-bottom: 3%;
+  }
+
+  .form-email{
+    padding-bottom: 3%;
+  }
+
+  .menu-icon {
+    margin-right: 10px;
+    font-size: 16px;
+    width: 20px;
+    height: 20px;
+  }
+
+  #icon:hover{
+    stroke: green;
+  }
+
+  .icon-health{
+    padding-top: 10%;
+  }
+
+  .icon-gender{
+    display: flex;
+    align-items: center;
+    padding-top: 10%;
+  }
+
+.layout {
+  display: flex;
+}
+
+.sidebar {
+  position: sticky;
+  height: auto;
+  width: 300px;
+  background-color: #f0f0f0; 
+  display: flex;
+  /* flex-direction: column; */
+}
+
+.main-content {
+  flex: 1; 
+  display: flex;
+  flex-direction: column; 
+}
+
+.searchbar {
+  flex: 1 1 50%;
+  background-color: #fff; 
+  padding: 16px;
+  overflow: hidden;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  padding-top: 24px;
+  padding-left: 48px;
+  padding-right: 48px;
+  padding-bottom: 48px;
+}
+
+.menuTittle{
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 43px; 
+}
+
+.livestockCategoriesCard{
+  display: flex;
+  padding-top: 50px;
+  align-items: flex-start;
+}
+
+
+.genderIcon{
+  scale: 1.5;
+  margin-left: 12px;
+}
+  
+.sapiDetailStatisticsCard{
+  display: flex;
+  padding-top: 50px;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.kambingDetailStatisticsCard{
+  display: flex;
+  padding-top: 50px;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.dombaDetailStatisticsCard{
+  display: flex;
+  padding-top: 50px;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.ayamDetailStatisticsCard{
+  display: flex;
+  padding-top: 50px;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.statisticsCard{
+  display: flex;
+  width: 1025px;
+  padding-top: 24px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 40px;
+
+}
+
+.menuHeader {
+  display: flex;
+  align-items: center; 
+  margin-bottom: 24px;
+  margin-right: 6vw;
+}
+
+.menuHeader1 {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  margin-right: 7.5%;
+  /* margin-right: 10vw; */
+}
+
+.header{
+  display: flex;
+  flex-shrink: 0;
+  position: sticky;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  max-width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  border-bottom: 1px solid #ddd; 
+}
+
+.yearAndMonthPicker {
+  margin-left: auto;
+}
+
+.sortByAndFilter {
+  display: flex; 
+  margin-left: auto;
+  gap: 10px;
+}
+
+.deleteIcon {
+  display: flex; 
+  margin-left: auto;
+  margin-right: 17vw;
+  gap: 10px;
+}
+
+.showQR {
+  color: var(--Text-Text-Secondary, #808080);
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; /* 100% */
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: auto;
+  text-decoration-thickness: auto;
+  text-underline-offset: auto;
+  text-underline-position: from-font;
+}
+
+.livestock {
+  display: flex;
+  width: 1041px;
+  padding: 8px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.generalInformationLivestock {
+  display: flex;
+  width: 1025px;
+  align-items: center;
+  gap: 39px;
+}
+
+.generalInformationLivestockBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 48px;
+}
+
+.generalInformationLivestockBoxTop {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  align-self: stretch;
+}
+
+.generalInformationLivestockBoxTopData {
+  display: flex;
+  width: 154px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.generalInformationLivestockBoxTopDataTitle {
+  color: #000;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 125% */
+}
+
+
+.hyperlinkStyle {
+  color: var(--Brand-Primary, #248543);
+  font-family: Inter, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 20px; /* 100% */
+  text-decoration: underline solid;
+  text-decoration-skip-ink: auto;
+  text-decoration-thickness: auto;
+  text-underline-offset: auto;
+  text-underline-position: from-font;
+}
+
+.generalInformationLivestockBoxTopDataValue {
+  /* color: #000; */
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; /* 100% */
+}
+
+.operatorProfile{
+  overflow: hidden; 
+  margin-right: 1vw;
+}
+
+.profile{
+  overflow: hidden; 
+  margin-right: 8vw;
+}
+
+.detailInformationLivestock {
+  display: flex;
+  width: 1025px;
+  height: 292px;
+  align-items: flex-start;
+  gap: 32px;
+  flex-shrink: 0;
+}
+
+.detailInformationLivestockCard {
+  display: flex;
+  width: 232.5px;
+  height: 300px;
+  padding: 24px;
+  align-items: top;
+  gap: 10px;
+  flex-shrink: 0;
+
+  border-radius: 50px;
+  background: var(--Base-Surface, #FFF);
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.30);
+}
+
+.detailInformationLivestockCardData {
+  display: flex;
+  width: 184px;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  flex-shrink: 0;
+}
+
+.detailInformationLivestockCardDataCategory {
+  display: flex;
+  width: 184.25px;
+  height: 84px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.detailInformationLivestockCardDataCategoryTitle {
+  color: var(--Brand-Primary, #248543);
+
+  /* Sub Header 1 */
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 19.2px; /* 120% */
+}
+
+.detailInformationLivestockCardDataCategoryValue {
+  color: var(--Text-Text-Primary, #000);
+
+  /* Header 4 */
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 120% */
+}
+
+.detailInformationLivestockCardDataHistory {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
+}
+
+.detailInformationLivestockCardDataHistoryData {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.detailInformationLivestockCardDataHistoryDataTitle {
+  color: var(--Text-Text-Primary, #000);
+
+  /* Sub Header 1 */
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 19.2px; /* 120% */
+}
+
+.detailInformationLivestockCardDataHistoryDataValue {
+  color: var(--Text-Text-Secondary, #808080);
+
+  /* Body 1 */
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 19.2px; /* 120% */
+}
+
+/* Livestock Statistics */
+
+.statisticsInformationLivestock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 26px;
+  flex-shrink: 0;
+  align-self: stretch;
+  margin-bottom: 56px;
+}
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-inter);
+    height: 100%;
+  }
+}
+
+
+.activityInformation {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 72px;
+  align-self: stretch;
+}
+
+.activityInformationTeams {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  align-self: stretch;
+}
+
+.activityInformationTeamsHeading {
+  color: var(--Text-Text-Primary, #000);
+
+  /* Header 4 */
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 120% */
+}
+
+
+.activityInformationTeamsTable {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  align-self: stretch;
+}
+
+.activityInformationTeamsTableHeader {
+  display: flex;
+  align-items: center;
+  gap: 570px;
+}
+
+.activityInformationTeamsTableCont {
+  display: flex;
+  align-items: center;
+  gap: 110px;
+}
+
+.activityInformationTeamsTableRows {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  align-self: stretch;
+}
+
+.activityTeamHr {
+  border: 0;
+  border-top: 1px solid #B1B1B4;
+}
+
+.activityInformationTeamsTableRowsData {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  align-self: stretch;
+  margin-top: 16px;
+  width: 1076px;
+}
+
+.activityInformationTeamsTableRowsDataMember {
+  display: flex;
+  width: 576px;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.activityInformationTeamsTableRowsDataMember img {
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+
+  border-radius: 50%;
+  object-fit: cover; 
+}
+
+.activityInformationTeamsTableRowsDataMemberInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.activityInformationTeamsTableRowsDataMemberInfo h1 {
+  color: var(--Text-Text-Primary, #000);
+
+  /* Header 4 */
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 120% */
+}
+
+.containerLoginRegister{
+  display: flex;
+  justify-content: space-between;
+}
+
+.text-container{
+  display: flex; /* Gunakan flexbox */
+  flex-direction: column; /* Susun elemen secara vertikal */
+  justify-content: center; /* Rata tengah secara vertikal */
+  align-items: center; /* Rata tengah secara horizontal */
+  text-align: center; /* Untuk merapikan teks di tengah */
+  height: 100%; 
+}
+
+.text-5xl{
+  font-size: 64px;
+font-style: normal;
+font-weight: 600;
+line-height: 77px;
+}
+
+.text-ternakku{
+  color: #248543;
+}
+
+.text-desc{
+  font-size: 24px;
+font-style: normal;
+font-weight: 400;
+line-height: 30px
+
+}
+.activityInformationTeamsTableRowsDataMemberInfo p {
+  color: var(--Text-Text-Primary, #000);
+
+  /* Body 1 */
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 19.2px; /* 120% */
+}
+
+.activityInformationTeamsTableRowsDataInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1 0 0;
+}
+
+.activityInformationTeamsTableRowsDataInfoPosition {
+  display: flex;
+  width: 265px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.activityInformationTeamsTableRowsDataInfoPositionBox {
+  display: flex;
+  width: 91px;
+  padding: 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  border-radius: 10px;
+  background: var(--Brand-BG-Primary, #EBFAF0);
+}
+
+.activities {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  align-self: stretch;
+}
+
+.activitiesHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  align-self: stretch;
+}
+
+.activitiesHeader h1 {
+  color: var(--Text-Text-Primary, #000);
+
+  /* Header 4 */
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 120% */
+}
+
+.activitiesTimeline {
+  gap: 32px;
+  align-self: stretch;
+}
+
+.activitiesTimelineItem {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 40px;
+  flex: 1 0 0;
+  width: 1076px;
+}
+
+.activitiesTimelineItemInformation {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  align-self: stretch;
+}
+
+.activitiesTimelineItemInformationIndicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.activitiesTimelineItemInformationData {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  flex: 1 0 0;
+}
+
+.activitiesTimelineItemInformationDataTime {
+  display: flex;
+  width: px;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+.activitiesTimelineItemInformationDataTime h1 {
+  color: #000;
+
+  /* Sub Header 1 */
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 19.2px; /* 120% */
+}
+
+.activitiesTimelineItemInformationDataTime p {
+  color: var(--Text-Text-Secondary, #808080);
+
+  /* Body 1 */
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 19.2px; /* 120% */
+}
+
+.activitiesTimelineItemInformationDataInformation {
+  display: flex;
+  width: 336px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.activitiesTimelineItemInformationDataInformation h1 {
+  color: #000;
+
+  /* Sub Header 1 */
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 19.2px; /* 120% */
+}
+
+.activitiesTimelineItemInformationDataInformation p {
+  color: var(--Text-Text-Secondary, #808080);
+
+  /* Body 1 */
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 19.2px; /* 120% */
+}
+
+.activitiesTimelineItemInformationDataInformationMain {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  align-self: stretch;
+}
+
+.divider {
+  width: 2px;
+  height: 80px;
+  background-color: #E6E6E6;
+}
+
+.createLivestock {
+  display: flex;
+  width: 1020px;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+  margin: 50px;
+}
+
+.createLivestockForm {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  align-self: stretch;
+}
+
+.createLivestockFormImage {
+  display: flex;
+  width: 235px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.createLivestockFormImage h1 {
+  color: #000;
+
+  /* Header 4 */
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 120% */
+}
+
+.createLivestockFormImage p {
+  color: var(--Text-Text-Secondary, #808080);
+
+  /* Body 1 */
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 19.2px; /* 120% */
+}
+
+.createLivestockFormImage img {
+  border-radius: 20px;
+  background: lightgray 0px -85.375px / 100% 180.542% no-repeat, #E8E8E8;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.30);
+}
+
+.createLivestockFormInput {
+  display: flex;
+  width: 444px;
+  align-items: center;
+  align-content: center;
+  gap: 24px 29px;
+  flex-wrap: wrap;
+}
+
+.createLivestockFormInputField {
+  display: flex;
+  width: 443px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.createLivestockFormInputHorizontal {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 26px;
+  flex-shrink: 0;
+}
+
+.createLivestockFormInputField h1 {
+  color: var(--Text-Text-Primary, #000);
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 142.857% */
+}
+
+.createLivestockFormInputField input {
+  width: 300px; /* Adjust width as needed */
+  height: 40px; /* Adjust height as needed */
+  padding: 10px;
+  font-size: 14px;
+  color: #737373; /* Gray text color */
+  border: 1px solid #E0E0E0; /* Light gray border */
+  border-radius: 8px; /* Rounded corners */
+  outline: none;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.createLivestockFormInputField input::placeholder {
+  color: #BDBDBD; /* Placeholder color */
+  font-style: italic;
+}
+
+.lactationSection {
+  display: flex; 
+  gap: 16px; 
+  align-items: flex-start; /* Untuk memastikan elemen sejajar di bagian atas */
+}
+
+/* style add ternak page */
+
+
+
+.livestockHistoryTitle {
+  color: #000;
+  font-family: Inter;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 19.2px; /* 76.8% */
+}
+
+.livestockHistoryData {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.livestockHistoryItem {
+  width: 1025px;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.livestockHistoryItem h2 {
+  color: var(--Text-Text-Primary, #000);
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 30px; /* 150% */
+}
+
+.livestockHistoryItem p {
+  color: var(--Text-Text-Secondary, #808080);
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 30px;
+}
+
+.addLivestockHistory {
+}
+/* Container layout */
+.container-addTernak {
+  display: flex;
+  /* flex-direction: row; */
+  /* background-color: #f9f9f9; */
+  padding: 20px;
+}
+
+/* Sidebar */
+.sidebar-addTernak {
+  flex: 1;
+  /* width: 25%; */
+  height: 100vh;
+  border-right: 1px solid #e0e0e0;
+  /* padding: 20px; */
+}
+
+/* Main content */
+.main-content-addTernak {
+  flex: 3;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-wrapper-addTernak {
+  width: 60%;
+  display: flex;
+  justify-content: space-between; /* Membuat konten sejajar horizontal */
+  align-items: flex-start; /* Sejajarkan di atas */
+  gap: 0px; /* Jarak antara gambar dan form */
+}
+
+/* Section */
+.section-addTernak {
+  margin-bottom: 20px;
+  /* margin-right: 200px; */
+  display: flex;
+width: 235px;
+flex-direction: column;
+align-items: flex-start;
+/* gap: 16px; */
+}
+
+.sectionInput-addTernak{
+  display: flex;
+width: 444px;
+align-items: center;
+align-content: center;
+gap: 10px;
+flex-wrap: wrap;
+margin-bottom: 60px;
+}
+
+/* Image */
+.image-addTernak {
+  width: 212px;;
+  height: 212px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.image-description-addTernak {
+  font-size: 14px;
+  color: #777;
+}
+
+/* Label */
+.label-addTernak {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* Input group for "Berat" */
+.input-group-addTernak {
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fieldFormVertical {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.fieldFormVertical-milk {
+  display: flex;
+  flex-direction: column;
+  /* margin-top: 10%; */
+  /* margin-left: -55%; */
+  gap: 16px;
+}
+
+.fieldFormVertical-lactation {
+  display: flex;
+  flex-direction: column;
+  /* margin-top: 20%; */
+  /* margin-left: -55%; */
+  gap: 16px;
+}
+
+.fieldFormHorizontal {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.inviteMember {
+  display: flex; 
+  margin-left: auto;
+  margin-right: 7vw;
+  gap: 10px;
+}
+
+
+.input-group-addTernak span {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Radio group */
+.radio-group-addTernak {
+  display: flex; 
+  align-items: center; 
+  gap: 32px; 
+  margin-top: 10%;
+  /* margin-left: -2%; */
+}
+
+.radio-group-addTernakDetail {
+  display: flex; 
+  align-items: center; 
+  gap: 32px; 
+  margin-top: 10%;
+  /* margin-left: -20%; */
+}
+
+.radio-group-addTernak div {
+  display: flex;
+  align-items: center; 
+  gap: 5px; 
+}
+
+.radio-group-addTernakDetail div {
+  display: flex;
+  align-items: center; 
+  gap: 5px; 
+}
+
+.radio-group-addTernak label {
+  font-size: 14px;
+}
+
+.tittle-addTernak{
+  font-size: 20px;
+font-style: normal;
+font-weight: 700;
+line-height: 24px;
+}
+
+.grid-row-addTernak {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  gap: 24px; 
+}
+
+.statusPilihan-addTernak{
+  margin-top: -10%;
+  margin-bottom: 10%;
+  margin-left: -2%;
+  gap: 10px;
+}
+
+/* Input Group for "Berat" */
+.input-group-addTernak {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.input-group-addTernak span {
+  font-size: 14px;
+  color: #555;
+}
+
+.lanjutButton-addTernak{
+  margin-left: 21%;
+}
+
+.simpanButton-addDetailTernak{
+  display: flex;
+}
+
+/* settings */
+
+.rowContainerSettingsForm{
+  display: flex;
+  align-items: flex-start;
+gap: 141px;
+margin-top: 5%;
+}
+
+.costumIDForm{
+  display: flex;
+  align-items: left;
+  margin-left: -65%;
+}
+
+.primaryButton{
+  margin-left: auto;
+}
+
+.livestockHistoryTitle {
+  color: #000;
+  font-family: Inter;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 19.2px; /* 76.8% */
+}
+
+.livestockHistoryData {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+.livestockHistoryItem {
+  width: 1025px;
+  align-items: flex-start;
+  gap: 32px;
+}
+.livestockHistoryItem h2 {
+  color: var(--Text-Text-Primary, #000);
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 30px; /* 150% */
+}
+.livestockHistoryItem p {
+  color: var(--Text-Text-Secondary, #808080);
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 30px;
+}
+.addLivestockHistory {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fieldFormVertical {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.fieldFormHorizontal {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+.textField h1 {
+  color: var(--Text-Text-Primary, #000);
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 142.857% */
+}
+
+.bg-cover {
+  background-image: url('https://firebasestorage.googleapis.com/v0/b/manta-dive-75b30.firebasestorage.app/o/Onboarding.jpg?alt=media&token=1986df5c-ccdb-4535-8b5b-21d5e0167611');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh; /* Agar sesuai dengan layar penuh */
+}
+
+.viewMoreContainer {
+  position: absolute; /* Posisi absolut terhadap parent (SVG wrapper) */
+  top: 100%; /* Tampilkan di bawah ikon */
+  right: 0; /* Posisi ke kanan */
+  z-index: 999; /* Pastikan menimpa elemen lain */
+  border-radius: 8px; /* Sudut melengkung */
+  padding: 8px; /* Padding */
+  min-width: 150px; /* Lebar minimum */
+}
+
+.row-lactation{
+  display: flex;
+  gap: 46px;
+}
+
+.button-register{
+  padding-top: 10px;
+}
+
+.button-register2{
+  padding-top: 10px;
+}
+
+.choice-StatusCategory{
+  padding: 10px;
+}
+
+.rowContent-lactation{
+  display: flex;
+  justify-content: space-between;
+}
+
+.rowContent-weight{
+  display: flex;
+  justify-content: space-between;
+}
+.lactation-list{
+  margin-right: -40%;
+}
+
+.lactation-detailList{
+  display: flex; /* Aktifkan Flexbox */
+  flex-direction: column; /* Elemen akan sejajar secara vertikal */
+  gap: 8px; /* Jarak antara elemen (opsional) */
+  padding: 12px; /* Padding di dalam container (opsional) */
+ 
+}
+
+.lactation-detailList span{
+  color: var(--Text-Text-Secondary, #808080);
+font-family: Inter;
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: 20px;
+}
+
+.separator-lactation {
+  width: 1px; /* Lebar garis */
+  height: 466.01px; /* Tinggi garis */
+  background-color: #ccc; /* Warna garis, ubah sesuai kebutuhan */
+  margin: 0 16px; 
+}
+
+.rowContent-milk{
+  display: flex;
+}
+
+.milk-list{
+  margin-right: -40%;
+}
+
+.milk-detailList{
+  display: flex; /* Aktifkan Flexbox */
+  flex-direction: column; /* Elemen akan sejajar secara vertikal */
+  gap: 8px; /* Jarak antara elemen (opsional) */
+  padding: 12px; /* Padding di dalam container (opsional) */
+ 
+}
+
+.milk-detailList span{
+  color: var(--Text-Text-Secondary, #808080);
+font-family: Inter;
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: 20px;
+}
+
+.separator-milk {
+  width: 1px; /* Lebar garis */
+  height: 466.01px; /* Tinggi garis */
+  background-color: #ccc; /* Warna garis, ubah sesuai kebutuhan */
+}
+
+.image-addTernak {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+.image-placeholder-addTernak {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #ccc;
+  color: #aaa;
+  cursor: pointer;
+  text-align: center;
+}
+
+.uploadButton-addTernak {
+  margin-top: 20px;
+}
+
+.rowContent-milk{
+  display: flex;
+  justify-content: space-between;
+}
+
+.milk-list{
+  margin-right: -40%;
+}
+
+.milk-detailList{
+  display: flex; /* Aktifkan Flexbox */
+  flex-direction: column; /* Elemen akan sejajar secara vertikal */
+  gap: 8px; /* Jarak antara elemen (opsional) */
+  padding: 12px; /* Padding di dalam container (opsional) */
+ 
+}
+
+.milk-detailList span{
+  color: var(--Text-Text-Secondary, #808080);
+font-family: Inter;
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: 20px;
+}
+
+.separator-milk {
+  width: 1px; /* Lebar garis */
+  height: 466.01px; /* Tinggi garis */
+  background-color: #ccc; /* Warna garis, ubah sesuai kebutuhan */
+  margin: 0 16px; 
+}
+
+.separator-weight {
+  width: 1px; /* Lebar garis */
+  height: 466.01px; /* Tinggi garis */
+  background-color: #ccc; /* Warna garis, ubah sesuai kebutuhan */
+  margin: 0 16px; 
+}

@@ -1,0 +1,53 @@
+.umurtTernakForm {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .formTitle {
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 43px;
+    margin-bottom: 10px;
+  }
+  
+  .formField {
+    margin-bottom: 1rem;
+    gap: 18px;
+  }
+  
+  .fieldLabel {
+    display: block;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 43px;
+    color: #808080;
+  }
+  
+  .fieldInput {
+    /* width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box; */
+    display: flex;
+    width: 338px;
+    height: 53px;
+    padding: 0px 9px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--Text-Text-Secondary, #808080);
+    background: #FFF;
+  }
+  
+  .fieldInput:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+  }

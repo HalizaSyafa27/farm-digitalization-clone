@@ -1,0 +1,35 @@
+.button {
+    display: flex;
+    padding: 10px 20px;
+    align-items: center;
+    justify-content: center; 
+    border: none;
+    border-radius: 10px;
+    background-color: #248543; /* Warna merah muda */
+    color: #FFFFFF; /* Warna merah teks */
+    width: 200px;
+    height: 52px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+    color: #FFFFFF;
+  }
+
+  .svgIcon {
+    display: flex;
+    width: 16px;
+    height: 16px;
+    fill: white; /* Warna ikon putih */
+  }
+  
+  .label {
+    white-space: nowrap; /* Pastikan teks tidak terputus menjadi dua baris */
+  }
