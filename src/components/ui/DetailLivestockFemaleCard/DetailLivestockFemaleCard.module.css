@@ -1,0 +1,99 @@
+.card {
+    border: 1px solid #e0e0e0;
+    border-radius: 16px;
+    padding: 16px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 347px;
+    max-height: 303px;
+  }
+  
+  .title {
+    /* color: #4caf50;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px; */
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 19.2px; 
+    color: #248543;
+    margin-bottom: 16px;
+  }
+  
+  .total {
+    font-size: 24px;
+    font-weight: bold;
+    /* margin-bottom: 1px; */
+  }
+  
+  .ekor{
+    font-size: 14px;
+    color: #757575;
+    margin-bottom: 32px;
+  }
+  .totalNumber {
+    color: #000;
+  }
+  
+  .details {
+    display: flex;
+    font-size: 14px;
+    color: #757575;
+    margin-bottom: 32px;
+  }
+
+  .details2 {
+    display: flex;
+    font-size: 14px;
+    color: #757575;
+  }
+
+  .details2 p {
+    margin-right: 40px ;
+  }
+  
+  .details p {
+    margin-right: 40px;
+  }
+
+  .pedet{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    color: #000;
+  }
+
+  .dara{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    color: #000;
+  }
+
+  .siapKawin{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    color: #000;
+  }
+
+  .hamil{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    color: #000;
+  }
+
+  .menyusui{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    color: #000;
+  }
+  

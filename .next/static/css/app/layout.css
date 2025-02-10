@@ -659,12 +659,6 @@ video {
   line-height: 43px; 
 }
 
-.livestockCategoriesCard{
-  display: flex;
-  padding-top: 50px;
-  align-items: flex-start;
-}
-
 
 .genderIcon{
   scale: 1.5;
@@ -784,6 +778,7 @@ video {
   align-items: center;
   gap: 32px;
   align-self: stretch;
+  /* flex-wrap: wrap; */
 }
 
 .generalInformationLivestockBoxTopData {
@@ -1097,6 +1092,9 @@ video {
 }
 .select-none {
   user-select: none;
+}
+.resize {
+  resize: both;
 }
 .flex-col {
   flex-direction: column;
@@ -2352,6 +2350,175 @@ line-height: 20px;
   height: 466.01px; /* Tinggi garis */
   background-color: #ccc; /* Warna garis, ubah sesuai kebutuhan */
   margin: 0 16px; 
+}
+
+.generalInformationLivestockBoxBottom{
+  display: flex;
+  margin-right: 57%;
+}
+
+@media (max-width: 720px) {
+  .sidebar {
+ display: none;
+  }
+
+  .menuTittle{
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 43px; 
+  } 
+
+
+  .menuHeader {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    width: 60%;
+  }
+  
+  .menuIcon {
+    display: flex;
+    align-items: center; 
+    gap: 8px; 
+  }
+  
+  .moreIcon {
+    cursor: pointer;
+  }
+  
+  
+  .verticalGeneralLivestockBoxBesideImg{
+    display: flex;
+    width: 300px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .generalInformationLivestockBoxTopDataValue {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    width: 300px;
+  }
+
+  .phaseLabelTag-livestockOwnerPage{
+    margin-top: 10%;
+  }
+
+  .gradeDanBerat{
+    display: flex;
+  }
+
+  .generalInformationLivestockBoxMobileTopData{
+    border-radius: 8px;
+    background: var(--Base-Surface, #FFF);
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.30);
+    width: 170px;
+    padding: 16px 24px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .keluarga{
+    color: #000;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%; /* 28.8px */
+    margin-top: 40px;
+  }
+
+  .idParents{
+    margin-top: 20px;
+    display: flex;
+    padding: auto;
+    gap: 20px;
+  }
+
+
+  .riwayat{
+    color: #000;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%; /* 28.8px */
+    margin-top: 40px;
+  }
+
+  .perkembangan{
+    color: #000;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%; /* 28.8px */
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+
+  .riwayatInformation{
+    display: flex;
+    /* justify-content: space-between; */
+  }
+
+  .editIcon{
+    margin-top: 5%;
+    margin-left: 65%;
+  }
+
+  .cardRiwayat {
+    display: flex;
+    gap: 10px; /* Jarak antar card */
+    overflow-x: auto; /* Mengaktifkan scroll horizontal */
+    white-space: nowrap; /* Mencegah wrapping ke bawah */
+    padding-bottom: 10px; /* Hindari crop shadow jika ada */
+    scroll-snap-type: x mandatory; /* Membantu snap scroll */
+    -webkit-overflow-scrolling: touch; /* Smooth scroll di iOS */
+  }
+  
+  /* Setiap card memiliki lebar tetap agar bisa digeser */
+  .cardRiwayat > * {
+    margin-top: 20px;
+    flex: 0 0 auto; /* Pastikan card tidak mengecil */
+    max-height: 188px;
+    max-width: 180px; /* Batasi agar tidak terlalu besar */
+    scroll-snap-align: start; /* Membantu snap scrolling */
+  }
+  
+  /* Sembunyikan scrollbar */
+  .cardRiwayat::-webkit-scrollbar {
+    display: none; /* Untuk Chrome, Safari */
+  }
+  .cardRiwayat {
+    -ms-overflow-style: none;  /* Untuk IE */
+    scrollbar-width: none; /* Untuk Firefox */
+  }
+
+  .statisticInformationLivestockVertical {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    gap: 15px; /* Jarak antar komponen */
+  }
+
+  .statisticInformationLivestockVertical > * {
+    width: 354px;
+    height: 333px;
+  }
+
+  .statisticsMilkMobile{
+    margin-bottom: 5%;
+  }
+
+  .statisticsLactationMobile{
+    margin-bottom: 5%;
+  }
 }
 
 .placeholder\:text-\[\#B3B3B3\]::placeholder {

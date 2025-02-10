@@ -56,7 +56,7 @@ function InputDemo() {
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/auth/register/`, {
         method: "POST",
-        body: JSON.stringify(registrationData),
+        body: JSON.stringify(newRegistrationData),
         headers: {
           "Content-Type": "application/json",
         },

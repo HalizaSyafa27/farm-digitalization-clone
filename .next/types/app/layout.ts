@@ -1,4 +1,4 @@
-// File: /Users/halizasyafaoktaviani/Documents/GitHub/farm-digitalization-clone/src/app/layout.tsx
+// File: /Users/bungaprameswari/skripsi-ternak-fe/farm-digitalization-clone/src/app/layout.tsx
 import * as entry from '../../../src/app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

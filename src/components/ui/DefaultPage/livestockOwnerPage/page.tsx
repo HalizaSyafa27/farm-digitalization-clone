@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation'
 import YearAndMonthPicker from '@/components/ui/YearAndMonthPicker/yearAndMonthPicker';
 import Sidebar from '@/components/ui/Sidebar/sidebar';
 import SearchBar from '@/components/ui/SearchBar/searchBar';
-import CategoryLivestockCard from '@/components/ui/CategoryLivestockCard/categoryLivestockCard';
+// import CategoryLivestockCard from '@/components/ui/CategoryLivestockCard/categoryLivestockCard';
 import livestockCategories from '@/models/LivestockCategories';
 import OperatorProfile from '@/components/ui/OperatorProfile/operatorProfile';
 import Image from 'next/image';
