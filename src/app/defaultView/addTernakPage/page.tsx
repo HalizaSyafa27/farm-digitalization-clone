@@ -134,7 +134,7 @@ function AddTernak () {
   );
 
   const { data: livestockData, loading: loadingLivestock, error: errorLivestock } = useFetch<Livestock[]>(
-      `${process.env.NEXT_PUBLIC_API_HOST}/animals`,
+      `${process.env.NEXT_PUBLIC_API_HOST}/livestocks`,
   );
 
   const generateIdTernak = () => {
@@ -158,6 +158,10 @@ function AddTernak () {
 
   useEffect(() => {
     setIdTernak(generateIdTernak());
+
+    console.log("URL Search Params:", searchParams.toString());
+    console.log("Selected Farm:", selectedFarm);
+    console.log("Farm ID:", farmId);
   }, [kategoriHewan, customIdKambing, customIdSapi, customIdDomba, selectedFarm, livestockData]);
 
 

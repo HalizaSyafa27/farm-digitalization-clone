@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import YearAndMonthPicker from '@/components/ui/YearAndMonthPicker/yearAndMonthPicker';
 import Sidebar from '@/components/ui/Sidebar/sidebar';
-import CategoryLivestockCard from '@/components/ui/CategoryLivestockCard/CategoryLivestockCard';
+import CategoryLivestockCard from '@/components/ui/CategoryLivestockCard/categoryLivestockCard';
 import livestockCategories from '@/models/LivestockCategories';
 import Breadcrumbs from '@/components/ui/Breadcrumbs/breadcrumbs';
 import TopBar from '@/components/ui/TopBar/topBar';

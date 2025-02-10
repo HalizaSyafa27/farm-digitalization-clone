@@ -39,38 +39,40 @@ const view = searchParams.get("view");
 const renderViewBasedOnRole = () => {
   if (role != null) {
     if (data?.length == 0) {
-      return <DefaultOwnerViewPage key="defaultOwnerView" setIsFarmInvited={setIsFarmInvited} />;
+      // return <DefaultOwnerViewPage key="defaultOwnerView" setIsFarmInvited={setIsFarmInvited} />;
+      return <DefaultOwnerViewPage setIsFarmInvited={setIsFarmInvited} />;
+
     }
     switch (view) {
-      case "livestock":
-        return <LivestockOwnerPage key="livestockOwner" />;
-      case "activity":
-        return <ActivityOwnerPage key="activityOwner" />;
-      case "settings":
-        return <SettingOwnerPage key="settingsOwner" />;
-      case "sapi":
-        return <SapiDetailStatisticsPage key="sapiStatistics" />;
-      case "kambing":
-        return <KambingDetailStaticsPage key="kambingStatistics" />;
-      case "domba":
-        return <DombaDetailStaticsPage key="dombaStatistics" />;
-      default:
-        return <OwnerViewPage key="ownerView" breadcrumb={breadcrumb} setBreadcrumb={setBreadcrumb} />;
       // case "livestock":
-      //   return <LivestockOwnerPage />;
+      //   return <LivestockOwnerPage key="livestockOwner" />;
       // case "activity":
-      //   return <ActivityOwnerPage />;
+      //   return <ActivityOwnerPage key="activityOwner" />;
       // case "settings":
-      //     return <SettingOwnerPage />;
+      //   return <SettingOwnerPage key="settingsOwner" />;
       // case "sapi":
-      //     return <SapiDetailStatisticsPage />;
+      //   return <SapiDetailStatisticsPage key="sapiStatistics" />;
       // case "kambing":
-      //       return <KambingDetailStaticsPage />;
+      //   return <KambingDetailStaticsPage key="kambingStatistics" />;
       // case "domba":
-      //       return <DombaDetailStaticsPage />;
-     
+      //   return <DombaDetailStaticsPage key="dombaStatistics" />;
       // default:
-      //   return <OwnerViewPage breadcrumb={breadcrumb} setBreadcrumb={setBreadcrumb} />;
+      //   return <OwnerViewPage key="ownerView" breadcrumb={breadcrumb} setBreadcrumb={setBreadcrumb} />;
+      case "livestock":
+        return <LivestockOwnerPage />;
+      case "activity":
+        return <ActivityOwnerPage />;
+      case "settings":
+          return <SettingOwnerPage />;
+      case "sapi":
+          return <SapiDetailStatisticsPage />;
+      case "kambing":
+            return <KambingDetailStaticsPage />;
+      case "domba":
+            return <DombaDetailStaticsPage />;
+     
+      default:
+        return <OwnerViewPage breadcrumb={breadcrumb} setBreadcrumb={setBreadcrumb} />;
     }
   }
 

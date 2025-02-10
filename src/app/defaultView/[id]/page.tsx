@@ -74,7 +74,7 @@ const LivestockDetailPage: React.FC<LivestockDetailPageProps> = ({ params: param
     };
 
     const { data: livestock, loading: loadingLivestock, error: errorLivestock } = useFetch<Livestock>(
-        `${process.env.NEXT_PUBLIC_API_HOST}/animals/${id}`,
+        `${process.env.NEXT_PUBLIC_API_HOST}/livestocks/${id}`,
     );
     useEffect(() => {
         if (livestock?.lactationData) {
@@ -135,7 +135,7 @@ const LivestockDetailPage: React.FC<LivestockDetailPageProps> = ({ params: param
         
         if (isConfirmed) {
             try {
-                const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/animals/${id}`, {
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/livestocks/${id}`, {
                     method: "DELETE",
                     headers: {
                       "Content-Type": "application/json",

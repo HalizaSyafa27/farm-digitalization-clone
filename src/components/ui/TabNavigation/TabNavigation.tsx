@@ -7,8 +7,8 @@ const TabNavigation = () => {
   const router = useRouter();
 
   const tabs = [
-    { id: 1, label: "Data Ternak", path: "/OwnerViewPage/addTernakPage"},
-    { id: 2, label: "Data Detail Ternak", path: "/OwnerViewPage/addTernakPage/addDataDetailTernakPage" , active: false  },
+    { id: 1, label: "Data Ternak", path: "/defaultView/addTernakPage"},
+    { id: 2, label: "Data Detail Ternak", path: "/defaultView/addTernakPage/addDataDetailTernakPage" , active: false  },
   ];
 
   const handleTabClick = (path: string) => {

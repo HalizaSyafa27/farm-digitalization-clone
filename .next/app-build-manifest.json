@@ -6,23 +6,34 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/page": [
+    "/defaultView/addTernakPage/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/page.css",
-      "static/chunks/app/page.js"
+      "static/css/app/defaultView/addTernakPage/page.css",
+      "static/chunks/app/defaultView/addTernakPage/page.js"
     ],
-    "/auth/loginPage/page": [
+    "/defaultView/addTernakPage/addDataDetailTernakPage/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/auth/loginPage/page.css",
-      "static/chunks/app/auth/loginPage/page.js"
+      "static/css/app/defaultView/addTernakPage/addDataDetailTernakPage/page.css",
+      "static/chunks/app/defaultView/addTernakPage/addDataDetailTernakPage/page.js"
     ],
     "/defaultView/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/defaultView/page.css",
       "static/chunks/app/defaultView/page.js"
+    ],
+    "/defaultView/[id]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/defaultView/[id]/page.css",
+      "static/chunks/app/defaultView/[id]/page.js"
+    ],
+    "/_not-found/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/_not-found/page.js"
     ]
   }
 }

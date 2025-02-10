@@ -49,7 +49,7 @@ const LivestockPage: React.FC = () => {
     };
 
     const { data: livestockData, loading: loadingLivestock, error: errorLivestock } = useFetch<Livestock[]>(
-        `${process.env.NEXT_PUBLIC_API_HOST}/animals`,
+        `${process.env.NEXT_PUBLIC_API_HOST}/livestocks`,
     );
     
     const [appliedFilters, setAppliedFilters] = useState<{ [key: string]: string[] }>({});
