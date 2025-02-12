@@ -10,7 +10,12 @@ import { getCookie } from '@/lib/cookies';
 import useFetch from '@/hooks/useFetch';
 import { FarmRequestModel } from '@/models/FarmRequestModel';
 
-const TopBar: React.FC = () => {
+
+interface TopBarProps {
+  onSearch?: (value: string) => void;
+}
+
+const TopBar: React.FC<TopBarProps> = ({ onSearch }) => {
     const storedId = getCookie("id"); 
 
     const { data: farmRequestData, loading: loadingFarms, error: errorFarms } = useFetch<FarmRequestModel[]>(
@@ -18,6 +23,7 @@ const TopBar: React.FC = () => {
     );
 
   const [isOpen, setIsOpen] = useState(false);
+ const [searchQuery, setSearchQuery] = useState('');
 
   // Function to close the dropdown when clicking outside
   const closeDropdown = () => setIsOpen(false);
@@ -44,7 +50,7 @@ const TopBar: React.FC = () => {
     <>
       <div className={styles.header}>
         <div className={styles.searchbar}>
-          <SearchBar />
+          <SearchBar onSearch={onSearch} />
         </div>
 
         <div

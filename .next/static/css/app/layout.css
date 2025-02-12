@@ -2359,7 +2359,7 @@ line-height: 20px;
 
 @media (max-width: 720px) {
   .sidebar {
- display: none;
+    display: none;
   }
 
   .menuTittle{
@@ -2368,7 +2368,6 @@ line-height: 20px;
     font-weight: 700;
     line-height: 43px; 
   } 
-
 
   .menuHeader {
     display: flex;
@@ -2386,7 +2385,6 @@ line-height: 20px;
   .moreIcon {
     cursor: pointer;
   }
-  
   
   .verticalGeneralLivestockBoxBesideImg{
     display: flex;
@@ -2439,7 +2437,6 @@ line-height: 20px;
     padding: auto;
     gap: 20px;
   }
-
 
   .riwayat{
     color: #000;

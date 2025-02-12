@@ -54,6 +54,35 @@ const LivestockPage: React.FC = () => {
     
     const [appliedFilters, setAppliedFilters] = useState<{ [key: string]: string[] }>({});
     const [selectedSortBy, setSelectedSortBy] = useState<string>();
+    const [searchQuery, setSearchQuery] = useState('');
+    const [filteredLivestocks, setFilteredLivestocks] = useState<Livestock[]>([]); 
+    
+    useEffect(() => {
+        if (livestockData && livestockData.length > 0) {
+         setFilteredLivestocks(livestockData)
+        }
+    }, [livestockData]);
+
+    // Fungsi untuk menangkap input dari SearchBar
+    const handleSearch = (value:string) => {
+        // const { livestockId, breed, grade } = searchQuery;
+        console.log('Search Query:', value);
+    
+        if (livestockData != null){
+            const filtered = livestockData.filter((livestock) => {
+
+                return (
+                  (value ? livestock.name_id.toString().includes(value) : true) ||
+                  (value ? livestock.breed.toLowerCase().includes(value.toLowerCase()) : true) ||
+                  (value ? livestock.grade.toLowerCase().includes(value.toLowerCase()) : true)
+                );
+              });
+            setFilteredLivestocks(filtered);
+        }
+        
+    
+        
+      };
     
     return (
         <div>
@@ -70,7 +99,7 @@ const LivestockPage: React.FC = () => {
                 </div>
 
                 <div className="main-content">
-                    <TopBar ></TopBar>
+                    <TopBar onSearch={handleSearch} ></TopBar>
                 
                     <div className="content">
                     <div className="menuSection">
@@ -100,8 +129,8 @@ const LivestockPage: React.FC = () => {
                     </div>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
                     {
-                        livestockData != null 
-                            ? livestockData
+                        filteredLivestocks != null 
+                            ? filteredLivestocks
                                 .filter((livestock) => {
                                     const matchesFarm = livestock.farm_name === selectedFarm;
 

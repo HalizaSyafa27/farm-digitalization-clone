@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './SearchBar.module.css';
+import useFetch from '@/hooks/useFetch';
+import { Livestock, MonthlyData, YearlyData } from '@/models/LivestockModel';
 
 interface SearchBarProps {
   placeholder?: string;
@@ -7,9 +9,18 @@ interface SearchBarProps {
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ placeholder = 'Telusuri', onSearch }) => {
+  const [searchValue, setSearchValue] = useState('');
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value);
+    if (onSearch) {
+      onSearch(searchValue); // Kirim ke parent
+    }
+  };
+
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter' && onSearch) {
-      onSearch(event.currentTarget.value);
+      onSearch(searchValue); // Kirim ke parent
     }
   };
 
@@ -28,7 +39,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ placeholder = 'Telusuri', onSearc
       <input
         type="text"
         className={styles.input}
+        value={searchValue}
         placeholder={placeholder}
+        onChange={handleChange} 
+        onKeyPress={handleKeyPress}
       />
     </div>
   );

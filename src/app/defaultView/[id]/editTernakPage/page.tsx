@@ -23,7 +23,7 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
   const id = params.id;
 
   const { data: livestock, loading: loadingLivestock, error: errorLivestock } = useFetch<Livestock>(
-    `${process.env.NEXT_PUBLIC_API_HOST}/animals/${id}`,
+    `${process.env.NEXT_PUBLIC_API_HOST}/livestocks/${id}`,
   );
   useEffect(() => {
       if (livestock) {

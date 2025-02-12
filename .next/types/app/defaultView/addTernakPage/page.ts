@@ -1,4 +1,4 @@
-// File: /Users/bungaprameswari/skripsi-ternak-fe/farm-digitalization-clone/src/app/defaultView/addTernakPage/page.tsx
+// File: /Users/halizasyafaoktaviani/Documents/GitHub/farm-digitalization-clone/src/app/defaultView/addTernakPage/page.tsx
 import * as entry from '../../../../../src/app/defaultView/addTernakPage/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
