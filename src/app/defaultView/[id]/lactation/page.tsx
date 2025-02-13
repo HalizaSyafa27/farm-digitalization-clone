@@ -66,7 +66,7 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
     );
 
     const { data: livestock, loading: loadingLivestock, error: errorLivestock } = useFetch<Livestock>(
-        `${process.env.NEXT_PUBLIC_API_HOST}/animals/${id}`,
+        `${process.env.NEXT_PUBLIC_API_HOST}/livestocks/${id}`,
     );
     useEffect(() => {
         if (livestock) {
@@ -75,7 +75,7 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
     }, [livestock]);
 
     const { data: lactation, loading: loadingLactation, error: errorLactation } = useFetch<LactationRecord[]>(
-        `${process.env.NEXT_PUBLIC_API_HOST}/lactations/animal/${id}`,
+        `${process.env.NEXT_PUBLIC_API_HOST}/lactations/livestocks/${id}`,
     );
 
     const router = useRouter()

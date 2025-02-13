@@ -62,7 +62,7 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
     const id = params.id;
 
     const { data: livestock, loading: loadingLivestock, error: errorLivestock } = useFetch<Livestock>(
-      `${process.env.NEXT_PUBLIC_API_HOST}/animals/${id}`,
+      `${process.env.NEXT_PUBLIC_API_HOST}/livestocks/${id}`,
     );
     useEffect(() => {
         if (livestock) {
@@ -100,7 +100,7 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
           grandpa_name_id: idKakek,
           grandma_name_id: idNenek,
       };
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/animals/${id}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/livestocks/${id}`, {
           method: "PUT",
           body: JSON.stringify(payload),
           headers: {

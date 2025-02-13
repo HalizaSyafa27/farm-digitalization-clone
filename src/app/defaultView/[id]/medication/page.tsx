@@ -50,7 +50,7 @@ const LivestockMedicationPage: React.FC<LivestockMedicationPageProps> = ({ param
     const options = ['Ivomex', 'Vormextin', 'Kututox', 'Biodin'];
 
     const { data: livestock, loading: loadingLivestock, error: errorLivestock } = useFetch<Livestock>(
-        `${process.env.NEXT_PUBLIC_API_HOST}/animals/${id}`,
+        `${process.env.NEXT_PUBLIC_API_HOST}/livestocks/${id}`,
     );
     useEffect(() => {
         if (livestock) {
@@ -92,7 +92,7 @@ const LivestockMedicationPage: React.FC<LivestockMedicationPageProps> = ({ param
                         value: new Date().toLocaleString("en-US", { year: "numeric", month: "short" }) // Format like "May 2019"
                     }))
                 };
-                const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/animals/${id}/medication`, {
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/livestocks/${id}/medication`, {
                     method: "POST",
                     body: JSON.stringify(payload),
                     headers: {

@@ -14,7 +14,7 @@ import { FarmModel } from '@/models/FarmModel';
 import { Livestock, MonthlyData, YearlyData } from '@/models/LivestockModel';
 import { Input } from '@/components/ui/input';
 
-interface LivestockWeightPageProps {
+interface LivestockWeightPageProps {           
     params: Promise<{
         id: string;
     }>;
@@ -39,12 +39,13 @@ const LivestockWeightPage: React.FC<LivestockWeightPageProps> = ({ params: param
     const params = use(paramsPromise);
     const id = params.id;
     
-        const storedId = getCookie("id"); 
+    const storedId = getCookie("id"); 
     const role = getCookie("role"); 
 
     const { data: farmData, loading: loadingFarms, error: errorFarms } = useFetch<FarmModel[]>(
         role == "owner" ? `${process.env.NEXT_PUBLIC_API_HOST}/farms?ownerId=${storedId}` : `${process.env.NEXT_PUBLIC_API_HOST}/farms/operator/${storedId}`,
     );
+
     const [selectedFarm, setSelectedFarm] = useState<string | null>(null);
     const [selectedFarmId, setSelectedFarmId] = useState<number | null>(null);
     useEffect(() => {
@@ -61,7 +62,7 @@ const LivestockWeightPage: React.FC<LivestockWeightPageProps> = ({ params: param
     };
 
     const { data: livestock, loading: loadingLivestock, error: errorLivestock } = useFetch<Livestock>(
-        `${process.env.NEXT_PUBLIC_API_HOST}/animals/${id}`,
+        `${process.env.NEXT_PUBLIC_API_HOST}/livestocks/${id}`,
     );
     useEffect(() => {
         if (livestock) {
@@ -70,7 +71,7 @@ const LivestockWeightPage: React.FC<LivestockWeightPageProps> = ({ params: param
     }, [livestock]);
 
     const { data: weightRecords, loading: loadingWeightRecords, error: errorWeightRecords } = useFetch<WeightRecord[]>(
-        `${process.env.NEXT_PUBLIC_API_HOST}/weights/animal/${id}`,
+        `${process.env.NEXT_PUBLIC_API_HOST}/weights/livestocks/${id}`,
     );
 
     const router = useRouter()
@@ -204,7 +205,7 @@ const LivestockWeightPage: React.FC<LivestockWeightPageProps> = ({ params: param
                 </div>
 
                 <div className="main-content">
-                    <TopBar ></TopBar>
+                    <TopBar  ></TopBar>
 
                     <div className="content">
                         <div className="menuSection">

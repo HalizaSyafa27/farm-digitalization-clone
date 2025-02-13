@@ -61,7 +61,7 @@ const LivestockMilkProductionPage: React.FC<LivestockMilkProductionPageProps> = 
     };
 
     const { data: livestock, loading: loadingLivestock, error: errorLivestock } = useFetch<Livestock>(
-        `${process.env.NEXT_PUBLIC_API_HOST}/animals/${id}`,
+        `${process.env.NEXT_PUBLIC_API_HOST}/livestocks/${id}`,
     );
     useEffect(() => {
         if (livestock) {
@@ -70,7 +70,7 @@ const LivestockMilkProductionPage: React.FC<LivestockMilkProductionPageProps> = 
     }, [livestock]);
 
     const { data: milkProduction, loading: loadingMilkProduction, error: errorMilkProduction } = useFetch<MilkProductionRecord[]>(
-        `${process.env.NEXT_PUBLIC_API_HOST}/milkproductions/animal/${id}`,
+        `${process.env.NEXT_PUBLIC_API_HOST}/milkOutput/livestocks/${id}`,
     );
 
     const router = useRouter()
@@ -102,7 +102,7 @@ const LivestockMilkProductionPage: React.FC<LivestockMilkProductionPageProps> = 
                     ]
                 };
 
-                const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/milkData`, {
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/milkOutput`, {
                     method: "POST",
                     body: JSON.stringify(payload),
                     headers: {
@@ -153,7 +153,7 @@ const LivestockMilkProductionPage: React.FC<LivestockMilkProductionPageProps> = 
                     yearData.data.push({ month, value });
                 }
 
-                const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/milkData/${livestock?.milkData.id}`, {
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/milkOutput/${livestock?.milkData.id}`, {
                     method: "PUT",
                     body: JSON.stringify(payload),
                     headers: {
@@ -175,7 +175,7 @@ const LivestockMilkProductionPage: React.FC<LivestockMilkProductionPageProps> = 
                 livestockId: livestock?.id
             }
 
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/milkproductions`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/milkOutput`, {
                 method: "POST",
                 body: JSON.stringify(payload),
                 headers: {

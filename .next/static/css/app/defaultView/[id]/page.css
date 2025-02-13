@@ -1,0 +1,1418 @@
+/*!****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/components/ui/Sidebar/Sidebar.module.css ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************/
+.Sidebar_sidebarContainer__XUDpv {
+    width: 303px;
+    height: 100%;
+    display: inline-flex;
+    padding: 24px 16px 610px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 31px;
+    background: var(--Base-Surface, #FFF);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);  
+  }
+  
+  .Sidebar_sidebarProfile__PSno1 {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+  }
+  
+  .Sidebar_profilePicture__CGGjd {
+    margin-bottom: 62px;
+  }
+  
+  .Sidebar_dropdownButton__kOnjg {
+    width: 271px;
+    height: 52px;
+    margin-top: 10px;
+    background-color: #248543;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .Sidebar_dropdownList__ZQYx0 {
+    width: 271px;
+    margin-top: 10px;
+    border-color: #248543;
+    background-color: #fff;
+    color: #248543;
+    border-width: 1px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .Sidebar_dropdownItem__Xeo1B {
+    width: 271px;
+    color: #248543;
+    padding: 10px 10px 10px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: top;
+    justify-content: space-between;
+  }
+  
+  .Sidebar_dropdownIcon__4_Knv {
+    margin-left: 8px;
+    font-size: 12px;
+  }
+
+.Sidebar_sidebarMenu__iRLnL {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .Sidebar_menuItem__z_2eG {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    align-self: stretch;
+    align-items: left;
+    padding: 4px 2px;
+    width: 271px;
+  }
+  
+  .Sidebar_menuItems__LOxHK:hover{
+    width: 271px;
+  }
+
+  /* .selectedMenuItems{
+    border-radius: 10px;
+    background: #EBFAF0;
+    color: #248543;
+  } */
+
+  .Sidebar_menuItem__z_2eG:hover {
+    background-color: #EBFAF0;
+    border-radius: 10px;
+  }
+
+  .Sidebar_menuItem__z_2eG svg {
+    flex-shrink: 0;
+  }
+  
+
+  
+/*!**********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/components/ui/Logo/Logo.module.css ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************/
+.Logo_containerLogo__ySX0g{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9.075px;
+}
+
+.Logo_logo__LZI1f{
+    display: flex; /* Opsional jika ingin memastikan icon berada di tengah */
+    align-items: center;
+    width: 34px; /* Sesuaikan ukuran logo */
+    height: 34px;
+    fill: #248543;
+}
+
+.Logo_logoTitle__ZX1te{
+    display: flex;
+    color: var(--Brand-Primary, #248543);
+    font-size: 31.274px;
+    font-style: normal;
+    font-weight: 600;
+}
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/components/ui/StatisticsLactation/StatisticsLactation.module.css ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************/
+.StatisticsLactation_container__KJbEt {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 1025px;
+    height: 418px;
+    margin: auto;
+  }
+  
+  .StatisticsLactation_tittle__KdSjY{
+    color: #248543;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 19.2px;
+  }
+
+  .StatisticsLactation_header__BG0pD {
+    display: flex;
+    margin-bottom: 16px;
+    justify-content: space-between;
+  }
+  
+  .StatisticsLactation_header__BG0pD h3 {
+    color: green;
+    font-size: 16px;
+    margin: 0;
+  }
+  
+  .StatisticsLactation_header__BG0pD h1 {
+    font-size: 36px;
+    margin: 4px 0;
+    font-weight: bold;
+  }
+  
+  .StatisticsLactation_header__BG0pD p {
+    color: #808080;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 19.2px;
+  }
+  
+  .StatisticsLactation_chartContainer__KLZDi {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px; 
+  }
+  
+  .StatisticsLactation_yAxis__u4sY7 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    height: 205px; 
+    margin-right: 8px; 
+  }
+  
+  .StatisticsLactation_yAxisLabel__1QhXY {
+    font-size: 12px; 
+    color: #888888; 
+    margin: 0; 
+    text-align: right; 
+  }
+
+  .StatisticsLactation_chart__NveEU {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 200px; 
+    margin-bottom: 16px;
+    gap: 16px;
+    border-left: 2px solid #e0e0e0;
+    padding-left: 16px;
+  }
+  
+  .StatisticsLactation_barContainer__b1zMy {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 4px; 
+    width: 50px; 
+  }
+  
+  .StatisticsLactation_greenBar__7fcJX {
+    width: 20px; 
+    background-color: #33CC66; 
+    border-radius: 10px;
+    position: absolute;
+    z-index: 1; 
+  }
+  
+  .StatisticsLactation_bar__mwWQf {
+    width: 20px; 
+    background-color: #6fcf97;
+    border-radius: 4px; 
+    z-index: 0; 
+  }
+  
+  .StatisticsLactation_month__c13sj {
+    margin-bottom: -50px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    color: #000000;
+  }
+  
+  .StatisticsLactation_minMonth__hqf1R{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+  }
+
+  .StatisticsLactation_maxMonth__GINn1{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+  }
+
+  .StatisticsLactation_footer__HYQjj {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .StatisticsLactation_footer__HYQjj p {
+    margin: 0;
+    font-size: 12px;
+    color: #888;
+  }
+  
+  .StatisticsLactation_footer__HYQjj h4 {
+    margin: 4px 0 0;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/components/ui/DeleteButtonIcon/DeleteButton.module.css ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************/
+/* DeleteButton.module.css */
+.DeleteButton_button__4RkpN {
+    padding: 17px 18px;
+    border: none;
+    border-radius: 10px;
+    background-color: #F8E2E2;
+    color: #D21C1C;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 52px;
+    height: 52px;
+    line-height: 24px;
+  }
+  
+  .DeleteButton_button__4RkpN:hover {
+    background-color: #fbd1d1; /* Warna merah muda lebih terang saat hover */
+  }
+  
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/components/ui/PrimaryButton/PrimaryButton.module.css ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************/
+/* EditButton.module.css */
+.PrimaryButton_button__0nqsO {
+    padding: 10px 20px;
+    /* border: 2px solid #248543;  */
+    border-radius: 10px;
+    background-color: #248543;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .PrimaryButton_button__0nqsO:hover {
+    background-color: #eaf4ea;
+  }
+  
+  .PrimaryButton_button__0nqsO:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+  
+  /* Optionally, if you want to add a disabled class for more custom styling */
+  .PrimaryButton_disabled__qx_BK {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+  
+/*!**************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/components/ui/TopBar/TopBar.module.css ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************/
+.TopBar_header__hTBU_{
+    display: flex;
+    flex-shrink: 0;
+    position: sticky;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    max-width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ddd; 
+  }
+
+  .TopBar_searchbar__uuWFx {
+    flex: 1 1 50%;
+    background-color: #fff; 
+    padding: 16px;
+    overflow: hidden;
+  }
+  
+  .TopBar_operatorProfile__4d6ET{
+    overflow: hidden; 
+    margin-right: 1vw;
+  }
+  
+  .TopBar_profile__wcj50{
+    overflow: hidden; 
+    margin-right: 8vw;
+  }
+
+/* TopBar.module.css */
+.TopBar_dropdown__WLBFV {
+    position: absolute;
+    top: 60px; /* Adjust position */
+    right: 20px; /* Adjust position */
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    border-radius: 4px;
+    width: 400px;
+    padding: 20px;
+    font-weight: 600;
+  }
+  
+  .TopBar_notificationRow__VMmz2 {
+    display: flex;
+    width: 381px;
+    align-items: center;
+    gap: 18px;
+    padding: 10px 0px;
+  }
+
+  .TopBar_notificationRow__VMmz2 img {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    object-fit: cover;
+  }
+
+  .TopBar_notificationRow__VMmz2 p {
+    color: #000;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 142.857% */
+  }
+  
+  .TopBar_notificationRow__VMmz2 {
+    display: flex;
+    align-items: center;
+    gap: 12px; 
+    margin-bottom: 8px; 
+  }
+  
+  .TopBar_notificationText__1RL9S {
+    text-align: left;
+    flex: 1;
+  }
+  
+  .TopBar_notificationActionsWrapper__NFbQk {
+    margin-top: 8px;
+    margin-left: 15%;
+    width: 100%; 
+    display: flex;
+    justify-content: flex-start; 
+    gap: 12px; 
+  }
+  
+/*!********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/components/ui/SearchBar/SearchBar.module.css ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************/
+.SearchBar_searchBar__hwuLr {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 10px 15px;
+    border-radius: 25px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    width: 100%;
+    gap: 16px;
+  }
+  
+  .SearchBar_icon__4kOwz {
+    width: 20px;
+    height: 20px;
+    color: #808080; /* Warna abu-abu */
+    margin-right: 10px;
+  }
+  
+  .SearchBar_input__fgIoO {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    flex: 1;
+    color: #333; /* Warna teks */
+  }
+  
+  .SearchBar_input__fgIoO::placeholder {
+    color: #b0b0b0; /* Warna placeholder */
+  }
+  
+  .SearchBar_searchBar__hwuLr:hover {
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  .SearchBar_searchBar__hwuLr:focus-within {
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/components/ui/DownloadQRButton/DownloadQRButton.module.css ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************/
+.DownloadQRButton_button__HY53H {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    color: #808080; 
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    text-transform: none; 
+    text-decoration: underline;
+  }
+  
+  .DownloadQRButton_line___PtCN {
+    height: 2px;
+    width: 100%;
+    background-color: #808080;
+    margin-top: 4px;
+  }
+  
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/components/ui/PerbaruiButton/PerbaruiButton.module.css ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************/
+.PerbaruiButton_button__om8Mw {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #248543;
+    background-color: transparent;
+    border: 2px solid #248543; 
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .PerbaruiButton_button__om8Mw:hover {
+    background-color: #4caf50;
+    color: white; 
+  }
+  
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/components/ui/PhaseLabel/PhaseLabel.module.css ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************/
+/* PhaseLabel.module.css */
+.PhaseLabel_container__nC2NL {
+    display: flex;
+    /* width: 100px;
+    height: 28px; */
+    justify-content: center;
+    align-items: center;
+    /* gap: 10px; */
+    height: 20px;
+  }
+  
+  .PhaseLabel_button__2CsVc {
+    width: 100px;
+    height: 0px;
+    padding: 4px 8px;
+    border-radius: 10px;
+    font-size: 16px; 
+    font-style: normal; 
+    font-weight: 500; 
+    color: #248543;
+
+    gap: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .PhaseLabel_button__2CsVc:hover {
+    opacity: 0.8;
+  }
+  
+  .PhaseLabel_active__7ib4o {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .PhaseLabel_tag__nutU5 {
+    /* width: 50px; */
+    height: 30px;
+    padding: 4px 8px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    color: #248543;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .PhaseLabel_label__pbB1U {
+    text-align: center;
+    display: inline-block; 
+    overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis; 
+    width: 100px; 
+  }
+  
+  
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/components/ui/DetailLactationCard/DetailLactationCard.module.css ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************/
+.DetailLactationCard_card__2HEBE {
+    background-color: white; /* Hijau lembut */
+    display: flex;
+    width: 240px;
+    height: 418px;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    flex-shrink: 0;
+    border-radius: 30px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.30);
+    padding: auto;
+  }
+  
+  .DetailLactationCard_header__VIG8_ h3 {
+    margin-left: 5%;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    color: #4caf50; /* Hijau */
+    margin-top: 10%; 
+  }
+  
+  .DetailLactationCard_header__VIG8_ h2 {
+    margin-left: 5%;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    margin: 0 0 8px;
+    padding: auto;
+  }
+  
+  .DetailLactationCard_description__XF1Ti {
+    margin-left: 5%;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 19.2px;
+    color: #7f7f7f; /* Abu-abu */
+    margin: 0;
+  }
+  
+  .DetailLactationCard_history__gMe2b h3 {
+    margin-left: 5%;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    color: #4caf50; /* Hijau */
+    margin-top: 1px;
+  }
+  
+  .DetailLactationCard_historyItem__gWwnI {
+    margin-left: 5%;
+    margin-bottom: 8px;
+  }
+  
+  .DetailLactationCard_historyItem__gWwnI strong {
+    margin-left: 5%;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 19.2px; 
+    color: #000; /* Hitam */
+    
+  }
+  
+  .DetailLactationCard_title__ePNi5{
+    margin-left: 5%;
+  }
+
+  .DetailLactationCard_description__XF1Ti{
+    margin-left: 5%;
+  }
+  .DetailLactationCard_action__g6RfA {
+    display: flex;
+    /* width: 184px; */
+    flex-direction: column;
+    align-items: center;
+    margin-top: -10px;
+  }
+
+  .DetailLactationCard_viewMore__BbPRI{
+    display: flex;
+    justify-content: flex-start;
+    margin-top: -25px;
+  }
+  
+/*!******************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/components/ui/ViewMore/ViewMore.module.css ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************/
+.ViewMore_button__VpWt8 {
+    display: flex;
+    align-items: flex-start;
+    /* flex-direction: column; */
+    /* align-items: center; */
+    gap: 8px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    color: #808080; 
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 19.2px;
+    cursor: pointer;
+    outline: none;
+    /* text-transform: none; 
+    text-decoration: underline; */
+    position: relative;
+  }
+  
+  .ViewMore_line__9k77d {
+    height: 1px;
+    /* width: 80%; */
+    background-color: #808080;
+    /* margin-top: -7px; */
+  }
+
+  .ViewMore_button__VpWt8::after {
+    content: '';
+    position: absolute;
+    bottom: 0; 
+    width: 74%;
+    height: 2px; 
+    background-color: #808080;
+  }
+
+  .ViewMore_svg__6z8C4{
+    color: #808080; 
+    /* margin-right: -30px; */
+  }
+  
+  /* .iconSelengkapnya{
+    padding-right: 10%;
+  } */
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/components/ui/StatisticsMilkUpdate/StatisticsMilkUpdate.module.css ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
+.StatisticsMilkUpdate_container__QVV47 {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 1025px;
+    height: 418px;
+    margin: auto;
+  }
+  
+  .StatisticsMilkUpdate_tittle__g5wTn{
+    color: #248543;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 19.2px;
+  }
+  
+  .StatisticsMilkUpdate_header__CGt2C {
+    display: flex;
+    margin-bottom: 16px;
+    justify-content: space-between;
+  }
+  
+  .StatisticsMilkUpdate_header__CGt2C h3 {
+    color: green;
+    font-size: 16px;
+    margin: 0;
+  }
+  
+  .StatisticsMilkUpdate_header__CGt2C h1 {
+    font-size: 36px;
+    margin: 4px 0;
+    font-weight: bold;
+  }
+  
+  .StatisticsMilkUpdate_header__CGt2C p {
+    color: #808080;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 19.2px;
+  }
+  
+  .StatisticsMilkUpdate_chartContainer__cvmY8 {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px; 
+  }
+  
+  .StatisticsMilkUpdate_yAxis__FEhAe {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    height: 205px; 
+    margin-right: 8px; 
+  }
+  
+  .StatisticsMilkUpdate_yAxisLabel__0PkX7 {
+    font-size: 12px; 
+    color: #888888; 
+    margin: 0; 
+    text-align: right; 
+  }
+  
+  .StatisticsMilkUpdate_chart__pam8V {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 200px; 
+    margin-bottom: 16px;
+    gap: 16px;
+    border-left: 2px solid #e0e0e0;
+    padding-left: 16px;
+  }
+  
+  .StatisticsMilkUpdate_barContainer__v9CgK {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 4px; 
+    width: 50px; 
+  }
+  
+  .StatisticsMilkUpdate_greenBar___nEDd {
+    width: 20px; 
+    background-color: #33CC66; 
+    border-radius: 10px;
+    position: absolute;
+    z-index: 1; 
+  }
+  
+  .StatisticsMilkUpdate_bar__9QSAy {
+    width: 20px; 
+    background-color: #6fcf97;
+    border-radius: 4px; 
+    z-index: 0; 
+  }
+  
+  .StatisticsMilkUpdate_month__IC2hE {
+    margin-bottom: -50px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    color: #000000;
+  }
+  
+  .StatisticsMilkUpdate_minMonth__8s8_C{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+  }
+  
+  .StatisticsMilkUpdate_maxMonth__5mNDX{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+  }
+  
+  .StatisticsMilkUpdate_footer__nhEaN {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .StatisticsMilkUpdate_footer__nhEaN p {
+    margin: 0;
+    font-size: 12px;
+    color: #888;
+  }
+  
+  .StatisticsMilkUpdate_footer__nhEaN h4 {
+    margin: 4px 0 0;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/components/ui/StatisticsWeightUpdate/StatisticsWeightUpdate.module.css ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************/
+.StatisticsWeightUpdate_container___mzKf {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 1025px;
+    height: 418px;
+    margin: auto;
+  }
+  
+  .StatisticsWeightUpdate_tittle__SLABO{
+    color: #248543;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 19.2px;
+  }
+
+  .StatisticsWeightUpdate_header__KpA3e {
+    display: flex;
+    margin-bottom: 16px;
+    justify-content: space-between;
+  }
+  
+  .StatisticsWeightUpdate_header__KpA3e h3 {
+    color: green;
+    font-size: 16px;
+    margin: 0;
+  }
+  
+  .StatisticsWeightUpdate_header__KpA3e h1 {
+    font-size: 36px;
+    margin: 4px 0;
+    font-weight: bold;
+  }
+  
+  .StatisticsWeightUpdate_header__KpA3e p {
+    color: #808080;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 19.2px;
+  }
+  
+  .StatisticsWeightUpdate_chartContainer__tDbtY {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px; 
+  }
+  
+  .StatisticsWeightUpdate_yAxis___k9Mi {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    height: 205px; 
+    margin-right: 8px; 
+  }
+  
+  .StatisticsWeightUpdate_yAxisLabel___0bhi {
+    font-size: 12px; 
+    color: #888888; 
+    margin: 0; 
+    text-align: right; 
+  }
+
+  .StatisticsWeightUpdate_chart__SRN_f {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 200px; 
+    margin-bottom: 16px;
+    gap: 16px;
+    border-left: 2px solid #e0e0e0;
+    padding-left: 16px;
+  }
+  
+  .StatisticsWeightUpdate_barContainer__iJYcP {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 4px; 
+    width: 50px; 
+  }
+  
+  .StatisticsWeightUpdate_greenBar__UkViQ {
+    width: 20px; 
+    background-color: #33CC66; 
+    border-radius: 10px;
+    position: absolute;
+    z-index: 1; 
+  }
+  
+  .StatisticsWeightUpdate_bar___HS1x {
+    width: 20px; 
+    background-color: #6fcf97;
+    border-radius: 4px; 
+    z-index: 0; 
+  }
+  
+  .StatisticsWeightUpdate_month__CDJF9 {
+    margin-bottom: -50px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    color: #000000;
+  }
+  
+  .StatisticsWeightUpdate_minMonth__waZp3{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+  }
+
+  .StatisticsWeightUpdate_maxMonth__QurJ5{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+  }
+
+  .StatisticsWeightUpdate_footer__ajBUv {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .StatisticsWeightUpdate_footer__ajBUv p {
+    margin: 0;
+    font-size: 12px;
+    color: #888;
+  }
+  
+  .StatisticsWeightUpdate_footer__ajBUv h4 {
+    margin: 4px 0 0;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/components/ui/StatisticsMilkUpdateMobile/StatisticsMilkUpdate.module.css ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.StatisticsMilkUpdate_container__AipYy {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 354px;
+    height: 380px;
+    margin: auto;
+  }
+  
+  .StatisticsMilkUpdate_title__vs0J3{
+    color: var(--Brand-Primary, #248543);
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 17.329px; /* 108.308% */
+  }
+  
+  .StatisticsMilkUpdate_header__xRTux {
+    display: flex;
+    margin-bottom: 16px;
+    justify-content: space-between;
+  }
+  
+  .StatisticsMilkUpdate_header__xRTux h3 {
+    color: green;
+    font-size: 16px;
+    margin: 0;
+  }
+  
+  .StatisticsMilkUpdate_header__xRTux h1 {
+    font-size: 36px;
+    margin: 4px 0;
+    font-weight: bold;
+  }
+  
+  .StatisticsMilkUpdate_header__xRTux p {
+    color: #808080;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 19.2px;
+  }
+  
+  .StatisticsMilkUpdate_chartContainer__vpBEv {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px; 
+  }
+  
+  .StatisticsMilkUpdate_yAxis__TuL36 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    height: 205px; 
+    margin-right: 8px; 
+  }
+  
+  .StatisticsMilkUpdate_yAxisLabel__sMERX {
+    font-size: 12px; 
+    color: #888888; 
+    margin: 0; 
+    text-align: right; 
+  }
+  
+  .StatisticsMilkUpdate_chart__eMpMU {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 200px; 
+    margin-bottom: 16px;
+    gap: 16px;
+    border-left: 2px solid #e0e0e0;
+    padding-left: 16px;
+  }
+  
+  .StatisticsMilkUpdate_barContainer__g5uiC {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 4px; 
+    width: 50px; 
+  }
+  
+  .StatisticsMilkUpdate_greenBar__9HmhE {
+    width: 20px; 
+    background-color: #33CC66; 
+    border-radius: 10px;
+    position: absolute;
+    z-index: 1; 
+  }
+  
+  .StatisticsMilkUpdate_bar__GhKj6 {
+    width: 20px; 
+    background-color: #6fcf97;
+    border-radius: 4px; 
+    z-index: 0; 
+  }
+  
+  .StatisticsMilkUpdate_month__z1ghg {
+    margin-bottom: -20px;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
+    color: #000000;
+  }
+  
+  .StatisticsMilkUpdate_minMonth__84hMO{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+  }
+  
+  .StatisticsMilkUpdate_maxMonth__O6J4R{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+  }
+  
+  .StatisticsMilkUpdate_footer__ogWT1 {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .StatisticsMilkUpdate_footer__ogWT1 p {
+    margin: 0;
+    font-size: 12px;
+    color: #888;
+  }
+  
+  .StatisticsMilkUpdate_footer__ogWT1 h4 {
+    margin: 4px 0 0;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/components/ui/StatisticsLactationMobile/StatisticsLactation.module.css ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************/
+.StatisticsLactation_container__1L4Qq {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 354px;
+    height: 380px;
+    margin: auto;
+  }
+  
+  .StatisticsLactation_tittle__MCJn_{
+    color: #248543;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 19.2px;
+  }
+
+  .StatisticsLactation_header__y6vfP {
+    display: flex;
+    margin-bottom: 16px;
+    justify-content: space-between;
+  }
+  
+  .StatisticsLactation_header__y6vfP h3 {
+    color: green;
+    font-size: 16px;
+    margin: 0;
+  }
+  
+  .StatisticsLactation_header__y6vfP h1 {
+    font-size: 36px;
+    margin: 4px 0;
+    font-weight: bold;
+  }
+  
+  .StatisticsLactation_header__y6vfP p {
+    color: #808080;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 19.2px;
+  }
+  
+  .StatisticsLactation_chartContainer__SyRVG {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px; 
+  }
+  
+  .StatisticsLactation_yAxis__buGf8 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    height: 205px; 
+    margin-right: 8px; 
+  }
+  
+  .StatisticsLactation_yAxisLabel__PPQZJ {
+    font-size: 12px; 
+    color: #888888; 
+    margin: 0; 
+    text-align: right; 
+  }
+
+  .StatisticsLactation_chart__2DQHN {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 200px; 
+    margin-bottom: 16px;
+    gap: 16px;
+    border-left: 2px solid #e0e0e0;
+    padding-left: 16px;
+  }
+  
+  .StatisticsLactation_barContainer__3r9RB {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 4px; 
+    width: 50px; 
+  }
+  
+  .StatisticsLactation_greenBar__OGFil {
+    width: 20px; 
+    background-color: #33CC66; 
+    border-radius: 10px;
+    position: absolute;
+    z-index: 1; 
+  }
+  
+  .StatisticsLactation_bar__qIdGY {
+    width: 20px; 
+    background-color: #6fcf97;
+    border-radius: 4px; 
+    z-index: 0; 
+  }
+  
+  .StatisticsLactation_month__YBzRX {
+    margin-bottom: -50px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    color: #000000;
+  }
+  
+  .StatisticsLactation_minMonth__S214W{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+  }
+
+  .StatisticsLactation_maxMonth__IMbcr{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+  }
+
+  .StatisticsLactation_footer__EpqqB {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .StatisticsLactation_footer__EpqqB p {
+    margin: 0;
+    font-size: 12px;
+    color: #888;
+  }
+  
+  .StatisticsLactation_footer__EpqqB h4 {
+    margin: 4px 0 0;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/components/ui/StatisticsWeightUpdateMobile/StatisticsWeightUpdate.module.css ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.StatisticsWeightUpdate_container__qngTn {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 354px;
+    height: 380px;
+    margin: auto;
+  }
+  
+  .StatisticsWeightUpdate_tittle__D4srC{
+    color: #248543;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 19.2px;
+  }
+
+  .StatisticsWeightUpdate_header__OSpcg {
+    display: flex;
+    margin-bottom: 16px;
+    justify-content: space-between;
+  }
+  
+  .StatisticsWeightUpdate_header__OSpcg h3 {
+    color: green;
+    font-size: 16px;
+    margin: 0;
+  }
+  
+  .StatisticsWeightUpdate_header__OSpcg h1 {
+    font-size: 36px;
+    margin: 4px 0;
+    font-weight: bold;
+  }
+  
+  .StatisticsWeightUpdate_header__OSpcg p {
+    color: #808080;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 19.2px;
+  }
+  
+  .StatisticsWeightUpdate_chartContainer__AHnWq {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px; 
+  }
+  
+  .StatisticsWeightUpdate_yAxis__HeSAJ {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    height: 205px; 
+    margin-right: 8px; 
+  }
+  
+  .StatisticsWeightUpdate_yAxisLabel__Sk_6g {
+    font-size: 12px; 
+    color: #888888; 
+    margin: 0; 
+    text-align: right; 
+  }
+
+  .StatisticsWeightUpdate_chart__3OMDJ {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 200px; 
+    margin-bottom: 16px;
+    gap: 16px;
+    border-left: 2px solid #e0e0e0;
+    padding-left: 16px;
+  }
+  
+  .StatisticsWeightUpdate_barContainer__4j5_d {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 4px; 
+    width: 50px; 
+  }
+  
+  .StatisticsWeightUpdate_greenBar__APSZX {
+    width: 20px; 
+    background-color: #33CC66; 
+    border-radius: 10px;
+    position: absolute;
+    z-index: 1; 
+  }
+  
+  .StatisticsWeightUpdate_bar__CG9f3 {
+    width: 20px; 
+    background-color: #6fcf97;
+    border-radius: 4px; 
+    z-index: 0; 
+  }
+  
+  .StatisticsWeightUpdate_month__lYHyT {
+    margin-bottom: -50px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    color: #000000;
+  }
+  
+  .StatisticsWeightUpdate_minMonth__S5f_H{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+  }
+
+  .StatisticsWeightUpdate_maxMonth__9nKp_{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+  }
+
+  .StatisticsWeightUpdate_footer__ClF4p {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .StatisticsWeightUpdate_footer__ClF4p p {
+    margin: 0;
+    font-size: 12px;
+    color: #888;
+  }
+  
+  .StatisticsWeightUpdate_footer__ClF4p h4 {
+    margin: 4px 0 0;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  

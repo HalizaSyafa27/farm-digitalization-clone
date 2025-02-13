@@ -1,8 +1,8 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/defaultView/page": "app/defaultView/page.js",
-  "/auth/loginPage/page": "app/auth/loginPage/page.js",
-  "/auth/registerStep2Page/page": "app/auth/registerStep2Page/page.js",
-  "/auth/registerStep1Page/page": "app/auth/registerStep1Page/page.js"
+  "/defaultView/[id]/lactation/page": "app/defaultView/[id]/lactation/page.js",
+  "/defaultView/[id]/page": "app/defaultView/[id]/page.js",
+  "/defaultView/[id]/vaccine/page": "app/defaultView/[id]/vaccine/page.js",
+  "/defaultView/[id]/milkProduction/page": "app/defaultView/[id]/milkProduction/page.js",
+  "/defaultView/[id]/weight/page": "app/defaultView/[id]/weight/page.js"
 }

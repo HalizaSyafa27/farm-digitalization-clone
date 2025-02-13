@@ -47,7 +47,7 @@ const LivestockSicknessPage: React.FC<LivestockSicknessPageProps> = ({ params: p
     const options = ['Cacingan', 'Diare', 'Demam', 'Flu'];
     
     const { data: livestock, loading: loadingLivestock, error: errorLivestock } = useFetch<Livestock>(
-        `${process.env.NEXT_PUBLIC_API_HOST}/animals/${id}`,
+        `${process.env.NEXT_PUBLIC_API_HOST}/livestocks/${id}`,
     );
     useEffect(() => {
         if (livestock) {
@@ -89,7 +89,7 @@ const LivestockSicknessPage: React.FC<LivestockSicknessPageProps> = ({ params: p
                         value: new Date().toLocaleString("en-US", { year: "numeric", month: "short" }) // Format like "May 2019"
                     }))
                 };
-                const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/animals/${id}/health`, {
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/livestocks/${id}/health`, {
                     method: "POST",
                     body: JSON.stringify(payload),
                     headers: {

@@ -40,7 +40,7 @@ const StatisticsBodyMass: React.FC<StatisticsBodyMassProps> = ({ filterBy, filte
 
       <div className={styles.chartContainer}>
         <div className={styles.yAxis}>
-            {[20000, 10000, 5000, 2500, 0].map((value, index) => (
+            {[1000, 750, 500, 250, 100, 0].map((value, index) => (
             <p key={index} className={styles.yAxisLabel}>
                 {value}
             </p>
