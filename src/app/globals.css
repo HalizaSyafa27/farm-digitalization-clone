@@ -190,6 +190,9 @@ body {
   align-items: flex-start;
 }
 
+.livestockCategoriesCard{
+  display: flex;
+}
 
 .genderIcon{
   scale: 1.5;

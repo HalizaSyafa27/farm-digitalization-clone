@@ -186,7 +186,7 @@ const App: React.FC = () => {
       <div className="sidebar">
       <Sidebar 
           setBreadcrumb={function (label: string): void {
-              throw new Error('Function not implemented.');
+              // throw new Error('Function not implemented.');
           }} 
           farmList={farmData == null ? [] : farmData}
           setFarm={handleFarmChange}

@@ -14,9 +14,9 @@ interface SidebarProps {
 
 const menuItems = (viewType: 'owner' | 'operator') => [
   {
-    href: viewType === 'owner'
-    ? "/OwnerViewPage/defaultOwnerViewPage"
-    : "/OperatorViewPage",
+    // href: viewType === 'owner'
+    // ? "/OwnerViewPage/defaultOwnerViewPage"
+    // : "/OperatorViewPage",
     label: "Statistik",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -35,9 +35,9 @@ const menuItems = (viewType: 'owner' | 'operator') => [
     ),
   },
   {
-    href: viewType === 'owner'
-    ? "/OwnerViewPage/defaultOwnerViewPage"
-    : "/OperatorViewPage/livestockOperatorPage",
+    // href: viewType === 'owner'
+    // ? "/OwnerViewPage/defaultOwnerViewPage"
+    // : "/OperatorViewPage/livestockOperatorPage",
     label: "Ternak Anda",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -53,9 +53,9 @@ const menuItems = (viewType: 'owner' | 'operator') => [
     ),
   },
   {
-    href: viewType === 'owner'
-    ? "/OwnerViewPage/defaultOwnerViewPage"
-    : "/OperatorViewPage/activityOperatorPage",
+    // href: viewType === 'owner'
+    // ? "/OwnerViewPage/defaultOwnerViewPage"
+    // : "/OperatorViewPage/activityOperatorPage",
     label: "Aktivitas",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -71,9 +71,9 @@ const menuItems = (viewType: 'owner' | 'operator') => [
     ),
   },
   {
-    href: viewType === 'owner'
-    ? "/OwnerViewPage/defaultOwnerViewPage"
-    : "/OperatorViewPage/settingsOperatorPage",
+    // href: viewType === 'owner'
+    // ? "/OwnerViewPage/defaultOwnerViewPage"
+    // : "/OperatorViewPage/settingsOperatorPage",
     label: "Pengaturan",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -84,32 +84,17 @@ const menuItems = (viewType: 'owner' | 'operator') => [
 ]
 
 
-const SidebarDisabled: React.FC<{ setBreadcrumb: (label: string) => void, farmList?: FarmModel[], setFarm: (farmName: string) => void}> = ({ setBreadcrumb, farmList = [], setFarm }) => {
-
-  
-  const handleMenuClick = (label: string) => {
-    setSelectedIndex(label);
-    setBreadcrumb(label); // Set breadcrumb saat menu diklik
-  };
-
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedFarm, setSelectedFarm] = useState(farmList.length == 0 ? "" : farmList[0].name);
-
-  const toggleDropdown = () => setIsOpen(!isOpen);
-
-  const handleFarmSelect = (farmName: string) => {
-    setSelectedFarm(farmName);
-    setIsOpen(false);
-    setFarm(farmName);
-  };
+const SidebarDisabled: React.FC<{
+  setBreadcrumb: (label: string) => void;
+  farmList?: FarmModel[];
+  setFarm: (farmName: string) => void;
+}> = ({ setBreadcrumb, farmList = [], setFarm }) => {
 
   const [selectedIndex, setSelectedIndex] = useState<string | null>(null);
   const path = usePathname();
-
   const viewType: 'owner' | 'operator' = path?.includes('OperatorViewPage') ? 'operator' : 'owner';
   const items = menuItems(viewType);
 
-  console.log(path)
   useEffect(() => {
     switch (true) {
       case path?.includes('/livestockOwnerPage'):
@@ -127,67 +112,31 @@ const SidebarDisabled: React.FC<{ setBreadcrumb: (label: string) => void, farmLi
     }
   }, [path]);
 
-  
-    return (
-      <div className={styles.sidebarContainer}>
-        {/* Profile Section */}
-        <div className={styles.sidebarProfile}>
-          <div className={styles.profilePicture}>
-              <Logo/>
-          </div>
-          {/* <div className={styles.profileDropdown}>
-            <button className={styles.dropdownButton} onClick={toggleDropdown}>
-              {selectedFarm}
-           
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="11" viewBox="0 0 18 11" fill="none">
-              <path d="M9.32422 10.2002C9.56836 10.2002 9.8125 10.1025 9.97851 9.917L17.5371 2.17286C17.7031 2.00683 17.8008 1.792 17.8008 1.54786C17.8008 1.04004 17.4199 0.649414 16.9121 0.649414C16.668 0.649414 16.4434 0.747071 16.2774 0.903325L8.79687 8.54981H9.8418L2.36133 0.903325C2.20508 0.747071 1.98047 0.649414 1.72656 0.649414C1.21875 0.649414 0.837891 1.04004 0.837891 1.54786C0.837891 1.792 0.935547 2.00684 1.10156 2.18262L8.66016 9.917C8.8457 10.1025 9.07031 10.2002 9.32422 10.2002Z" fill="white"/>
-              </svg>
-            </button>
-            {isOpen && (
-              <div className={styles.dropdownList}>
-                {farmList.map((farm, index) => (
-                  index == 0 
-                  ? 
-                  <div>
-                    <button key={index} className={styles.dropdownItem} onClick={() => handleFarmSelect(farm.name)}>
-                      {farm.name}
-                    </button>
-                  </div>
-                  : 
-                  <div>
-                    <hr />
-                    <button key={index} className={styles.dropdownItem} onClick={() => handleFarmSelect(farm.name)}>
-                      {farm.name}
-                    </button>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div> */}
+  return (
+    <div className={styles.sidebarContainer}>
+      {/* Profile Section */}
+      <div className={styles.sidebarProfile}>
+        <div className={styles.profilePicture}>
+          <Logo/>
         </div>
-  
-        {/* Menu Items */}
-        <div className={styles.menuItems}>
+      </div>
+
+      {/* Menu Items */}
+      <div className={styles.menuItems}>
         <ul>
-
-            {items.map((menuItem) => (
-                    <li 
-                    key={menuItem.href} 
-                    className={`${styles.menuItem} ${selectedIndex === menuItem.label ? styles.selectedMenuItems : ''}`}
-                    onClick={() => handleMenuClick(menuItem.label)}
-                    >
-                      <Link
-                        href={menuItem.href}
-                        className="flex items-center space-x-2 px-4 py-3 rounded-[10px] color: #808080 transition-colors"
-                      >
-                        {menuItem.icon}
-                        <span className={styles.menuLabel}>{menuItem.label}</span>
-                      </Link>
-                    </li>
-                  ))}
-
-          </ul>
-        </div>
+          {items.map((menuItem) => (
+            <li 
+              key={menuItem.label} 
+              className={`${styles.menuItem} ${selectedIndex === menuItem.label ? styles.selectedMenuItems : ''}`}
+            >
+              <div className="flex items-center space-x-2 px-4 py-3 rounded-[10px] text-gray-400">
+                {menuItem.icon}
+                <span className={styles.menuLabel}>{menuItem.label}</span>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
