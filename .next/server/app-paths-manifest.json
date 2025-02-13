@@ -1,8 +1,7 @@
 {
-  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/defaultView/[id]/lactation/page": "app/defaultView/[id]/lactation/page.js",
   "/defaultView/[id]/page": "app/defaultView/[id]/page.js",
-  "/defaultView/[id]/vaccine/page": "app/defaultView/[id]/vaccine/page.js",
-  "/defaultView/[id]/milkProduction/page": "app/defaultView/[id]/milkProduction/page.js",
-  "/defaultView/[id]/weight/page": "app/defaultView/[id]/weight/page.js"
+  "/defaultView/page": "app/defaultView/page.js",
+  "/defaultView/addTernakPage/page": "app/defaultView/addTernakPage/page.js",
+  "/defaultView/addTernakPage/addDataDetailTernakPage/page": "app/defaultView/addTernakPage/addDataDetailTernakPage/page.js"
 }

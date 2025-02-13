@@ -15,15 +15,13 @@ const StatisticsLactation: React.FC<StatisticMilkProps> = ({
 }) => {
   // Ensure lactationData exists before accessing its properties
   const filteredData =
-    lactationData?.yearlyDatas?.flatMap((item) => {
-      if (filterBy === 'year' && item.year === filterValue) {
-        return item.monthlyDatas;
-      }
-      // if (filterBy === 'month') {
-      //   return item.monthlyDatas.filter((data) => data.month === filterValue);
-      // }
-      return [];
-    }) || [];
+  lactationData?.yearlyDatas?.length
+    ? lactationData.yearlyDatas.flatMap((item) =>
+        item.year === filterValue ? item.monthlyDatas || [] : []
+      )
+    : [];
+
+
 
   // Calculate the average, ensuring there is data to calculate from
   const average =

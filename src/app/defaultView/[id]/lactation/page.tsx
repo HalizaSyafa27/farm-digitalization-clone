@@ -66,6 +66,7 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
     );
 
     const { data: livestock, loading: loadingLivestock, error: errorLivestock } = useFetch<Livestock>(
+        // `${process.env.NEXT_PUBLIC_API_HOST}/animals/${id}`,
         `${process.env.NEXT_PUBLIC_API_HOST}/livestocks/${id}`,
     );
     useEffect(() => {
@@ -75,7 +76,8 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
     }, [livestock]);
 
     const { data: lactation, loading: loadingLactation, error: errorLactation } = useFetch<LactationRecord[]>(
-        `${process.env.NEXT_PUBLIC_API_HOST}/lactations/livestocks/${id}`,
+        // `${process.env.NEXT_PUBLIC_API_HOST}/lactations/animal/${id}`,
+        `${process.env.NEXT_PUBLIC_API_HOST}/lactationData/livestocks/${id}`,
     );
 
     const router = useRouter()
@@ -169,7 +171,7 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
                     yearData.data.push({ month, value });
                 }
 
-                const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/milkData/${livestock?.milkData.id}`, {
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/lactationData/${livestock?.lactationData.id}`, {
                     method: "PUT",
                     body: JSON.stringify(payload),
                     headers: {
@@ -200,7 +202,7 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
                 }))
             }
 
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/lactations`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/lactationData`, {
                 method: "POST",
                 body: JSON.stringify(payload),
                 headers: {

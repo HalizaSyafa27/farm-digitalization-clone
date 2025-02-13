@@ -3,7 +3,7 @@
 import React, { use, useEffect, useState } from 'react';
 import useFetch from '@/hooks/useFetch';
 import { useRouter } from 'next/navigation'
-import { Livestock } from '@/models/LivestockModel';
+import { Livestock, YearlyData } from '@/models/LivestockModel';
 import QRCode from 'qrcode';
 
 import Sidebar from '@/components/ui/Sidebar/sidebar';
@@ -90,13 +90,24 @@ const LivestockDetailPage: React.FC<LivestockDetailPageProps> = ({ params: param
     const generateLactationData = (livestock: Livestock) => {
         const yearlyData = livestock.lactationData.yearlyDatas;
         
-        const currentYearData = yearlyData[yearlyData.length - 1];
+        // const currentYearData = yearlyData[yearlyData.length - 1];
+        // const currentYearData = yearlyData.length ? yearlyData[yearlyData.length - 1] : { monthlyDatas: [] };
+        const currentYearData: YearlyData = yearlyData.length
+  ? yearlyData[yearlyData.length - 1]
+  : { id: 0, year: 0, conditionId: 0, conditionType: "", createdAt: "", updatedAt: "", monthlyDatas: [] };
+
         const currentLactationNumber = yearlyData.length; // Number of years = current lactation number
     
         // Generate current lactation title and description
         const currentLactation = {
         title: `Laktasi ke-${currentLactationNumber}`,
-        description: `${currentYearData.monthlyDatas[0].value} Jantan - ${currentYearData.year} ${currentYearData.monthlyDatas[0].month} ${currentYearData.monthlyDatas[currentYearData.monthlyDatas.length - 1].month}`,
+        // description: `${currentYearData.monthlyDatas[0].value} Jantan - ${currentYearData.year} ${currentYearData.monthlyDatas[0].month} ${currentYearData.monthlyDatas[currentYearData.monthlyDatas.length - 1].month}`,
+        description:
+        currentYearData?.monthlyDatas?.length
+          ? `${currentYearData.monthlyDatas[0]?.value ?? 0} Jantan - ${currentYearData.year} ${currentYearData.monthlyDatas[0]?.month ?? "Unknown"} ${currentYearData.monthlyDatas[currentYearData.monthlyDatas.length - 1]?.month ?? "Unknown"}`
+          : "Data tidak tersedia",
+      
+
         livestock: livestock || undefined,
         };
     
@@ -311,7 +322,7 @@ const LivestockDetailPage: React.FC<LivestockDetailPageProps> = ({ params: param
                        <div className="sidebar">
                             <Sidebar 
                                 setBreadcrumb={function (label: string): void {
-                                    throw new Error('Function not implemented.');
+                                    // throw new Error('Function not implemented.');
                                 }} 
                                 farmList={farmData == null ? [] : farmData}
                                 setFarm={handleFarmChange}
@@ -424,7 +435,9 @@ const LivestockDetailPage: React.FC<LivestockDetailPageProps> = ({ params: param
                                     
                                         <StatisticsMilkUpdate filterBy="year" filterValue={livestock == null ? "" : livestock.milkData == null ? "" : livestock.milkData.yearlyDatas[0].year} milkData={livestock == null ? undefined : livestock.milkData} livestock={livestock == null ? undefined : livestock} />
                                         <div className="lactationSection">
-                                            <StatisticsLactation filterBy="year" filterValue={livestock == null ? "" : livestock.lactationData == null ? "" : livestock.lactationData.yearlyDatas[0].year} lactationData={livestock == null ? undefined : livestock.lactationData}/>
+                                            <StatisticsLactation filterBy="year" filterValue={livestock?.lactationData?.yearlyDatas?.length ? livestock.lactationData.yearlyDatas[0].year : ""}
+lactationData={livestock?.lactationData}
+/>
                                             <DetailLactationCard currentLactation={currentLactation} history={history} livestock={livestock == null ? undefined : livestock} />;
                                         </div>
                                         
