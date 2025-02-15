@@ -40,7 +40,7 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
     const params = use(paramsPromise);
     const id = params.id;
     
-        const storedId = getCookie("id"); 
+    const storedId = getCookie("id"); 
     const role = getCookie("role"); 
 
     const { data: farmData, loading: loadingFarms, error: errorFarms } = useFetch<FarmModel[]>(
@@ -75,10 +75,10 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
         }
     }, [livestock]);
 
-    const { data: lactation, loading: loadingLactation, error: errorLactation } = useFetch<LactationRecord[]>(
-        // `${process.env.NEXT_PUBLIC_API_HOST}/lactations/animal/${id}`,
-        `${process.env.NEXT_PUBLIC_API_HOST}/lactationData/livestocks/${id}`,
-    );
+    // const { data: lactation, loading: loadingLactation, error: errorLactation } = useFetch<LactationRecord[]>(
+    //     // `${process.env.NEXT_PUBLIC_API_HOST}/lactations/animal/${id}`,
+    //     `${process.env.NEXT_PUBLIC_API_HOST}/lactationData/livestocks/${id}`,
+    // );
 
     const router = useRouter()
 
@@ -118,6 +118,8 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
                     ]
                 };
 
+                console.log(payload)
+                
                 const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/lactationData`, {
                     method: "POST",
                     body: JSON.stringify(payload),
@@ -128,6 +130,7 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
 
                 const data = await response.json();
                 if (response.ok) {
+                  
                     router.replace(`/defaultView/${id}`);
                 } else {
                     setApiError(data.error || "Something went wrong");
@@ -187,28 +190,6 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
                 }
             }
 
-            const payload = {
-                lactationData: {
-                    livestockId: id,
-                    spouseId: livestock?.spouse_id,
-                    lactation_number: (lactation?.at(0)?.lactation_number ?? 0) + 1,
-                    dob: date,
-                    total_child: value,
-                    total_male_child: dropdownData.filter(item => item === "Jantan").length,
-                    total_female_child: dropdownData.filter(item => item === "Betina").length,
-                },
-                lactationChildData: dropdownData.map((data) => ({
-                    gender: data === "Betina" ? "FEMALE" : "MALE"
-                }))
-            }
-
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/lactationData`, {
-                method: "POST",
-                body: JSON.stringify(payload),
-                headers: {
-                "Content-Type": "application/json",
-                },
-            });
         } catch (error) {
         } finally {
             // setLoading(false);
@@ -363,13 +344,20 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
                                     </h1>
 
                                     {
-                                        lactation?.map((lactation) => (
-                                            <div className="lactation-detailList">
-                                            <h2>Laktasi ke-{lactation.lactation_number}</h2>
-                                            <span>ID Pasangan: {lactation.spouseId}</span>
-                                            <span>Tanggal Lahir: {lactation.dob}</span>
-                                            <span>{lactation.total_female_child} Betina, {lactation.total_male_child} Jantan</span> 
+                                        livestock?.lactationData?.yearlyDatas.map((lactation) => (
+                                            lactation.monthlyDatas.map((
+                                                monthlyData
+                                            ) => (
+                                                <div className="lactation-detailList">
+                                            <h1>{new Date(monthlyData.updatedAt).toLocaleDateString('id-ID', {
+                                            day: '2-digit',
+                                            month: 'long',
+                                            year: 'numeric',
+                                            })}</h1>
+                                            <span>{monthlyData.value} Ekor</span> 
                                             </div>
+                                            )
+                                            )
                                         ))
                                     }
                                 </div>

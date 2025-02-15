@@ -250,7 +250,7 @@
 //                 },
 //             ],
 //         },
-//         milkData: {
+//         milkOutput: {
 //             yearlyData: [
 //                 {
 //                     year: 2018,
@@ -916,7 +916,7 @@
 //                 },
 //             ],
 //         },
-//         milkData: {
+//         milkOutput: {
 //             yearlyData: [
 //                 {
 //                     year: 2018,
@@ -1579,7 +1579,7 @@
 //                 },
 //             ],
 //         },
-//         milkData: {
+//         milkOutput: {
 //             yearlyData: [
 //                 {
 //                     year: 2018,
@@ -2241,7 +2241,7 @@
 //                 },
 //             ],
 //         },
-//         milkData: {
+//         milkOutput: {
 //             yearlyData: [
 //                 {
 //                     year: 2018,
@@ -2903,7 +2903,7 @@
 //                 },
 //             ],
 //         },
-//         milkData: {
+//         milkOutput: {
 //             yearlyData: [
 //                 {
 //                     year: 2018,
@@ -3565,7 +3565,7 @@
 //                 },
 //             ],
 //         },
-//         milkData: {
+//         milkOutput: {
 //             yearlyData: [
 //                 {
 //                     year: 2018,
@@ -4227,7 +4227,7 @@
 //                 },
 //             ],
 //         },
-//         milkData: {
+//         milkOutput: {
 //             yearlyData: [
 //                 {
 //                     year: 2018,
@@ -4889,7 +4889,7 @@
 //                 },
 //             ],
 //         },
-//         milkData: {
+//         milkOutput: {
 //             yearlyData: [
 //                 {
 //                     year: 2018,
@@ -5552,7 +5552,7 @@
 //                 },
 //             ],
 //         },
-//         milkData: {
+//         milkOutput: {
 //             yearlyData: [
 //                 {
 //                     year: 2018,
@@ -6215,7 +6215,7 @@
 //                 },
 //             ],
 //         },
-//         milkData: {
+//         milkOutput: {
 //             yearlyData: [
 //                 {
 //                     year: 2018,
@@ -6878,7 +6878,7 @@
 //                 },
 //             ],
 //         },
-//         milkData: {
+//         milkOutput: {
 //             yearlyData: [
 //                 {
 //                     year: 2018,

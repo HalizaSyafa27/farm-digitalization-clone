@@ -38,9 +38,15 @@ function AddTernak () {
     const [idKakek, setIdKakek] = useState("");
     const [idNenek, setIdNenek] = useState("");
 
-    const handleUpdateData = () => {
-        console.log("Data ternak berhasil ditambahkan");
-        alert("Data ternak berhasil ditambahkan");
+    const [validationError, setValidationError] = useState(false);
+
+    const handleAyahValidation = (id: string) => {
+      if (id == idPasangan) {
+        setValidationError(true)
+      } else {
+        setIdAyah(id)
+        setValidationError(false)
+      }
     };
 
     const handleFaseSelect = (option: string) => {
@@ -53,6 +59,11 @@ function AddTernak () {
 
     const handleValidationAndSubmit = async () => {
       try {
+
+        if (idAyah == idPasangan) {
+          return
+        }
+        
         const payload = {
           name_id: idTernak, 
           gender: jenisKelamin === "Jantan" ? "MALE" : "FEMALE",
@@ -140,7 +151,9 @@ function AddTernak () {
               <div className="grid-row-addTernak">
                 <div>
                   <Label title="ID Ayah *" />
-                  <Input disabled={false} type="text" placeholder="ID Ayah" onChange={(e) => setIdAyah(e.target.value)}/>
+                  <Input disabled={false} type="text" placeholder="ID Ayah" onChange={(e) => {handleAyahValidation(e.target.value)}} style={{
+                      borderColor: validationError ? "red" : "black",
+                    }}/>
                 </div>
   
                 <div>
@@ -207,6 +220,7 @@ function AddTernak () {
             onClick={() => {
               handleValidationAndSubmit();
             }}
+            disabled={validationError}
             />
             </div>
 

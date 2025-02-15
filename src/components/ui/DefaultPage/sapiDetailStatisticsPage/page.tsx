@@ -157,8 +157,8 @@ const App: React.FC = () => {
           <div className="statisticsCard">
           
           <StatisticsLactation lactationData={cowStatistics?.lactationData} filterBy="year" filterValue={2019} />
-          {/* <StatisticsMilkUpdate milkData={cowStatistics?.milkData} filterBy="year" filterValue={2019} /> */}
-          <StatisticsMilk milkData={cowStatistics?.milkData} filterBy="year" filterValue={2019}/>
+          {/* <StatisticsMilkUpdate milkOutput={cowStatistics?.milkOutput} filterBy="year" filterValue={2019} /> */}
+          <StatisticsMilk milkOutput={cowStatistics?.milkOutput} filterBy="year" filterValue={2019}/>
          
 
           {/* <StatisticsLivestockSold filterBy="year" filterValue={2019}/> */}

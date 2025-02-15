@@ -31,7 +31,7 @@ export default function InputDemo() {
         // Simpan role dan username ke cookie
         setCookie("role", role, {
           path: "/",
-          maxAge: 7 * 24 * 60 * 60, // Cookie berlaku selama 7 hari
+          maxAge: 7 * 24 * 60 * 60, 
         });
         setCookie("username", username, {
           path: "/",

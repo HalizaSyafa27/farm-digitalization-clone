@@ -1,4 +1,4 @@
-import { LactationData, MilkData } from "./LivestockModel";
+import { LactationData, MilkOutput } from "./LivestockModel";
 
 export interface StatisticsModel {
     summary: {
@@ -10,5 +10,5 @@ export interface StatisticsModel {
         livestockConditionStats: Record<string, number>;
     }
     lactationData: LactationData;
-    milkData: MilkData;
+    milkOutput: MilkOutput;
 }

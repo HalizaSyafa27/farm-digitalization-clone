@@ -25,6 +25,12 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
   const { data: livestock, loading: loadingLivestock, error: errorLivestock } = useFetch<Livestock>(
     `${process.env.NEXT_PUBLIC_API_HOST}/livestocks/${id}`,
   );
+
+  const { data: livestockData, loading: loadingLivestockData, error: errorLivestockData } = useFetch<Livestock[]>(
+      `${process.env.NEXT_PUBLIC_API_HOST}/livestocks`,
+  );
+
+
   useEffect(() => {
       if (livestock) {
           console.log(livestock)
@@ -227,7 +233,7 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
                 <div>
                   <Label title="Fase (pilihan) *" />
                   <DropdownFase
-                    options={['Cempe', 'Dara', 'Hamil', 'Siap Kawin', 'Lepas Sapih', 'Afkir']}
+                    options={jenisKelamin == "Jantan" ? ['Cempe', 'Dara', 'Siap Kawin', 'Lepas Sapih', 'Afkir'] : ['Cempe', 'Dara', 'Hamil', 'Siap Kawin', 'Lepas Sapih', 'Afkir']}
                     placeholder="Fase"
                     onSelect={handleFaseSelect}
                   />
@@ -254,15 +260,21 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
                         const inputIdPasangan = e.target.value;
                         setIdPasangan(inputIdPasangan);
   
-                        if (livestock && Array.isArray(livestock)) {
-                          const isRasTernakValid = !livestock.some(
-                            (livestock) => livestock.name_id === inputIdPasangan && livestock.breed === rasTernak
+                        if (livestockData && Array.isArray(livestockData)) {
+                          const isRasTernakValid = !livestockData.some(
+                            (livestock) => livestock.name_id === inputIdPasangan && livestock.gender === "FEMALE" && inputIdPasangan == idPasangan
                           );
   
                           if (!isRasTernakValid) {
                             setError(true);
                           } else {
-                            setError(false);
+                            console.log(inputIdPasangan)
+                            console.log(livestock?.dad_name_id)
+                            if (inputIdPasangan.toString() == livestock?.dad_name_id) {
+                              setError(true);
+                            } else {
+                              setError(false);
+                            }
                           }
                         }
                       }}

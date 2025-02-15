@@ -20,7 +20,7 @@ interface LivestockMilkProductionPageProps {
     }>;
 }
 
-interface MilkDataPayload {
+interface MilkOutputPayload {
     livestockId: string;
     yearlyData: YearlyDataPayload[];
 }
@@ -39,7 +39,7 @@ const LivestockMilkProductionPage: React.FC<LivestockMilkProductionPageProps> = 
     const params = use(paramsPromise);
     const id = params.id;
     
-        const storedId = getCookie("id"); 
+    const storedId = getCookie("id"); 
     const role = getCookie("role"); 
 
     const { data: farmData, loading: loadingFarms, error: errorFarms } = useFetch<FarmModel[]>(
@@ -69,9 +69,9 @@ const LivestockMilkProductionPage: React.FC<LivestockMilkProductionPageProps> = 
         }
     }, [livestock]);
 
-    const { data: milkProduction, loading: loadingMilkProduction, error: errorMilkProduction } = useFetch<MilkProductionRecord[]>(
-        `${process.env.NEXT_PUBLIC_API_HOST}/milkOutput/livestocks/${id}`,
-    );
+    // const { data: milkOutput, loading: loadingMilkOutput, error: errorMilkOutput } = useFetch<MilkProductionRecord[]>(
+    //     `${process.env.NEXT_PUBLIC_API_HOST}/milkOutput/livestock/${id}`,
+    // );
 
     const router = useRouter()
 
@@ -86,17 +86,22 @@ const LivestockMilkProductionPage: React.FC<LivestockMilkProductionPageProps> = 
         const month = new Date(date).toLocaleString('default', { month: 'short' });
 
         try {
-            if (livestock?.milkData == null) {
+            if (livestock?.milkOutput == null) {
                 const payload = {
                     livestockId: id,
+                    quantity: value,
                     yearlyData: [
                         {
-                            year:  year,
+                            // year:  year,
+                            // monthlyDatas: [
+                            //     {
+                            //         month: month,
+                            //         value: value
+                            //     }
+                            // ]
+                            year: new Date(date).getFullYear(),
                             data: [
-                                {
-                                    month: month,
-                                    value: value
-                                }
+                                { month: new Date(date).toLocaleString('default', { month: 'short' }), value: value }
                             ]
                         }
                     ]
@@ -117,12 +122,12 @@ const LivestockMilkProductionPage: React.FC<LivestockMilkProductionPageProps> = 
                     setApiError(data.error || "Something went wrong");
                 }
             } else {
-                let payload: MilkDataPayload = {
+                let payload: MilkOutputPayload = {
                     livestockId: id,
                     yearlyData: []
                 };
 
-                livestock.milkData.yearlyDatas.forEach((milkEntry: YearlyData) => {
+                livestock.milkOutput.yearlyDatas.forEach((milkEntry: YearlyData) => {
                     let yearData = payload.yearlyData.find((item) => item.year === milkEntry.year);
               
                     if (!yearData) {
@@ -153,7 +158,7 @@ const LivestockMilkProductionPage: React.FC<LivestockMilkProductionPageProps> = 
                     yearData.data.push({ month, value });
                 }
 
-                const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/milkOutput/${livestock?.milkData.id}`, {
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/milkOutput/${livestock?.milkOutput.id}`, {
                     method: "PUT",
                     body: JSON.stringify(payload),
                     headers: {
@@ -169,19 +174,6 @@ const LivestockMilkProductionPage: React.FC<LivestockMilkProductionPageProps> = 
                 }
             }
 
-            const payload = {
-                dateOfProduction: date,
-                quantity: value,
-                livestockId: livestock?.id
-            }
-
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/milkOutput`, {
-                method: "POST",
-                body: JSON.stringify(payload),
-                headers: {
-                "Content-Type": "application/json",
-                },
-            });
         } catch (error) {
         } finally {
             // setLoading(false);
@@ -291,15 +283,21 @@ const LivestockMilkProductionPage: React.FC<LivestockMilkProductionPageProps> = 
                                 </h1>
 
                                 {
-                                    milkProduction?.map((milk) => (
-                                        <div className="milk-detailList">
-                                        <h1>{new Date(milk.dateOfProduction).toLocaleDateString('id-ID', {
+                                    
+                                    livestock?.milkOutput?.yearlyDatas.map((milk) => (
+                                        milk.monthlyDatas.map((
+                                            monthlyData
+                                        ) => (
+                                            <div className="milk-detailList">
+                                        <h1>{new Date(monthlyData.updatedAt).toLocaleDateString('id-ID', {
                                         day: '2-digit',
                                         month: 'long',
                                         year: 'numeric',
                                         })}</h1>
-                                        <span>{milk.quantity} Liter</span> 
+                                        <span>{monthlyData.value} Liter</span> 
                                         </div>
+                                        )
+                                        )
                                     ))
                                 }
                                 </div>

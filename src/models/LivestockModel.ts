@@ -1,5 +1,5 @@
 import statisticsLactationData from "./statisticsLactationModel";
-import statisticsMilkData from "./statisticsMilkModel";
+import statisticsMilkOutput from "./statisticsMilkModel";
 import statisticsWeightData from "./statisticsWeightModel";
 import statisticsLivestockSold from "./statisticsLivestockSold";
 
@@ -84,7 +84,7 @@ export interface LactationData {
 //     yearlyDatas: statisticsLactationData,
 // };
 
-export interface MilkData {
+export interface MilkOutput {
     id: number;
     livestockId: number;
     createdAt: string;
@@ -92,12 +92,12 @@ export interface MilkData {
     yearlyDatas: YearlyData[];
 }
 
-// export const defaultMilkData: MilkData = {
+// export const defaultMilkOutput: MilkOutput = {
 //     id: 0,
 //     livestockId: 0,
 //     createdAt: "",
 //     updatedAt: "",
-//     yearlyDatas: statisticsMilkData,
+//     yearlyDatas: statisticsMilkOutput,
 // };
 
 export interface WeightData {
@@ -147,7 +147,7 @@ export interface Livestock {
     medication: Medication;
     vitamin: Vitamin;
     vaccine: Vaccine;
-    milkData: MilkData;
+    milkOutput: MilkOutput;
     lactationData: LactationData;
     weightData: WeightData;
     livestockSold?: LivestockSold;

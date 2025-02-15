@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '@/components/ui/StatisticsMilkUpdateMobile/StatisticsMilkUpdate.module.css';
-import { MilkData } from '@/models/LivestockModel';
+import { MilkOutput } from '@/models/LivestockModel';
 import PerbaruiButton from '@/components/ui/PerbaruiButton/PerbaruiButton';
 import { useRouter } from 'next/navigation';
 import { Livestock } from '@/models/LivestockModel';
@@ -8,19 +8,19 @@ import { Livestock } from '@/models/LivestockModel';
 interface StatisticsMilkUpdateMobileProps {
   filterBy: 'year' | 'month';
   filterValue: number | string;
-  milkData?: MilkData;
+  milkOutput?: MilkOutput;
   livestock?: Livestock;
 }
 
 const StatisticsMilkUpdateMobile: React.FC<StatisticsMilkUpdateMobileProps> = ({
   filterBy,
   filterValue,
-  milkData,
+  milkOutput,
   livestock,
 }) => {
-  // Ensure that milkData and livestock exist before accessing their properties
+  // Ensure that milkOutput and livestock exist before accessing their properties
   const filteredData =
-    milkData?.yearlyDatas?.flatMap((item) => {
+    milkOutput?.yearlyDatas?.flatMap((item) => {
       if (filterBy === 'year' && item.year === filterValue) {
         return item.monthlyDatas;
       }

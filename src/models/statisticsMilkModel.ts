@@ -1,4 +1,4 @@
-export const statisticsMilkData = [
+export const statisticsMilkOutput = [
       {
         year: 2018,
         data: [
@@ -206,4 +206,4 @@ export const statisticsMilkData = [
       
   ];
   
-  export default statisticsMilkData;
+  export default statisticsMilkOutput;

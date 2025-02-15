@@ -1,19 +1,19 @@
 import React from 'react';
 import styles from '@/components/ui/StatisticsMilk/StatisticsMilk.module.css';
-import { MilkData } from '@/models/LivestockModel';
+import { MilkOutput } from '@/models/LivestockModel';
 
 type StatisticMilkProps = {
   filterBy: 'year' | 'month';
   filterValue: number | string;
-  milkData?: MilkData;
+  milkOutput?: MilkOutput;
 };
 
 const StatisticMilk: React.FC<StatisticMilkProps> = ({
   filterBy,
   filterValue,
-  milkData,
+  milkOutput,
 }) => {
-  if (!milkData) {
+  if (!milkOutput) {
     return (
       <div className={styles.container}>
         <div className={styles.title}>
@@ -24,7 +24,7 @@ const StatisticMilk: React.FC<StatisticMilkProps> = ({
     );
   }
 
-  const filteredData = milkData.yearlyDatas.flatMap((item) => {
+  const filteredData = milkOutput.yearlyDatas.flatMap((item) => {
     if (filterBy === 'year' && item.year === filterValue) {
       return item.monthlyDatas;
     }

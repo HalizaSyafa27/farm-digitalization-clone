@@ -298,7 +298,7 @@ const LivestockDetailPage: React.FC<LivestockDetailPageProps> = ({ params: param
                                     <div className='statisticInformationLivestockVertical'>
                                         
                                         <div className="statisticsMilkMobile">
-                                        <StatisticsMilkUpdateMobile filterBy="year" filterValue={livestock == null ? "" : livestock.milkData == null ? "" : livestock.milkData.yearlyDatas[0].year} milkData={livestock == null ? undefined : livestock.milkData} livestock={livestock == null ? undefined : livestock} />
+                                        <StatisticsMilkUpdateMobile filterBy="year" filterValue={livestock == null ? "" : livestock.milkOutput == null ? "" : livestock.milkOutput.yearlyDatas[0].year} milkOutput={livestock == null ? undefined : livestock.milkOutput} livestock={livestock == null ? undefined : livestock} />
                                         </div>
                                         <div className='statisticsLactationMobile'>
                                         <StatisticsLactationMobile filterBy="year" filterValue={livestock == null ? "" : livestock.lactationData == null ? "" : livestock.lactationData.yearlyDatas[0].year} lactationData={livestock == null ? undefined : livestock.lactationData} livestock={livestock == null ? undefined : livestock}/>
@@ -433,7 +433,7 @@ const LivestockDetailPage: React.FC<LivestockDetailPageProps> = ({ params: param
                                     </div>
                                     <div className='statisticsInformationLivestock'>
                                     
-                                        <StatisticsMilkUpdate filterBy="year" filterValue={livestock == null ? "" : livestock.milkData == null ? "" : livestock.milkData.yearlyDatas[0].year} milkData={livestock == null ? undefined : livestock.milkData} livestock={livestock == null ? undefined : livestock} />
+                                        <StatisticsMilkUpdate filterBy="year" filterValue={livestock == null ? "" : livestock.milkOutput == null ? "" : livestock.milkOutput.yearlyDatas[0].year} milkOutput={livestock == null ? undefined : livestock.milkOutput} livestock={livestock == null ? undefined : livestock} />
                                         <div className="lactationSection">
                                             <StatisticsLactation filterBy="year" filterValue={livestock?.lactationData?.yearlyDatas?.length ? livestock.lactationData.yearlyDatas[0].year : ""}
 lactationData={livestock?.lactationData}

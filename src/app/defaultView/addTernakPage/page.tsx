@@ -241,7 +241,7 @@ function AddTernak () {
                 <div>
                   <Label title="Fase (pilihan) *" />
                   <DropdownFase
-                    options={['Cempe', 'Dara', 'Hamil', 'Siap Kawin', 'Lepas Sapih', 'Afkir']}
+                    options={jenisKelamin == "Jantan" ? ['Cempe', 'Dara', 'Siap Kawin', 'Lepas Sapih', 'Afkir'] : ['Cempe', 'Dara', 'Hamil', 'Siap Kawin', 'Lepas Sapih', 'Afkir']}
                     placeholder="Fase"
                     onSelect={handleFaseSelect}
                   />
@@ -270,13 +270,17 @@ function AddTernak () {
 
                       if (livestockData && Array.isArray(livestockData)) {
                         const isRasTernakValid = !livestockData.some(
-                          (livestock) => livestock.name_id === inputIdPasangan && livestock.breed === rasTernak
+                          (livestock) => livestock.name_id === inputIdPasangan && livestock.gender === "FEMALE"
                         );
 
                         if (!isRasTernakValid) {
                           setError(true);
                         } else {
-                          setError(false);
+                          if (inputIdPasangan == "" && selectedFase == "Hamil") {
+                            setError(true)
+                          } else {
+                            setError(false);
+                          }
                         }
                       }
                     }}
