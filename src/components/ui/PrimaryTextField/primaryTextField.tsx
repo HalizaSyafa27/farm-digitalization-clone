@@ -2,7 +2,7 @@ import React from 'react';
 import styles from '@/components/ui/PrimaryTextField/PrimaryTextField.module.css';
 
 interface PrimaryTextFieldProps {
-  label?: string;
+  label?: React.ReactNode;
   placeholder?: string;
   width?: number;
   style?: React.CSSProperties;

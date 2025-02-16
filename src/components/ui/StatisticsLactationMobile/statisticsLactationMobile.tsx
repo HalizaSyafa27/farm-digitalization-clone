@@ -51,7 +51,7 @@ const StatisticsLactationMobile: React.FC<StatisticLactationMobileProps> = ({
 
   return (
     <div className={styles.container}>
-      <div className={styles.tittle}>
+      <div className={styles.title}>
         <h3>Hasil Laktasi</h3>
       </div>
 

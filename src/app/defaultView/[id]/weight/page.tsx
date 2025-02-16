@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use, useEffect, useState } from 'react';
+import React, { ReactNode, use, useEffect, useState } from 'react';
 
 import Sidebar from '@/components/ui/Sidebar/sidebar';
 import GenderIcon from '@/components/ui/genderIcon';
@@ -81,6 +81,18 @@ const LivestockWeightPage: React.FC<LivestockWeightPageProps> = ({ params: param
 
     const [date, setDate] = useState("2025-01-16");
     const [value, setValue] = useState(0);
+
+           const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 720);
+        
+        
+           useEffect(() => {
+            const checkScreenSize = () => {
+              setIsMobile(window.innerWidth <= 720);
+            };
+          
+            window.addEventListener("resize", checkScreenSize);
+            return () => window.removeEventListener("resize", checkScreenSize);
+          }, []);
 
     const handleSubmit = async () => {
         const year = new Date(date).getFullYear();
@@ -193,6 +205,135 @@ const LivestockWeightPage: React.FC<LivestockWeightPageProps> = ({ params: param
     return (
         <div>
             <div className="layout">
+                {isMobile?
+                (
+                    <>
+
+                <div className="main-content">
+
+                    <div className="content">
+                        <div className="menuSection">
+                            <div className="menuHeader">
+                                <h1 className="menuTittle">{livestock == null ? "" : livestock.name_id}</h1>
+                                <div className='genderIcon'>
+                                    <GenderIcon gender={livestock == null ? "jantan" : livestock.gender == "MALE" ? 'jantan' : 'betina'}></GenderIcon>
+                                </div>
+                                <div className="deleteIcon">
+                                    <PrimaryButton 
+                                    label='Perbarui' 
+                                    width={130}
+                                    onClick={() => {
+                                        handleSubmit();
+                                        }}
+                                    />
+                                    {/* <DeleteButton /> */}
+                                </div>
+                            </div>
+                        </div>
+                        <div className='livestock'>
+                            <div className='generalInformationLivestock'>
+                                <img
+                                // src={livestock == null ? "" : livestock.photo_url}
+                                src={livestock?.photo_url || "/default-image.jpg"} 
+                                alt={livestock == null ? "" : livestock.name_id}
+                                style={{
+                                    width: '232px',
+                                    height: '214px',
+                                    objectFit: 'cover',
+                                    borderRadius: '10px',
+                                }}
+                                />
+                                {/* <QRCodeSVG value={`${process.env.NEXT_PUBLIC_NEXT_HOST}/OwnerViewPage/livestockOwnerPage/${id}`} size={85} /> */}
+                                <div className='verticalGeneralLivestockBoxBesideImg'>
+                                                <GeneralInfoBox title={'Tanggal Lahir'} value={livestock == null ? "" : new Date(livestock.dob).toLocaleDateString('id-ID', {
+                                                    year: 'numeric',
+                                                    month: 'long',
+                                                    day: 'numeric'
+                                                })} />
+
+                                                <GeneralInfoBox title={'Ras'} value={livestock == null ? "" : livestock.breed} />
+                                                
+                                                {/* <div className="phaseLabelTag-livestockOwnerPage">
+                                                    <PhaseLabelTag 
+                                                    phases={phaseLabels} 
+                                                    filterId={livestock == null ? "" : livestock.phase}
+                                                    width={60}
+                                                    textSize={10}                                    
+                                                    >
+                                                    </PhaseLabelTag>
+                                                 </div> */}
+                                </div>
+                            </div>
+
+                            <div>
+                                    <div className='gradeDanBerat'>
+                                            <GeneralInfoBox title={'Grade'} value={livestock == null ? "" : livestock.grade || "Undefined"} />
+                                            <GeneralInfoBox title={'Berat'} value={livestock == null ? "" : livestock.weight || "Undefined"} />
+                                            <GeneralInfoBox title={'Kondisi'} value={livestock == null ? "" : livestock.status || "Undefined"} />
+                                    </div>
+
+                                    <div className='familyInformation'>
+                                        <h1 className='keluarga'>Keluarga</h1>  
+                                        <div className='idParents'>
+                                            <GeneralInfoBoxMobile title={'ID Ayah'} value={livestock == null ? "" : livestock.dad_name_id || "N/A"} isLink={true} />
+                                            <GeneralInfoBoxMobile title={'ID Ibu'} value={livestock == null ? "" : livestock.mom_name_id || "N/A"} isLink={true} />  
+                                        </div>
+                                    </div>
+                            </div>
+
+                            <div className="rowContent-weight">
+
+                            
+                                <div className='fieldFormVertical'>
+                                        <h1 className='livestockHistoryTitle'>
+                                            Bobot
+                                        </h1>
+                                
+                                        <Label title={<span className="text-[18px]">Tanggal *</span>} />
+                                        <Input
+                                            disabled={false}
+                                            type="date"
+                                            value={date}
+                                            onChange={(e) => setDate(e.target.value)}
+                                        />
+                                        <div>
+                                        <Label title={<span className="text-[18px]">Berat</span>} />
+                                            <div className="input-group-addTernak">
+                                                <Input disabled={false} type="number" placeholder="liter" value={value}   onChange={(e) => setValue(Number(e.target.value))}/>
+                                            </div>
+                                        </div>
+                                </div>
+
+                                <div className="separator-weight">
+
+                                </div>
+
+                                <div className="milk-list">
+
+                                <h1 className='livestockHistoryTitle'>
+                                            Riwayat Bobot
+                                </h1>
+
+                                {
+                                    weightRecords?.map((weight) => (
+                                        <div className="milk-detailList">
+                                        <h1>{new Date(weight.createdAt).toLocaleDateString('id-ID', {
+                                        day: '2-digit',
+                                        month: 'long',
+                                        year: 'numeric',
+                                        })}</h1>
+                                        <span>{weight.mass} Kg</span> 
+                                        </div>
+                                    ))
+                                }
+                                </div>                          
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+                    </>
+                ) : (
+                    <>
                 <div className="sidebar">
                     <Sidebar 
                         setBreadcrumb={function (label: string): void {
@@ -229,7 +370,8 @@ const LivestockWeightPage: React.FC<LivestockWeightPageProps> = ({ params: param
                         <div className='livestock'>
                             <div className='generalInformationLivestock'>
                                 <img
-                                src={livestock == null ? "" : livestock.photo_url}
+                                // src={livestock == null ? "" : livestock.photo_url}
+                                src={livestock?.photo_url || "/default-image.jpg"} 
                                 alt={livestock == null ? "" : livestock.name_id}
                                 style={{
                                     width: '232px',
@@ -308,9 +450,9 @@ const LivestockWeightPage: React.FC<LivestockWeightPageProps> = ({ params: param
                             </div>
                         </div>
                     </div>
-
-                </div>
-
+                 </div>
+                    </>
+                )}
             </div>
         </div>
     );
@@ -357,6 +499,47 @@ const GeneralInfoBox: React.FC<GeneralInfoBoxProps> = ({ title, value, isLink = 
     );
 };
 
+interface GeneralInfoBoxMobileProps {
+    title: string;
+    value: string | number | null;
+    isLink?: boolean; // Optional parameter to determine if the value is a hyperlink
+    linkHref?: string; // URL for the hyperlink
+    ras?: string;
+    grade?: string;
+    className?: string;
+}
+
+const GeneralInfoBoxMobile: React.FC<GeneralInfoBoxMobileProps> = ({ title, value, isLink = false, linkHref = "#", ras, grade }) => {
+    return (
+        <div className="generalInformationLivestockBoxMobileTopData">
+            <h1 className="generalInformationLivestockBoxMobileTopDataTitle">{title}</h1>
+            {isLink ? (
+                <div>
+                    <a
+                    href={linkHref}
+                    className="generalInformationLivestockBoxMobileTopDataValue hyperlinkStyle"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    
+                >
+              
+  
+                    {value ?? "N/A"}
+                </a>
+
+               <p>{ras}</p>
+               <p>{grade}</p>
+                
+             </div>
+            ) : (
+                <h1 className="generalInformationLivestockBoxMobileTopDataValue">{value ?? "N/A"}</h1>
+       
+            )}
+
+        </div>
+    );
+};
+
 interface HistoryItem {
     title: string;
     value: string | number;
@@ -383,6 +566,6 @@ const DetailHistoryCard: React.FC<DetailHistoryCardProps> = ({
     );
 };
 
-const Label: React.FC<{ title: string }> = ({ title }) => (
+const Label: React.FC<{ title: ReactNode }> = ({ title }) => (
     <label className="label-addTernak">{title}</label>
 );

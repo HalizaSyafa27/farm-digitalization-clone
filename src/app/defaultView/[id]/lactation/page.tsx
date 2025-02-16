@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use, useEffect, useState } from 'react';
+import React, { ReactNode, use, useEffect, useState } from 'react';
 
 import Sidebar from '@/components/ui/Sidebar/sidebar';
 import GenderIcon from '@/components/ui/genderIcon';
@@ -61,7 +61,7 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
         console.log(farmName)
     };
 
-    const Label: React.FC<{ title: string }> = ({ title }) => (
+    const Label: React.FC<{ title: ReactNode }> = ({ title }) => (
         <label className="label-addTernak">{title}</label>
     );
 
@@ -96,6 +96,18 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
             return [...prev, value ];
         });
     };
+
+           const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 720);
+        
+        
+           useEffect(() => {
+            const checkScreenSize = () => {
+              setIsMobile(window.innerWidth <= 720);
+            };
+          
+            window.addEventListener("resize", checkScreenSize);
+            return () => window.removeEventListener("resize", checkScreenSize);
+          }, []);
 
     const handleSubmit = async () => {
         const year = new Date(date).getFullYear();
@@ -199,7 +211,188 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
     return (
         <div>
             <div className="layout">
-                <div className="sidebar">
+                {
+                    isMobile?
+                    (
+                        <>
+
+                <div className="main-content">
+
+                        <div className="content">
+                            <div className="menuSection">
+                                <div className="menuHeader">
+                                    <h1 className="menuTittle">{livestock == null ? "" : livestock.name_id}</h1>
+                                    <div className='genderIcon'>
+                                        <GenderIcon gender={livestock == null ? "jantan" : livestock.gender == "MALE" ? 'jantan' : 'betina'}></GenderIcon>
+                                    </div>
+                                    <div className="deleteIcon">
+                                        <PrimaryButton 
+                                        label='Perbarui' 
+                                        width={130}
+                                        onClick={() => {
+                                            handleSubmit();
+                                          }}
+                                        />
+                                        {/* <DeleteButton /> */}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='livestock'>
+                                <div className='generalInformationLivestock'>
+                                    <img
+                                    // src={livestock == null ? "" : livestock.photo_url}
+                                    src={livestock?.photo_url || "/default-image.jpg"} 
+                                    alt={livestock == null ? "" : livestock.name_id}
+                                    style={{
+                                        width: '232px',
+                                        height: '214px',
+                                        objectFit: 'cover',
+                                        borderRadius: '10px',
+                                    }}
+                                    />
+                                        <div className='verticalGeneralLivestockBoxBesideImg'>
+                                                <GeneralInfoBox title={'Tanggal Lahir'} value={livestock == null ? "" : new Date(livestock.dob).toLocaleDateString('id-ID', {
+                                                    year: 'numeric',
+                                                    month: 'long',
+                                                    day: 'numeric'
+                                                })} />
+
+                                                <GeneralInfoBox title={'Ras'} value={livestock == null ? "" : livestock.breed} />
+                                                
+                                                {/* <div className="phaseLabelTag-livestockOwnerPage">
+                                                    <PhaseLabelTag 
+                                                    phases={phaseLabels} 
+                                                    filterId={livestock == null ? "" : livestock.phase}
+                                                    width={60}
+                                                    textSize={10}                                    
+                                                    >
+                                                    </PhaseLabelTag>
+                                                 </div> */}
+                                        </div>
+                                </div>
+
+                                <div>
+                                    <div className='gradeDanBerat'>
+                                            <GeneralInfoBox title={'Grade'} value={livestock == null ? "" : livestock.grade || "Undefined"} />
+                                            <GeneralInfoBox title={'Berat'} value={livestock == null ? "" : livestock.weight || "Undefined"} />
+                                            <GeneralInfoBox title={'Kondisi'} value={livestock == null ? "" : livestock.status || "Undefined"} />
+                                    </div>
+
+                                    <div className='familyInformation'>
+                                        <h1 className='keluarga'>Keluarga</h1>  
+                                        <div className='idParents'>
+                                            <GeneralInfoBoxMobile title={'ID Ayah'} value={livestock == null ? "" : livestock.dad_name_id || "N/A"} isLink={true} />
+                                            <GeneralInfoBoxMobile title={'ID Ibu'} value={livestock == null ? "" : livestock.mom_name_id || "N/A"} isLink={true} />  
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="rowContent-lactation">
+                                
+                                <div className='fieldFormVertical-lactation'>
+                                    <h1 className='livestockHistoryTitle'>
+                                    Laktasi
+                                </h1>
+                                    <PrimaryTextField 
+                                    width={350} 
+                                    placeholder={livestock?.spouse_id} 
+                                    label={<span className="text-[20px] font-bold">ID Pasangan *</span>} 
+                                    disabled={true} 
+                                    />
+                                    <div>
+                                    <Label title={<span className="text-[18px]">Tanggal *</span>} />
+                                        <Input
+                                            disabled={false}
+                                            type="date"
+                                            value={date}
+                                            onChange={(e) => setDate(e.target.value)}
+                                        />
+                                    </div>
+{/* 
+                                    <PrimaryTextField width={350} placeholder='DD/MM/YYYY'label='Tanggal Lahir *'/> */}
+                                    {/* <h1>Date of Birth *</h1>
+                                    <Input disabled={false} type="text" placeholder="DD/MM/YYY" className="styledInput" /> */}
+
+                                    {/* <Label title="Laktasi *" />
+                                    <Input disabled={false} type="number" placeholder="Laktasi" className="styledInput" /> */}
+
+                                    <div className="row-lactation">
+                                    <PrimaryTextField 
+                                    width={76} 
+                                    placeholder="Ke-1" 
+                                    label={<span className="text-[20px] font-bold">Laktasi *</span>} 
+                                    disabled={false} 
+                                    />
+
+                                        <div>
+                                            <Label title={<span className="text-[18px]">Jumlah anak</span>} />
+                                            <div className="input-group-addTernak">
+                                                <Input disabled={false} type="number" placeholder="liter" value={value}   onChange={(e) => setValue(Number(e.target.value))}/>
+                                            </div>
+                                        </div>   
+
+                                    </div>
+
+
+                                    <div className='row-lactation'>
+                                        {/* <PrimaryTextField width={250} placeholder='Jenis Kelamin'label='Jenis Kelamin (pilihan) *'/> */}
+                                        {value != 0 && 
+                                            (() => {
+                                                const elements = [];
+                                                for (let i = 0; i < value; i++) {
+                                                    elements.push(
+                                                        <div className="textField">
+                                                            <h1 className="jenisKelaminLactationForm">Jenis Kelamin Anak {i + 1} *</h1>
+                                                            <DropdownFase
+                                                                options={['Jantan', 'Betina']}
+                                                                placeholder="Jenis Kelamin"
+                                                                onSelect={handleDropdownSelect}
+                                                            />
+                                                        </div>
+                                                    );
+                                                }
+                                                return elements;
+                                            })()
+                                        }
+                                    </div>
+                                 </div>
+
+                                 <div className="separator-lactation">
+
+                                </div>
+                                <div className="lactation-list">
+                                    <h1 className='livestockHistoryTitle'>
+                                        Riwayat Laktasi
+                                    </h1>
+
+                                    {
+                                        livestock?.lactationData?.yearlyDatas.map((lactation) => (
+                                            lactation.monthlyDatas.map((
+                                                monthlyData
+                                            ) => (
+                                                <div className="lactation-detailList">
+                                            <h1>{new Date(monthlyData.updatedAt).toLocaleDateString('id-ID', {
+                                            day: '2-digit',
+                                            month: 'long',
+                                            year: 'numeric',
+                                            })}</h1>
+                                            <span>{monthlyData.value} Ekor</span> 
+                                            </div>
+                                            )
+                                            )
+                                        ))
+                                    }
+                                </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                       </div>
+                        </>
+                    ) : (
+                        <>
+                                        <div className="sidebar">
                     <Sidebar 
                         setBreadcrumb={function (label: string): void {
                             throw new Error('Function not implemented.');
@@ -235,7 +428,8 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
                             <div className='livestock'>
                                 <div className='generalInformationLivestock'>
                                     <img
-                                    src={livestock == null ? "" : livestock.photo_url}
+                                    // src={livestock == null ? "" : livestock.photo_url}
+                                    src={livestock?.photo_url || "/default-image.jpg"} 
                                     alt={livestock == null ? "" : livestock.name_id}
                                     style={{
                                         width: '232px',
@@ -366,7 +560,9 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
 
                             </div>
                         </div>
-                </div>
+                       </div>
+                        </>
+                )}
 
             </div>
         </div>
@@ -436,6 +632,47 @@ const DetailHistoryCard: React.FC<DetailHistoryCardProps> = ({
                 </div>
             </div>
             ))}
+        </div>
+    );
+};
+
+interface GeneralInfoBoxMobileProps {
+    title: string;
+    value: string | number | null;
+    isLink?: boolean; // Optional parameter to determine if the value is a hyperlink
+    linkHref?: string; // URL for the hyperlink
+    ras?: string;
+    grade?: string;
+    className?: string;
+}
+
+const GeneralInfoBoxMobile: React.FC<GeneralInfoBoxMobileProps> = ({ title, value, isLink = false, linkHref = "#", ras, grade }) => {
+    return (
+        <div className="generalInformationLivestockBoxMobileTopData">
+            <h1 className="generalInformationLivestockBoxMobileTopDataTitle">{title}</h1>
+            {isLink ? (
+                <div>
+                    <a
+                    href={linkHref}
+                    className="generalInformationLivestockBoxMobileTopDataValue hyperlinkStyle"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    
+                >
+              
+  
+                    {value ?? "N/A"}
+                </a>
+
+               <p>{ras}</p>
+               <p>{grade}</p>
+                
+             </div>
+            ) : (
+                <h1 className="generalInformationLivestockBoxMobileTopDataValue">{value ?? "N/A"}</h1>
+       
+            )}
+
         </div>
     );
 };

@@ -24,6 +24,7 @@ import { FarmModel } from '@/models/FarmModel';
 import StatisticsMilkUpdateMobile from '@/components/ui/StatisticsMilkUpdateMobile/StatisticsMilkUpdate';
 import StatisticsLactationMobile from '@/components/ui/StatisticsLactationMobile/statisticsLactationMobile';
 import StatisticsWeightUpdateMobile from '@/components/ui/StatisticsWeightUpdateMobile/StatisticsWeightUpdate';
+import MoreOptions from '@/components/ui/MoreOptions/MoreOptions';
 
 interface LivestockDetailPageProps {
     params: Promise<{
@@ -140,9 +141,9 @@ const LivestockDetailPage: React.FC<LivestockDetailPageProps> = ({ params: param
     const [apiError, setApiError] = useState(null);
     const [apiData, setApiData] = useState(null);
     const handleDeleteData = async () => {
-        const isConfirmed = await window.confirm(
-            `Apakah Anda yakin untuk menghapus ternak ID ${livestock == null ? "" : livestock.name_id}?`
-        );
+    const isConfirmed = await window.confirm(
+        `Apakah Anda yakin untuk menghapus ternak ID ${livestock == null ? "" : livestock.name_id}?`
+    );
         
         if (isConfirmed) {
             try {
@@ -168,11 +169,7 @@ const LivestockDetailPage: React.FC<LivestockDetailPageProps> = ({ params: param
     };
     
    const router = useRouter()
-
-  
-
    const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 720);
-
 
    useEffect(() => {
     const checkScreenSize = () => {
@@ -203,17 +200,27 @@ const LivestockDetailPage: React.FC<LivestockDetailPageProps> = ({ params: param
                                         </div>
                                         
 
-                                        <div className='moreIcon'>
+                                        {/* <div className='moreIcon'>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="31" viewBox="0 0 30 31" fill="none">
                                         <path d="M15 8.9375C14.7514 8.9375 14.5129 8.83873 14.3371 8.66291C14.1613 8.4871 14.0625 8.24864 14.0625 8C14.0625 7.75136 14.1613 7.5129 14.3371 7.33709C14.5129 7.16127 14.7514 7.0625 15 7.0625C15.2486 7.0625 15.4871 7.16127 15.6629 7.33709C15.8387 7.5129 15.9375 7.75136 15.9375 8C15.9375 8.24864 15.8387 8.4871 15.6629 8.66291C15.4871 8.83873 15.2486 8.9375 15 8.9375ZM15 16.4375C14.7514 16.4375 14.5129 16.3387 14.3371 16.1629C14.1613 15.9871 14.0625 15.7486 14.0625 15.5C14.0625 15.2514 14.1613 15.0129 14.3371 14.8371C14.5129 14.6613 14.7514 14.5625 15 14.5625C15.2486 14.5625 15.4871 14.6613 15.6629 14.8371C15.8387 15.0129 15.9375 15.2514 15.9375 15.5C15.9375 15.7486 15.8387 15.9871 15.6629 16.1629C15.4871 16.3387 15.2486 16.4375 15 16.4375ZM15 23.9375C14.7514 23.9375 14.5129 23.8387 14.3371 23.6629C14.1613 23.4871 14.0625 23.2486 14.0625 23C14.0625 22.7514 14.1613 22.5129 14.3371 22.3371C14.5129 22.1613 14.7514 22.0625 15 22.0625C15.2486 22.0625 15.4871 22.1613 15.6629 22.3371C15.8387 22.5129 15.9375 22.7514 15.9375 23C15.9375 23.2486 15.8387 23.4871 15.6629 23.6629C15.4871 23.8387 15.2486 23.9375 15 23.9375Z" stroke="black" stroke-width="1.875" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
-                                        </div>
+                                        </div> */}
+                                              <MoreOptions 
+                                                role="owner" 
+                                                id="123"
+                                                selectedFarm="farmA"
+                                                selectedFarmId="456"
+                                                handleDeleteData={handleDeleteData}
+                                                handleDownloadQR={handleDownloadQR}
+                                                handleUbahDataRoute={() => router.push(`/defaultView/${id}/editTernakPage?selectedFarm=${selectedFarm}&farmId=${selectedFarmId}`)}
+                                            />
                                 </div>
                             </div>
                             <div className="livestock">
                                 <div className='generalInformationLivestock'>
                                         <img className="topSection"
-                                        src={livestock == null ? "" : livestock.photo_url}
+                                        // src={livestock == null ? "" : livestock.photo_url}
+                                        src={livestock?.photo_url || "/default-image.jpg"} 
                                         alt={livestock == null ? "" : livestock.name_id}
                                         style={{
                                             width: '158px',
@@ -261,9 +268,7 @@ const LivestockDetailPage: React.FC<LivestockDetailPageProps> = ({ params: param
 
                                     <div className='riwayatInformation'>
                                         <h1 className='riwayat'>Riwayat</h1>
-                                        <div className='editIcon'>
-                                            <img className='editIcon' src="/edit.svg" alt="Edit" width={29} height={29} />
-                                        </div>
+                                        
                                         
                                     </div>
 
@@ -374,7 +379,8 @@ const LivestockDetailPage: React.FC<LivestockDetailPageProps> = ({ params: param
                                 <div className='livestock'>
                                     <div className='generalInformationLivestock'>
                                         <img className="topSection"
-                                        src={livestock == null ? "" : livestock.photo_url}
+                                        // src={livestock == null ? "" : livestock.photo_url}
+                                        src={livestock?.photo_url || "/default-image.jpg"} 
                                         alt={livestock == null ? "" : livestock.name_id}
                                         style={{
                                             width: '232px',
@@ -688,7 +694,12 @@ const DetailInformationCardMobile: React.FC<DetailInformationCardMobileProps> = 
                         ))}
                     </div>
                     
-                  
+                    <div className="perbaruiButtonMobilePage">
+                          <PerbaruiButton 
+                          label={'Perbarui'}
+                          onClick={handleNavigate}
+                          />
+                    </div>
                 </div>
             </div>
         </div>

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { validateEmailOrPhone } from "@/controllers/validationLoginRegister";
+import { validateEmail } from "@/controllers/validationLoginRegister";
 import PrimaryButton from "@/components/ui/PrimaryButton/primaryButton";
 import { useRouter } from 'next/navigation'
 import { getCookie, setCookie } from "@/lib/cookies";
@@ -14,7 +14,7 @@ interface LoginData {
 }
 
 export default function InputDemo() {
-  const [emailOrPhone, setEmailOrPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter()
@@ -27,7 +27,7 @@ export default function InputDemo() {
 
 
   const handleValidationAndSubmit = async () => {
-    const validation = validateEmailOrPhone(emailOrPhone);
+    const validation = validateEmail(email);
   
     if (!validation.valid) {
       setErrorMessage("Masukkan email atau nomor HP yang valid.");
@@ -40,7 +40,7 @@ export default function InputDemo() {
       setLoading(true);
       try {
         const loginData = {
-          email: emailOrPhone,
+          email: email,
           password: password,
         };
 
@@ -104,16 +104,16 @@ export default function InputDemo() {
         {/* Email / Nomor HP */}
         <div className="form-email">
           <label
-            htmlFor="emailOrPhone"
+            htmlFor="email"
             className="block text-sm font-medium text-gray-700 mb-2"
           >
             Email
           </label>
           <Input
-            id="emailOrPhone"
+            id="email"
             type="text"
-            value={emailOrPhone}
-            onChange={(e) => setEmailOrPhone(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="mt-1 block w-full px-3 py-2 border border-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm rounded-[5px] placeholder:text-[#B3B3B3]"
             placeholder="Email atau Nomor HP"
           />

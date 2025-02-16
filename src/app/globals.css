@@ -320,6 +320,9 @@ body {
   gap: 48px;
 }
 
+.section-addTernak-mobile{
+  margin-right: 10%;
+}
 .generalInformationLivestockBoxTop {
   display: flex;
   align-items: center;

@@ -3,7 +3,7 @@
 import { Suspense, useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { validateEmailOrPhone, validatePassword } from "@/controllers/validationLoginRegister";
+import { validateEmail, validatePassword } from "@/controllers/validationLoginRegister";
 import { useRouter } from 'next/navigation'
 import PrimaryButton from "@/components/ui/PrimaryButton/primaryButton";
 import { setCookie } from "@/lib/cookies"; // Import setCookie
@@ -25,9 +25,9 @@ function InputDemo() {
   const [role, setRole] = useState(roleFromQuery || "owner"); 
 
   const usernameFromQuery = searchParams.get("username");
-  const emailOrPhoneFromQuery = searchParams.get("emailOrPhone");
+  const emailFromQuery = searchParams.get("email");
   const [username, setUsername] = useState(usernameFromQuery || "");
-  const [emailOrPhone, setEmailOrPhone] = useState(emailOrPhoneFromQuery || "");
+  const [email, setEmail] = useState(emailFromQuery || "");
 
   const [registrationData, setRegistrationData] = useState<RegistrationData | null>(null); // Type the state
   const [loading, setLoading] = useState(false);
@@ -45,7 +45,7 @@ function InputDemo() {
 
     const newRegistrationData = {
       name: username,
-      email: emailOrPhone,
+      email: email,
       password: password,
       role: role,
     };

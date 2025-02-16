@@ -718,15 +718,6 @@ video {
   gap: 10px;
 }
 
-.\!livestock {
-  display: flex !important;
-  width: 1041px !important;
-  padding: 8px !important;
-  flex-direction: column !important;
-  align-items: flex-start !important;
-  gap: 40px !important;
-}
-
 .livestock {
   display: flex;
   width: 1041px;
@@ -750,6 +741,9 @@ video {
   gap: 48px;
 }
 
+.section-addTernak-mobile{
+  margin-right: 10%;
+}
 .generalInformationLivestockBoxTop {
   display: flex;
   align-items: center;
@@ -951,6 +945,9 @@ video {
 .relative {
   position: relative;
 }
+.right-0 {
+  right: 0px;
+}
 .right-2 {
   right: 0.5rem;
 }
@@ -1033,6 +1030,9 @@ video {
 }
 .w-4 {
   width: 1rem;
+}
+.w-40 {
+  width: 10rem;
 }
 .w-8 {
   width: 2rem;
@@ -1202,6 +1202,9 @@ video {
 .p-1 {
   padding: 0.25rem;
 }
+.p-2 {
+  padding: 0.5rem;
+}
 .p-4 {
   padding: 1rem;
 }
@@ -1264,9 +1267,18 @@ video {
 .pt-0 {
   padding-top: 0px;
 }
+.text-left {
+  text-align: left;
+}
 .text-5xl {
   font-size: 3rem;
   line-height: 1;
+}
+.text-\[18px\] {
+  font-size: 18px;
+}
+.text-\[20px\] {
+  font-size: 20px;
 }
 .text-base {
   font-size: 1rem;
@@ -1342,6 +1354,10 @@ video {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity, 1));
 }
+.text-red-600 {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity, 1));
+}
 .text-secondary-foreground {
   color: hsl(var(--secondary-foreground));
 }
@@ -1362,6 +1378,11 @@ video {
 .shadow {
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.shadow-lg {
+  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 .shadow-md {
@@ -2516,8 +2537,18 @@ line-height: 20px;
   background-color: hsl(var(--destructive) / 0.9);
 }
 
+.hover\:bg-gray-100:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity, 1));
+}
+
 .hover\:bg-primary\/90:hover {
   background-color: hsl(var(--primary) / 0.9);
+}
+
+.hover\:bg-red-100:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 226 226 / var(--tw-bg-opacity, 1));
 }
 
 .hover\:bg-secondary\/80:hover {

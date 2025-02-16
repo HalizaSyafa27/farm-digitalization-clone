@@ -82,6 +82,16 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
       }
     }, [livestock]);
 
+    const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 720);
+    useEffect(() => {
+    const checkScreenSize = () => {
+    setIsMobile(window.innerWidth <= 720);
+    };
+                 
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+    }, []);
+
     const handleValidationAndSubmit = async () => {
       try {
         const payload = {
@@ -124,23 +134,11 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
 
     return (
       <div className="container-addTernak">
-        <div className="sidebar-addTernak">
-          <TabNavigation />
-        </div>
+        {isMobile?
+        (
+        <>
         <div className="main-content-addTernak">
           <div className="content-wrapper-addTernak"> {/* Wrapper untuk align */}
-            {/* <div className="section-addTernak">
-              <h3 className="tittle-addTernak">Masukkan Gambar</h3>
-              <img
-                src="/SapiImage.jpeg"
-                alt="ternak"
-                className="image-addTernak"
-              />
-              <p className="image-description-addTernak">
-                Lorem ipsum dolor sit amet <br />
-                Lorem ipsum dolor sit amet
-              </p>
-            </div> */}
   
             <div className="sectionInput-addTernak">
               <Label title="Date of Birth *" />
@@ -164,54 +162,7 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
                     <Input disabled={false} type="text" placeholder="ID Ibu" value={idIbu} onChange={(e) => setIdIbu(e.target.value)}/>
                   </div>
                 </div>
-
-                {/* <div>
-                  <Label title="ID Kakek *" />
-                  <Input disabled={false} type="text" placeholder="ID Kakek" value={idKakek} onChange={(e) => setIdKakek(e.target.value)}/>
-                </div> */}
-  
-                {/* <div>
-                  <Label title="ID Nenek *" />
-                  <div className="input-group-addTernak">
-                    <Input disabled={false} type="text" placeholder="ID Nenek" value={idNenek} onChange={(e) => setIdNenek(e.target.value)}/>
-                  </div>
-                </div> */}
               </div>
-  
-              <div className="grid-row-addTernak">
-                <div>
-                  {/* <Label title="Fase (pilihan) *" /> */}
-                  {/* <Input 
-                  disabled={false} 
-                  type="text" 
-                  placeholder="Fase" 
-                  isDropdownField
-                  dropdownIcon={<DropdownIcon />}
-                  dropupIcon={<DropupIcon />}
-                  readOnly
-                  /> */}
-                                
-                </div>
-  
-                <div>
-                  {/* <Label title="Jenis Kelamin (pilihan) *" /> */}
-                  {/* <Input
-                    disabled={false}
-                    type="text"
-                    placeholder="Jenis Kelamin"
-                    isDropdownField
-                    dropdownIcon={<DropdownIcon />}
-                    dropupIcon={<DropupIcon />}
-                    readOnly
-                  /> */}
-                </div>
-
-               
-                
-              </div>
-
-
-              
             </div>
           </div>
           
@@ -223,9 +174,55 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
               handleValidationAndSubmit();
             }}
             />
-            </div>
-
+          </div>
         </div>
+          </>
+        ) : (
+          <>
+        <div className="sidebar-addTernak">
+          <TabNavigation />
+        </div>
+        <div className="main-content-addTernak">
+          <div className="content-wrapper-addTernak"> {/* Wrapper untuk align */}
+  
+            <div className="sectionInput-addTernak">
+              <Label title="Date of Birth *" />
+              <Input
+                disabled={false}
+                type="date"
+                value={dob}
+                onChange={(e) => setDob(e.target.value)}
+              />
+
+  
+              <div className="grid-row-addTernak">
+                <div>
+                  <Label title="ID Ayah *" />
+                  <Input disabled={false} type="text" placeholder="ID Ayah" value={idAyah} onChange={(e) => setIdAyah(e.target.value)}/>
+                </div>
+  
+                <div>
+                  <Label title="ID Ibu *" />
+                  <div className="input-group-addTernak">
+                    <Input disabled={false} type="text" placeholder="ID Ibu" value={idIbu} onChange={(e) => setIdIbu(e.target.value)}/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="simpanButton-addDetailTernak">
+            <PrimaryButton
+            label="Simpan"
+            width={221}
+            onClick={() => {
+              handleValidationAndSubmit();
+            }}
+            />
+          </div>
+        </div>
+          </>
+        )}
       </div>
     );
   };

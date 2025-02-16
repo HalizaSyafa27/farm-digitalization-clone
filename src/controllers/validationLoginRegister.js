@@ -1,4 +1,4 @@
-export const validateEmailOrPhone = (input) => {
+export const validateEmail = (input) => {
     const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input);
     if (isEmail) return { valid: true, type: "email" };
     return { valid: false, type: null };

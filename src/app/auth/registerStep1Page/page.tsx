@@ -5,21 +5,21 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Checkbox } from "@/components/ui/checkbox"
-import { validateEmailOrPhone } from "@/controllers/validationLoginRegister";
+import { validateEmail } from "@/controllers/validationLoginRegister";
 import PrimaryButton from "@/components/ui/PrimaryButton/primaryButton";
 import { useRouter } from 'next/navigation'
 import { getCookie, setCookie } from "@/lib/cookies";
 
 export default function InputDemo() {
   const [username, setUsername] = useState("");
-  const [emailOrPhone, setEmailOrPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter()
   const [role, setRole] = useState<string | null>(null);
 
     const handleValidationAndSubmit = () => {
 
-      const validation = validateEmailOrPhone(emailOrPhone);
+      const validation = validateEmail(email);
       if (!validation.valid) {
         setErrorMessage("Masukkan email yang valid.");
       } else if(!username){
@@ -39,7 +39,7 @@ export default function InputDemo() {
         });
 
         // Arahkan ke langkah berikutnya
-        router.push(`/auth/registerStep2Page?role=${role}&username=${username}&emailOrPhone=${emailOrPhone}`);
+        router.push(`/auth/registerStep2Page?role=${role}&username=${username}&email=${email}`);
       }
     };
 
@@ -78,7 +78,7 @@ export default function InputDemo() {
         {/* Email / Nomor HP */}
         <div className="form-email">
           <label
-            htmlFor="emailOrPhone"
+            htmlFor="email"
             className="block text-sm font-medium text-gray-700 mb-2"
           >
             Nama Pengguna
@@ -95,16 +95,16 @@ export default function InputDemo() {
 
         <div className="form-email">
           <label
-            htmlFor="emailOrPhone"
+            htmlFor="email"
             className="block text-sm font-medium text-gray-700 mb-2"
           >
             Email
           </label>
           <Input
-            id="emailOrPhone"
+            id="email"
             type="text"
-            value={emailOrPhone}
-            onChange={(e) => setEmailOrPhone(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="mt-1 block w-full px-3 py-2 border border-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm rounded-[5px] placeholder:text-[#B3B3B3]"
             placeholder="emailanda@gmail.com"
           />

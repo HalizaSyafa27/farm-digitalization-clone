@@ -99,6 +99,15 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
     }
   };
   
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 720);
+  useEffect(() => {
+  const checkScreenSize = () => {
+  setIsMobile(window.innerWidth <= 720);
+  };
+             
+  window.addEventListener("resize", checkScreenSize);
+  return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
 
   const handleFaseSelect = (option: string) => {
     setSelectedFase(option);
@@ -160,6 +169,207 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
 
   return (
     <div className="container-addTernak">
+      {isMobile?
+      (
+      <>
+      <div className="main-content-addTernak">
+        <div className="content-wrapper-addTernak">
+          <div className="section-addTernak-mobile" onClick={handleDivClick}>
+            <h3 className="tittle-addTernak">Masukkan Gambar</h3>
+            {imageUrl ? (
+              <img src={imageUrl} alt="ternak" className="image-addTernak" />
+            ) : (
+              <div className="image-placeholder-addTernak">
+                Klik di sini untuk memilih gambar
+              </div>
+            )}
+            <input
+              id="file-input"
+              type="file"
+              accept="image/*"
+              style={{ display: 'none' }}
+              onChange={handleFileChange}
+            />
+          </div>
+
+          <div>
+            <div className="sectionInput-addTernak">
+              <Label title="ID Ternak *" />
+              <Input
+                disabled={true}
+                type="text"
+                placeholder="ID Ternak"
+                value={idTernak}
+                onChange={(e) => setIdTernak(e.target.value)}
+              />
+
+              <Label title="Ras Ternak *" />
+              <Input
+                disabled={false}
+                type="text"
+                placeholder="Ras Ternak"
+                value={rasTernak}
+                onChange={(e) => setRasTernak(e.target.value)}
+              />
+
+              <div className="grid-row-addTernak">
+                <div>
+                  <Label title="Grade" />
+                  <Input
+                    disabled={false}
+                    type="text"
+                    placeholder="Grade"
+                    value={grade}
+                    onChange={(e) => setGrade(e.target.value)}
+                  />
+                </div>
+
+                <div>
+                  <Label title="Berat*" />
+                  <div className="input-group-addTernak">
+                    <Input
+                      disabled={false}
+                      type="number"
+                      placeholder="Berat"
+                      value={berat}
+                      onChange={(e) => setBerat(e.target.value)}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid-row-addTernak">
+                <div>
+                  <Label title="Fase (pilihan) *" />
+                  <DropdownFase
+                    options={jenisKelamin == "Jantan" ? ['Cempe', 'Dara', 'Siap Kawin', 'Lepas Sapih', 'Afkir'] : ['Cempe', 'Dara', 'Hamil', 'Siap Kawin', 'Lepas Sapih', 'Afkir']}
+                    placeholder="Fase"
+                    onSelect={handleFaseSelect}
+                  />
+                </div>
+
+                <div>
+                  <Label title="Jenis Kelamin (pilihan) *" />
+                  <DropdownFase
+                    options={['Jantan', 'Betina']}
+                    placeholder="Jenis Kelamin"
+                    onSelect={handleJenisKelaminSelect}
+                  />
+                </div>
+
+                {selectedFase === "Hamil" && (
+                  <div className="extra-input-addTernak">
+                    <Label title="ID Pasangan *" />
+                    <Input
+                      disabled={false}
+                      type="text"
+                      placeholder="AJW-015"
+                      value={idPasangan}
+                      onChange={(e) => {
+                        const inputIdPasangan = e.target.value;
+                        setIdPasangan(inputIdPasangan);
+  
+                        if (livestockData && Array.isArray(livestockData)) {
+                          const isRasTernakValid = !livestockData.some(
+                            (livestock) => livestock.name_id === inputIdPasangan && livestock.gender === "FEMALE" && inputIdPasangan == idPasangan
+                          );
+  
+                          if (!isRasTernakValid) {
+                            setError(true);
+                          } else {
+                            console.log(inputIdPasangan)
+                            console.log(livestock?.dad_name_id)
+                            if (inputIdPasangan.toString() == livestock?.dad_name_id) {
+                              setError(true);
+                            } else {
+                              setError(false);
+                            }
+                          }
+                        }
+                      }}
+                      style={{
+                        borderColor: error ? "red" : "black",
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
+
+              <div className="kondisiTernakSection">
+                <Label title="Kondisi ternak *" />
+                <div className="radio-group-addTernak">
+                  <div>
+                    <input
+                      type="radio"
+                      id="sehat"
+                      name="kondisi"
+                      value="sehat"
+                      checked={kondisiTernak === "sehat"}
+                      onChange={() => setKondisiTernak("sehat")}
+                    />
+                    <label htmlFor="sehat">Sehat</label>
+                  </div>
+                  <div>
+                    <input
+                      type="radio"
+                      id="sakit"
+                      name="kondisi"
+                      value="sakit"
+                      checked={kondisiTernak === "sakit"}
+                      onChange={() => setKondisiTernak("sakit")}
+                    />
+                    <label htmlFor="sakit">Sakit</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="statusPilihan-addTernak">
+              <div className="choice-StatusCategory">
+                <Label title="Status (Pilihan) *" />
+                <DropdownFase
+                  options={['Tersedia', 'Hilang', 'Mati', 'Terjual']}
+                  placeholder="Status"
+                  onSelect={handleStatusSelect}
+                />
+              </div>
+
+              <div className="choice-StatusCategory">
+                <Label title="Kategori Hewan (Pilihan) *" />
+                <DropdownFase
+                  options={['Kambing', 'Sapi', 'Domba']}
+                  placeholder="Kategori Hewan"
+                  onSelect={handleKategoriHewanSelect}
+                />
+              </div>
+            </div>
+
+            <div className="lanjutButton-addTernak">
+              <PrimaryButton
+                label="Lanjut"
+                width={221}
+                onClick={handleUpdateData}
+                disabled={
+                  idTernak === "" || idTernak === null ||
+                  rasTernak === "" || rasTernak === null ||
+                  grade === "" || grade === null ||
+                  berat === "" || berat === null ||
+                  selectedFase === "" || selectedFase === null ||
+                  jenisKelamin === "" || jenisKelamin === null ||
+                  kondisiTernak === "" || kondisiTernak === null ||
+                  status === "" || status === null ||
+                  kategoriHewan === "" || kategoriHewan === null ||
+                  imageUrl === "" || imageUrl === null || 
+                  error
+                }
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+        </>
+      ) : (
+        <>
       <div className="sidebar-addTernak">
         <TabNavigation />
       </div>
@@ -358,6 +568,8 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
           </div>
         </div>
       </div>
+        </>
+      )}
     </div>
   );
 };

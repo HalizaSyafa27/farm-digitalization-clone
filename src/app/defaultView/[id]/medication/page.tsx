@@ -67,6 +67,17 @@ const LivestockMedicationPage: React.FC<LivestockMedicationPageProps> = ({ param
         { id: number; value: string | null }[]
     >([]);
 
+        const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 720);
+        useEffect(() => {
+         const checkScreenSize = () => {
+           setIsMobile(window.innerWidth <= 720);
+         };
+       
+         window.addEventListener("resize", checkScreenSize);
+         return () => window.removeEventListener("resize", checkScreenSize);
+       }, []);
+
+
     const handleDropdownSelect = (value: string, dropdownId: number) => {
         setDropdownData((prev) => {
             const existingDropdown = prev.find((d) => d.id === dropdownId);
@@ -145,6 +156,93 @@ const LivestockMedicationPage: React.FC<LivestockMedicationPageProps> = ({ param
     return (
         <div>
             <div className="layout">
+                {isMobile?
+                (
+                <>
+                <div className="main-content">
+                        <div className="content">
+                            <div className="menuSection">
+                                <div className="menuHeader">
+                                    <h1 className="menuTittle">{livestock == null ? "" : livestock.name_id}</h1>
+                                    <div className='genderIcon'>
+                                        <GenderIcon gender={livestock == null ? "jantan" : livestock.gender == "MALE" ? 'jantan' : 'betina'}></GenderIcon>
+                                    </div>
+                                    <div className="deleteIcon">
+                                        <PrimaryButton 
+                                        label='Perbarui' 
+                                        width={130}
+                                        onClick={() => {
+                                            handleSubmit();
+                                          }}
+                                        />
+                                        {/* <DeleteButton /> */}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='livestock'>
+                                <div className='generalInformationLivestock'>
+                                    <img
+                                    // src={livestock == null ? "" : livestock.photo_url}
+                                    src={livestock?.photo_url || "/default-image.jpg"} 
+                                    alt={livestock == null ? "" : livestock.name_id}
+                                    style={{
+                                        width: '232px',
+                                        height: '214px',
+                                        objectFit: 'cover',
+                                        borderRadius: '10px',
+                                    }}
+                                    />
+                                    {/* <QRCodeSVG value={`${process.env.NEXT_PUBLIC_NEXT_HOST}/OwnerViewPage/livestockOwnerPage/${id}`} size={85} /> */}
+                                    <div className='verticalGeneralLivestockBoxBesideImg'>
+                                                <GeneralInfoBox title={'Tanggal Lahir'} value={livestock == null ? "" : new Date(livestock.dob).toLocaleDateString('id-ID', {
+                                                    year: 'numeric',
+                                                    month: 'long',
+                                                    day: 'numeric'
+                                                })} />
+
+                                                <GeneralInfoBox title={'Ras'} value={livestock == null ? "" : livestock.breed} />
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div className='gradeDanBerat'>
+                                            <GeneralInfoBox title={'Grade'} value={livestock == null ? "" : livestock.grade || "Undefined"} />
+                                            <GeneralInfoBox title={'Berat'} value={livestock == null ? "" : livestock.weight || "Undefined"} />
+                                            <GeneralInfoBox title={'Kondisi'} value={livestock == null ? "" : livestock.status || "Undefined"} />
+                                    </div>
+
+                                    <div className='familyInformation'>
+                                        <h1 className='keluarga'>Keluarga</h1>  
+                                        <div className='idParents'>
+                                            <GeneralInfoBoxMobile title={'ID Ayah'} value={livestock == null ? "" : livestock.dad_name_id || "N/A"} isLink={true} />
+                                            <GeneralInfoBoxMobile title={'ID Ibu'} value={livestock == null ? "" : livestock.mom_name_id || "N/A"} isLink={true} />  
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <h1 className='livestockHistoryTitle'>
+                                    Riwayat Obat
+                                </h1>
+                                {
+                                    textFields.map((field) => (
+                                        field
+                                    ))
+                                }
+                                <div className='addLivestockHistory'>
+                                     <DropdownInput
+                                            // label="Pilih Kondisi"
+                                            options={options}
+                                            placeholder="Riwayat Obat"
+                                            onSelect={handleDropdownSelect}
+                                    />
+                                </div>
+                                <DetailHistoryCard historyItems={livestock == null ? [] : livestock.medication == null ? [] : livestock.medication.historyItems} />
+                            </div>
+                        </div>
+                </div>
+                    </>
+                ) : (
+                    <>
                 <div className="sidebar">
                     <Sidebar 
                         setBreadcrumb={function (label: string): void {
@@ -181,7 +279,8 @@ const LivestockMedicationPage: React.FC<LivestockMedicationPageProps> = ({ param
                             <div className='livestock'>
                                 <div className='generalInformationLivestock'>
                                     <img
-                                    src={livestock == null ? "" : livestock.photo_url}
+                                    // src={livestock == null ? "" : livestock.photo_url}
+                                    src={livestock?.photo_url || "/default-image.jpg"} 
                                     alt={livestock == null ? "" : livestock.name_id}
                                     style={{
                                         width: '232px',
@@ -237,7 +336,8 @@ const LivestockMedicationPage: React.FC<LivestockMedicationPageProps> = ({ param
                             </div>
                         </div>
                 </div>
-
+                    </>
+                )}
             </div>
         </div>
     );
@@ -304,6 +404,47 @@ const DetailHistoryCard: React.FC<DetailHistoryCardProps> = ({
                 <p>{history.value}</p>
             </div>
             ))}
+        </div>
+    );
+};
+
+interface GeneralInfoBoxMobileProps {
+    title: string;
+    value: string | number | null;
+    isLink?: boolean; // Optional parameter to determine if the value is a hyperlink
+    linkHref?: string; // URL for the hyperlink
+    ras?: string;
+    grade?: string;
+    className?: string;
+}
+
+const GeneralInfoBoxMobile: React.FC<GeneralInfoBoxMobileProps> = ({ title, value, isLink = false, linkHref = "#", ras, grade }) => {
+    return (
+        <div className="generalInformationLivestockBoxMobileTopData">
+            <h1 className="generalInformationLivestockBoxMobileTopDataTitle">{title}</h1>
+            {isLink ? (
+                <div>
+                    <a
+                    href={linkHref}
+                    className="generalInformationLivestockBoxMobileTopDataValue hyperlinkStyle"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    
+                >
+              
+  
+                    {value ?? "N/A"}
+                </a>
+
+               <p>{ras}</p>
+               <p>{grade}</p>
+                
+             </div>
+            ) : (
+                <h1 className="generalInformationLivestockBoxMobileTopDataValue">{value ?? "N/A"}</h1>
+       
+            )}
+
         </div>
     );
 };

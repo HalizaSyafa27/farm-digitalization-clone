@@ -8,12 +8,13 @@
     margin: auto;
   }
   
-  .tittle{
-    color: #248543;
+  .title{
+    color: var(--Brand-Primary, #248543);
+    font-family: Inter;
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
-    line-height: 19.2px;
+    line-height: 17.329px; /* 108.308% */
   }
 
   .header {
@@ -98,8 +99,8 @@
   }
   
   .month {
-    margin-bottom: -50px;
-    font-size: 16px;
+    margin-bottom: -20px;
+    font-size: 10px;
     font-style: normal;
     font-weight: 500;
     color: #000000;
