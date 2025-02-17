@@ -84,8 +84,14 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
     const [apiData, setApiData] = useState(null);
 
     const [dropdownData, setDropdownData] = useState<string[]>([]);
+    
+    const dateNow = new Date(Date.now())
+    const day = dateNow.getDate()
+    const month = dateNow.getMonth()
+    const year = dateNow.getFullYear()
+    const fullDate = String(day + "-" + month + "-" + year)
 
-    const [date, setDate] = useState("2025-01-16");
+    const [date, setDate] = useState(fullDate);
     const [value, setValue] = useState(0);
     const [lactationNumber, setLactationNumber] = useState(0);
 

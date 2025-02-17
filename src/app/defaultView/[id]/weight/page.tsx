@@ -79,7 +79,13 @@ const LivestockWeightPage: React.FC<LivestockWeightPageProps> = ({ params: param
     const [apiError, setApiError] = useState(null);
     const [apiData, setApiData] = useState(null);
 
-    const [date, setDate] = useState("2025-01-16");
+    const dateNow = new Date(Date.now())
+    const day = dateNow.getDate()
+    const month = dateNow.getMonth()
+    const year = dateNow.getFullYear()
+    const fullDate = String(day + "-" + month + "-" + year)
+    const [date, setDate] = useState(fullDate);
+
     const [value, setValue] = useState(0);
 
            const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 720);
@@ -314,18 +320,8 @@ const LivestockWeightPage: React.FC<LivestockWeightPageProps> = ({ params: param
                                             Riwayat Bobot
                                 </h1>
 
-                                {
-                                    weightRecords?.map((weight) => (
-                                        <div className="milk-detailList">
-                                        <h1>{new Date(weight.createdAt).toLocaleDateString('id-ID', {
-                                        day: '2-digit',
-                                        month: 'long',
-                                        year: 'numeric',
-                                        })}</h1>
-                                        <span>{weight.mass} Kg</span> 
-                                        </div>
-                                    ))
-                                }
+                                <DetailHistoryCard yearlyDatas={livestock == null ? [] : livestock.weightData == null ? [] : livestock.weightData.yearlyDatas} />
+
                                 </div>                          
                             </div>
                         </div>
@@ -434,18 +430,7 @@ const LivestockWeightPage: React.FC<LivestockWeightPageProps> = ({ params: param
                                             Riwayat Bobot
                                 </h1>
 
-                                {
-                                    weightRecords?.map((weight) => (
-                                        <div className="milk-detailList">
-                                        <h1>{new Date(weight.createdAt).toLocaleDateString('id-ID', {
-                                        day: '2-digit',
-                                        month: 'long',
-                                        year: 'numeric',
-                                        })}</h1>
-                                        <span>{weight.mass} Kg</span> 
-                                        </div>
-                                    ))
-                                }
+                                <DetailHistoryCard yearlyDatas={livestock == null ? [] : livestock.weightData == null ? [] : livestock.weightData.yearlyDatas} />
                                 </div>                          
                             </div>
                         </div>
@@ -540,27 +525,26 @@ const GeneralInfoBoxMobile: React.FC<GeneralInfoBoxMobileProps> = ({ title, valu
     );
 };
 
-interface HistoryItem {
-    title: string;
-    value: string | number;
-}
-
 interface DetailHistoryCardProps {
-    historyItems: HistoryItem[];
+    yearlyDatas: YearlyData[];
 }
 
 const DetailHistoryCard: React.FC<DetailHistoryCardProps> = ({
-    historyItems
+    yearlyDatas
 }) => {
     return (
         <div>
-            {historyItems.map((history, index) => (
-            <div key={index} className='livestockHistoryData'>
-                <div className='livestockHistoryItem'>
-                    <h2>{history.title}</h2>
-                    <p>{history.value}</p>
+            {yearlyDatas.map((yearlyData, index) => (
+                <div key={index} className='livestockHistoryData'>
+                    <div className='livestockHistoryItem'>
+                        {yearlyData?.monthlyDatas?.map((monthlyData, index) => (
+                            <div className="milk-detailList">
+                            <h1>{String(monthlyData?.date != null ? monthlyData?.date : "" + " " + monthlyData?.month + " " + yearlyData.year)}</h1>
+                            <span>{monthlyData?.value + " liter"}</span>
+                        </div>
+                        ))}
+                    </div>
                 </div>
-            </div>
             ))}
         </div>
     );

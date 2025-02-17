@@ -53,6 +53,7 @@ export interface MonthlyData {
     id: number;
     month: string;
     value: number;
+    date: number;
     yearlyDataId: number;
     createdAt: string;
     updatedAt: string;

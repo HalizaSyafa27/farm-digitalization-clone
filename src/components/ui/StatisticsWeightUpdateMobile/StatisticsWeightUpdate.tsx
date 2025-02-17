@@ -69,7 +69,7 @@ const StatisticsWeightUpdateMobile: React.FC<StatisticsWeightUpdateMobileProps> 
 
       <div className={styles.chartContainer}>
         <div className={styles.yAxis}>
-          {[1000,750, 500, 250, 100, 0].map((value, index) => (
+          {[1000,750, 500, 250, 0].map((value, index) => (
             <p key={index} className={styles.yAxisLabel}>
               {value}
             </p>
@@ -82,12 +82,12 @@ const StatisticsWeightUpdateMobile: React.FC<StatisticsWeightUpdateMobileProps> 
               {/* Bar hijau */}
               <div
                 className={styles.greenBar}
-                style={{ height: `${(data.value / 20000) * 100}%`, width: '41px' }}
+                style={{ height: `${(data.value / 2000) * 100}%`, width: '41px' }}
               ></div>
               {/* Batang grafik */}
               <div
                 className={styles.bar}
-                style={{ height: `${(data.value / 20000) * 100}%` }}
+                style={{ height: `${(data.value / 2000) * 100}%` }}
               ></div>
               <p className={styles.month}>{data.month}</p>
             </div>
