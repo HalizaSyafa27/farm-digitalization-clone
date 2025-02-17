@@ -9,21 +9,37 @@ import RejectButton from '../RejectButton/RejectButton';
 import { getCookie } from '@/lib/cookies';
 import useFetch from '@/hooks/useFetch';
 import { FarmRequestModel } from '@/models/FarmRequestModel';
-
+import { FarmModel } from '@/models/FarmModel';
 
 interface TopBarProps {
   onSearch?: (value: string) => void;
 }
 
 const TopBar: React.FC<TopBarProps> = ({ onSearch }) => {
-    const storedId = getCookie("id"); 
-
-    const { data: farmRequestData, loading: loadingFarms, error: errorFarms } = useFetch<FarmRequestModel[]>(
-        `${process.env.NEXT_PUBLIC_API_HOST}/farm-requests/pending?operatorId=${storedId}`,
-    );
+  const ownerNotification = " telah bergabung dengan "
+  const storedId = getCookie("id");
+  const role = getCookie("role") || ""; // Ensure `role` is never undefined
+  const { data: farmData = [], loading, error } = useFetch<FarmModel[]>(
+    role === "owner"
+      ? `${process.env.NEXT_PUBLIC_API_HOST}/farms?ownerId=${storedId}`
+      : `${process.env.NEXT_PUBLIC_API_HOST}/farms/operator/${storedId}`
+  );
+  const { data: farmRequestData, loading: loadingFarms, error: errorFarms } = useFetch<FarmRequestModel[]>(
+    `${process.env.NEXT_PUBLIC_API_HOST}/farm-requests/pending?operatorId=${storedId}`,
+  );
 
   const [isOpen, setIsOpen] = useState(false);
- const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const [selectedFarmModel, setSelectedFarmModel] = useState<FarmModel | null>(null);
+  React.useEffect(() => {
+    if (farmData && farmData.length > 0) {
+      setSelectedFarmModel(farmData[0] || null);
+    }
+    console.log("Selected Farm Model:", selectedFarmModel);
+    console.log("Farm Data:", farmData);
+    console.log("id:", storedId);
+  }, [farmData])
 
   // Function to close the dropdown when clicking outside
   const closeDropdown = () => setIsOpen(false);
@@ -74,25 +90,19 @@ const TopBar: React.FC<TopBarProps> = ({ onSearch }) => {
         ReactDOM.createPortal(
           <div id="dropdown-container" className={styles.dropdown}>
             <h1>Notifikasi</h1>
-            {/* {notificationListData.map((notification) => (
-              <div className={styles.notificationRow}>
-                <img src={notification.profile_url} alt="" />
-              <p><b>{notification.user_name}</b> {notification.action}</p>
-              </div>
-            ))} */}
-            {notificationListData.slice(1, 3).map((notification, index) => (
-              <div key={notification.user_name + notification.action}>
-                <div className={styles.notificationRow}>
-                  {/* <img src={notification.profile_url} alt="" /> */}
-                  <div className={styles.notificationText}>
-                    <p><b>{notification.user_name}</b> {notification.action}</p>
+            {
+              selectedFarmModel?.operators.map((operator) => (
+                <div key={operator.name}>
+                  <div className={styles.notificationRow}>
+                    <div className={styles.notificationText}>
+                      <p><b>{operator.name}</b> {ownerNotification} <b>{selectedFarmModel.name}</b></p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
 
           </div>,
-          document.body 
+          document.body
         )}
     </>
   );

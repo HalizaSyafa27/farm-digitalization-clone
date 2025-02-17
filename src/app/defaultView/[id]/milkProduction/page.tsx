@@ -206,7 +206,7 @@ const LivestockMilkProductionPage: React.FC<LivestockMilkProductionPageProps> = 
                                 <div className="menuHeader">
                                     <h1 className="menuTittle">{livestock == null ? "" : livestock.name_id}</h1>
                                     <div className='genderIcon'>
-                                        <GenderIcon gender={livestock == null ? "jantan" : livestock.gender == "MALE" ? 'jantan' : 'betina'}></GenderIcon>
+                                        <GenderIcon gender={livestock == null ? "jantan" : livestock.gender == "Jantan" ? 'jantan' : 'betina'}></GenderIcon>
                                     </div>
                                     <div className="deleteIcon">
                                         <PrimaryButton 
@@ -347,7 +347,7 @@ const LivestockMilkProductionPage: React.FC<LivestockMilkProductionPageProps> = 
                                 <div className="menuHeader">
                                     <h1 className="menuTittle">{livestock == null ? "" : livestock.name_id}</h1>
                                     <div className='genderIcon'>
-                                        <GenderIcon gender={livestock == null ? "jantan" : livestock.gender == "MALE" ? 'jantan' : 'betina'}></GenderIcon>
+                                        <GenderIcon gender={livestock == null ? "jantan" : livestock.gender == "Jantan" ? 'jantan' : 'betina'}></GenderIcon>
                                     </div>
                                     <div className="deleteIcon">
                                         <PrimaryButton 
@@ -556,8 +556,8 @@ const DetailHistoryCard: React.FC<DetailHistoryCardProps> = ({
 }) => {
     return (
         <div>
-            {historyItems.map((history) => (
-            <div className='livestockHistoryData'>
+            {historyItems.map((history, index) => (
+            <div key={index} className='livestockHistoryData'>
                 <div className='livestockHistoryItem'>
                     <h2>{history.title}</h2>
                     <p>{history.value}</p>

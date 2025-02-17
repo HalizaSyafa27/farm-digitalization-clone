@@ -161,7 +161,7 @@ const LivestockSicknessPage: React.FC<LivestockSicknessPageProps> = ({ params: p
                                 <div className="menuHeader">
                                     <h1 className="menuTittle">{livestock == null ? "" : livestock.name_id}</h1>
                                     <div className='genderIcon'>
-                                        <GenderIcon gender={livestock == null ? "jantan" : livestock.gender == "MALE" ? 'jantan' : 'betina'}></GenderIcon>
+                                        <GenderIcon gender={livestock == null ? "jantan" : livestock.gender == "Jantan" ? 'jantan' : 'betina'}></GenderIcon>
                                     </div>
                                     <div className="deleteIcon">
                                         <PrimaryButton 
@@ -251,7 +251,7 @@ const LivestockSicknessPage: React.FC<LivestockSicknessPageProps> = ({ params: p
                                 <div className="menuHeader">
                                     <h1 className="menuTittle">{livestock == null ? "" : livestock.name_id}</h1>
                                     <div className='genderIcon'>
-                                        <GenderIcon gender={livestock == null ? "jantan" : livestock.gender == "MALE" ? 'jantan' : 'betina'}></GenderIcon>
+                                        <GenderIcon gender={livestock == null ? "jantan" : livestock.gender == "Jantan" ? 'jantan' : 'betina'}></GenderIcon>
                                     </div>
                                     <div className="deleteIcon">
                                         <PrimaryButton 

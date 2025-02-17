@@ -1,7 +1,7 @@
 interface LactationChild {
     id: number;
     lactationId: number;
-    gender: 'MALE' | 'FEMALE';
+    gender: 'Jantan' | 'Betina';
     createdAt: string;
     updatedAt: string;
   }

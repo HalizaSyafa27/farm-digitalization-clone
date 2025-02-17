@@ -81,7 +81,7 @@ const LivestockCard: NextPage<LivestockCardTypes> = ({ className = "", livestock
             </div>
           </div>
           <div className={styles.healthCondition}>
-            <GenderIcon gender={ livestock.gender == "FEMALE" ? "betina" : "jantan"}></GenderIcon>
+            <GenderIcon gender={ livestock.gender == "Betina" ? "betina" : "jantan"}></GenderIcon>
             <HealthStatus status="sehat"></HealthStatus>
           </div>
         </div>

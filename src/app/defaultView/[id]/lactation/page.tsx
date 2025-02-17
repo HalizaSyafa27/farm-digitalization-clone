@@ -66,7 +66,6 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
     );
 
     const { data: livestock, loading: loadingLivestock, error: errorLivestock } = useFetch<Livestock>(
-        // `${process.env.NEXT_PUBLIC_API_HOST}/animals/${id}`,
         `${process.env.NEXT_PUBLIC_API_HOST}/livestocks/${id}`,
     );
     useEffect(() => {
@@ -76,7 +75,6 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
     }, [livestock]);
 
     // const { data: lactation, loading: loadingLactation, error: errorLactation } = useFetch<LactationRecord[]>(
-    //     // `${process.env.NEXT_PUBLIC_API_HOST}/lactations/animal/${id}`,
     //     `${process.env.NEXT_PUBLIC_API_HOST}/lactationData/livestocks/${id}`,
     // );
 
@@ -223,7 +221,7 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
                                 <div className="menuHeader">
                                     <h1 className="menuTittle">{livestock == null ? "" : livestock.name_id}</h1>
                                     <div className='genderIcon'>
-                                        <GenderIcon gender={livestock == null ? "jantan" : livestock.gender == "MALE" ? 'jantan' : 'betina'}></GenderIcon>
+                                        <GenderIcon gender={livestock == null ? "jantan" : livestock.gender == "Jantan" ? 'jantan' : 'betina'}></GenderIcon>
                                     </div>
                                     <div className="deleteIcon">
                                         <PrimaryButton 
@@ -411,7 +409,7 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
                                 <div className="menuHeader">
                                     <h1 className="menuTittle">{livestock == null ? "" : livestock.name_id}</h1>
                                     <div className='genderIcon'>
-                                        <GenderIcon gender={livestock == null ? "jantan" : livestock.gender == "MALE" ? 'jantan' : 'betina'}></GenderIcon>
+                                        <GenderIcon gender={livestock == null ? "jantan" : livestock.gender == "Jantan" ? 'jantan' : 'betina'}></GenderIcon>
                                     </div>
                                     <div className="deleteIcon">
                                         <PrimaryButton 
@@ -624,8 +622,8 @@ const DetailHistoryCard: React.FC<DetailHistoryCardProps> = ({
 }) => {
     return (
         <div>
-            {historyItems.map((history) => (
-            <div className='livestockHistoryData'>
+            {historyItems.map((history, index) => (
+            <div key={index} className='livestockHistoryData'>
                 <div className='livestockHistoryItem'>
                     <h2>{history.title}</h2>
                     <p>{history.value}</p>

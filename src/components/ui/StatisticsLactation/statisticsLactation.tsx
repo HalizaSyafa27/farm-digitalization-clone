@@ -42,7 +42,7 @@ const StatisticsLactation: React.FC<StatisticMilkProps> = ({
 
       <div className={styles.chartContainer}>
         <div className={styles.yAxis}>
-          {[1000, 750, 500, 250, 100, 0].map((value, index) => (
+          {[10, 8, 6, 4, 2, 0].map((value, index) => (
             <p key={index} className={styles.yAxisLabel}>
               {value}
             </p>

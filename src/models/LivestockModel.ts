@@ -123,7 +123,7 @@ export interface LivestockSold {
 export interface Livestock {
     id: number;
     name_id: string;
-    gender: 'MALE' | 'FEMALE';
+    gender: 'Jantan' | 'Betina';
     dob: string;
     weight: string;
     phase: string;

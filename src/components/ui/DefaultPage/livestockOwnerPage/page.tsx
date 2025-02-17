@@ -143,7 +143,7 @@ const LivestockPage: React.FC = () => {
                                             case "Fase":
                                                 return selectedItems.includes(livestock.phase);
                                             case "Jenis Kelamin":
-                                                return selectedItems.includes(livestock.gender === "MALE" ? "Jantan" : "Betina");
+                                                return selectedItems.includes(livestock.gender === "Jantan" ? "Jantan" : "Betina");
                                             case "Status":
                                                 return selectedItems.includes(livestock.status);
                                             case "Kondisi":

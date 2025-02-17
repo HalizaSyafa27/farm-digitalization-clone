@@ -4,7 +4,7 @@
 //     {
 //         id: "AUC001",
 //         name_id: "AUC001",
-//         gender: "FEMALE",
+//         gender: "Betina",
 //         dob: "2024-01-05",
 //         weight: "64.00",
 //         phase: "SIAPKAWIN",
@@ -670,7 +670,7 @@
 //     {
 //         id: "AUC020",
 //         name_id: "AUC020",
-//         gender: "MALE",
+//         gender: "Jantan",
 //         dob: "2020-05-15",
 //         weight: "82.50",
 //         phase: "SIAPKAWIN",
@@ -1336,7 +1336,7 @@
 //     {
 //         id: "AUC021",
 //         name_id: "AUC021",
-//         gender: "FEMALE",
+//         gender: "Betina",
 //         dob: "2021-02-10",
 //         weight: "65.00",
 //         phase: "SIAPKAWIN",
@@ -1999,7 +1999,7 @@
 //     {
 //         id: "AUC022",
 //         name_id: "AUC022",
-//         gender: "MALE",
+//         gender: "Jantan",
 //         dob: "2018-03-05",
 //         weight: "90.00",
 //         phase: "SIAPKAWIN",
@@ -2661,7 +2661,7 @@
 //     {
 //         id: "AUC023",
 //         name_id: "AUC023",
-//         gender: "FEMALE",
+//         gender: "Betina",
 //         dob: "2017-08-30",
 //         weight: "72.00",
 //         phase: "SIAPKAWIN",
@@ -3323,7 +3323,7 @@
 //     {
 //         id: "AUC024",
 //         name_id: "AUC024",
-//         gender: "MALE",
+//         gender: "Jantan",
 //         dob: "2015-12-20",
 //         weight: "95.00",
 //         phase: "SIAPKAWIN",
@@ -3985,7 +3985,7 @@
 //     {
 //         id: "AUC025",
 //         name_id: "AUC025",
-//         gender: "FEMALE",
+//         gender: "Betina",
 //         dob: "2014-07-18",
 //         weight: "80.00",
 //         phase: "SIAPKAWIN",
@@ -4647,7 +4647,7 @@
 //     {
 //         id: "AUC026",
 //         name_id: "AUC026",
-//         gender: "MALE",
+//         gender: "Jantan",
 //         dob: "2013-04-22",
 //         weight: "89.50",
 //         phase: "SIAPKAWIN",
@@ -5309,7 +5309,7 @@
 //     {
 //         id: "AUC027",
 //         name_id: "AUC027",
-//         gender: "FEMALE",
+//         gender: "Betina",
 //         dob: "2016-11-30",
 //         weight: "70.50",
 //         phase: "SIAPKAWIN",
@@ -5972,7 +5972,7 @@
 //     {
 //         id: "AUC028",
 //         name_id: "AUC028",
-//         gender: "MALE",
+//         gender: "Jantan",
 //         dob: "2019-03-13",
 //         weight: "85.00",
 //         phase: "SIAPKAWIN",
@@ -6635,7 +6635,7 @@
 //     {
 //         id: "AUC029",
 //         name_id: "AUC029",
-//         gender: "FEMALE",
+//         gender: "Betina",
 //         dob: "2022-10-05",
 //         weight: "67.00",
 //         phase: "SIAPKAWIN",

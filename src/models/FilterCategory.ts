@@ -21,7 +21,8 @@ export const defaultFilterCategories: FilterCategory[] = [
             "Siap Kawin",
             "Hamil",
             "Menyusui",
-            "Afkir"
+            "Afkir", 
+            "Lepas Sapih"
         ]
     },
     {
