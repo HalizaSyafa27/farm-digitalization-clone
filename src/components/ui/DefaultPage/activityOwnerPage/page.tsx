@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import './ActivityPage.module.css';
 
 import Sidebar from '@/components/ui/Sidebar/sidebar';
+import { useSearchParams } from "next/navigation";
 import { User } from '@/models/UserModel';
 import { ActivityModel } from '@/models/ActivityModel';
 import TopBar from '@/components/ui/TopBar/topBar';
@@ -13,10 +14,21 @@ import InviteModal from '@/components/ui/InviteModal/InviteModal';
 import { getCookie } from '@/lib/cookies';
 import useFetch from '@/hooks/useFetch';
 import { FarmModel } from '@/models/FarmModel';
+import ActivityList from "@/components/ui/ActivityItem/ActivityList";
+import ActivityItem from "@/components/ui/ActivityItem/ActivityItem.module.css";
+
+// interface ActivityItemProps{
+//     params: Promise<{
+//         id: number;
+//     }>;
+// }
 
 const ActivityPage: React.FC = () => {
-    const router = useRouter();
+    const searchParams = useSearchParams();
+    const farmIdParam = searchParams.get('farmId'); // Bisa null atau string
+    const farmId = farmIdParam ? parseInt(farmIdParam, 10) : 0;
 
+    const router = useRouter();
     const storedId = getCookie("id") || ""; // Ensure `storedId` is never undefined
     const role = getCookie("role") || ""; // Ensure `role` is never undefined
 
@@ -123,6 +135,7 @@ const ActivityPage: React.FC = () => {
                                         isFirst={index === 0}
                                       />
                                     ))} */}
+                                    <ActivityList farmId={farmId} />
                                   </div>
                                 </div>
                             </div>
