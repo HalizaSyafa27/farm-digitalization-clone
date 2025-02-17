@@ -1,31 +1,44 @@
 import React from 'react';
 import styles from '@/components/ui/StatisticsLactation/StatisticsLactation.module.css';
 import { LactationData } from '@/models/LivestockModel';
+import { Lactation } from '@/models/LactationModel';
 
-type StatisticMilkProps = {
+type StatisticLactationProps = {
   filterBy: 'year' | 'month';
   filterValue: number | string;
-  lactationData?: LactationData;
+  lactations?: Lactation[];
 };
 
-const StatisticsLactation: React.FC<StatisticMilkProps> = ({
+const StatisticsLactation: React.FC<StatisticLactationProps> = ({
   filterBy,
   filterValue,
-  lactationData,
+  lactations,
 }) => {
-  // Ensure lactationData exists before accessing its properties
-  const filteredData =
-  lactationData?.yearlyDatas?.length
-    ? lactationData.yearlyDatas.flatMap((item) =>
-        item.year === filterValue ? item.monthlyDatas || [] : []
-      )
-    : [];
+  // Get record dari month and totalChild
+  const datas: Record<string, { totalChild: number }> = (lactations ?? []).reduce((acc, lactation) => {
+    console.log(lactation.dob)
+    console.log(lactation.totalFemaleChild)
+    const dob = new Date(lactation.dob);
+    // const key = String(dob.toLocaleString('default', { month: 'short' })) // Format : "MMM"
+    const key = String(dob.getFullYear()) // Format : "YYYY"
+    console.log(key)
+    if (!acc[key]) {
+      acc[key] = { totalChild: 0 };
+    }
+    acc[key].totalChild += (lactation.totalChild);
+    console.log("total: " + acc[key].totalChild + "expected +" + lactation.totalChild)
+    return acc;
+  }, {} as Record<string, { totalChild: number }>);
 
+  let totalYears = 0;
+  let totalChildren = 0;
+  for (const key in datas) {
+    console.log(key + " " + datas[key].totalChild)
+    totalYears++;
+    totalChildren += datas[key]?.totalChild;
+  }
 
-
-  // Calculate the average, ensuring there is data to calculate from
-  const average =
-    filteredData.reduce((acc, cur) => acc + cur.value, 0) / filteredData.length || 0;
+  const average = Number(totalChildren / totalYears) ?? 0;
 
   return (
     <div className={styles.container}>
@@ -35,8 +48,8 @@ const StatisticsLactation: React.FC<StatisticMilkProps> = ({
 
       <div className={styles.header}>
         <div>
-          <h1>{average} Pedet</h1>
-          <p>Rata-rata/bulan</p>
+          <h1>{isNaN(average) ? 0 : average} Pedet</h1>
+          <p>Rata-rata/tahun</p>
         </div>
       </div>
 
@@ -50,21 +63,23 @@ const StatisticsLactation: React.FC<StatisticMilkProps> = ({
         </div>
 
         <div className={styles.chart}>
-          {filteredData.map((data, index) => (
-            <div key={index} className={styles.barContainer}>
-              {/* Bar hijau */}
-              <div
-                className={styles.greenBar}
-                style={{ height: `${(data.value / 1000) * 100}%`, width: '41px' }}
-              ></div>
-              {/* Batang grafik */}
-              <div
-                className={styles.bar}
-                style={{ height: `${(data.value / 1000) * 100}%` }}
-              ></div>
-              <p className={styles.month}>{data.month}</p>
-            </div>
-          ))}
+          {
+            Object.entries(datas).map(([year, details]) => (
+              <div key={year} className={styles.barContainer}>
+                {/* Batang Hijau */}
+                <div
+                  className={styles.greenBar}
+                  style={{ height: `${(details.totalChild / 50) * 100}%`, width: '41px' }}
+                ></div>
+                {/* Batang grafik */}
+                <div
+                  className={styles.bar}
+                  style={{ height: `${(details.totalChild / 50) * 100}%` }}
+                ></div>
+                <p className={styles.month}>{year}</p>
+              </div>
+            ))
+          }
         </div>
       </div>
 

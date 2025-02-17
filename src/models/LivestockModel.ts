@@ -2,6 +2,7 @@ import statisticsLactationData from "./statisticsLactationModel";
 import statisticsMilkOutput from "./statisticsMilkModel";
 import statisticsWeightData from "./statisticsWeightModel";
 import statisticsLivestockSold from "./statisticsLivestockSold";
+import { Lactation } from "./LactationModel";
 
 export interface HistoryItem {
     id: string;
@@ -149,6 +150,7 @@ export interface Livestock {
     vitamin: Vitamin;
     vaccine: Vaccine;
     milkOutput: MilkOutput;
+    lactation: Lactation[];
     lactationData: LactationData;
     weightData: WeightData;
     livestockSold?: LivestockSold;

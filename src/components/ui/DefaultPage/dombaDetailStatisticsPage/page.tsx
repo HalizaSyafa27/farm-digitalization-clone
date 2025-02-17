@@ -69,9 +69,9 @@ const App: React.FC = () => {
           <div>
           <Breadcrumbs
             breadcrumbs={[
-              { label: 'Peternakan Widjaya', href: '/OwnerViewPage' },
-              { label: 'Statistik', href: '/OwnerViewPage' },
-              { label: 'Domba', href: '/OwnerViewPage/detailStatisticsPage/dombaDetailStatisticsPage' },
+              { label: selectedFarm ?? "", href: '/defaultView' },
+              { label: 'Statistik', href: '/defaultView?view=statistik' },
+              { label: 'Domba', href: '' },
             ]}
           />
           </div>

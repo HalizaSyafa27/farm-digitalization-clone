@@ -920,6 +920,7 @@ line-height: 30px
 }
 
 .lactationSection {
+  width: 100%;
   display: flex; 
   gap: 16px; 
   align-items: flex-start; /* Untuk memastikan elemen sejajar di bagian atas */

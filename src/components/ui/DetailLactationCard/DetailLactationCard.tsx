@@ -9,13 +9,13 @@ import { useRouter } from 'next/navigation'
 
 interface LactationDetail {
   title: string;
-  description: string;
+  descriptions: string[];
   livestock?: Livestock;
 }
 
 interface DetailLactationCardProps {
-  currentLactation?: LactationDetail;
-  history?: LactationDetail[];
+  currentLactation?: LactationDetail | null;
+  history?: LactationDetail[] | null;
   livestock?: Livestock;
 }
 
@@ -39,20 +39,50 @@ const DetailLactationCard: React.FC<DetailLactationCardProps> = ({ currentLactat
         <h3>Laktasi Tahun ini</h3>
         {/* Render title and description only if currentLactation is provided */}
         <div className={styles.title}>
-            <h2>{currentLactation?.title ?? "Tidak ada laktasi saat ini"}</h2> 
+          <h2>{currentLactation?.title ?? "Tidak ada laktasi saat ini"}</h2>
         </div>
-     
-        <p className={styles.description}>
-          {currentLactation?.description ?? "Tidak ada deskripsi tersedia"}
-        </p>
+        <div>
+          {
+            currentLactation?.descriptions != null
+              ?
+              currentLactation?.descriptions.map((description, index) => (
+                <p key={index} className={styles.description}>{description}</p>
+              ))
+              : "Tidak ada deskripsi tersedia"
+          }
+        </div>
+        <div>
+          <h3>Riwayat Laktasi</h3>
+          {/* Only map through history if it's provided */}
+          {history && history.length > 0 ? (
+            history.map((item, index) => (
+              <div key={index} className={styles.title}>
+                <div className={styles.title}>
+                  <h2>{item?.title ?? "Tidak ada laktasi saat ini"}</h2>
+                </div>
+                {
+                  item.descriptions.map((description, index) => (
+                    <div key={index}>
+                      <p className={styles.description}>{description}</p>
+                    </div>
+                  ))
+                }
+              </div>
+            ))
+          ) : (
+
+            <p className={styles.description}>Tidak ada riwayat laktasi yang tersedia.</p>
+          )}
+        </div>
       </div>
 
-      <div className={styles.history}>
-        <h3>Riwayat Laktasi</h3>
-        {/* Only map through history if it's provided */}
-        {history && history.length > 0 ? (
+
+      {/* <div className={styles.header}>
+        <h3>Riwayat Laktasi</h3> */}
+      {/* Only map through history if it's provided */}
+      {/* {history && history.length > 0 ? (
           history.map((item, index) => (
-            <div key={index} className={styles.historyItem}>
+            <div key={index} className={styles.title}>
               <strong>{item.title}</strong>
               <p className={styles.description}>{item.description}</p>
             </div>
@@ -61,10 +91,10 @@ const DetailLactationCard: React.FC<DetailLactationCardProps> = ({ currentLactat
 
           <p className={styles.description}>Tidak ada riwayat laktasi yang tersedia.</p>
         )}
-      </div>
+      </div> */}
 
       <div>
-        <ViewMore />
+        <ViewMore onClick={handleNavigate} />
       </div>
 
       <div className={styles.action}>

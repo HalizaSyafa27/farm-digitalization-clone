@@ -14,11 +14,22 @@ import { getCookie } from '@/lib/cookies';
 import useFetch from '@/hooks/useFetch';
 import { FarmModel } from '@/models/FarmModel';
 import { Livestock, MonthlyData, YearlyData } from '@/models/LivestockModel';
+import { Lactation } from '@/models/LactationModel'
 
 interface LivestockLactationPageProps {
     params: Promise<{
         id: string;
     }>;
+}
+
+interface LactationPayload {
+    livestockId: number;
+    spouseId: number;
+    dob: Date;
+    totalChild: number;
+    totalFemaleChild: number;
+    totalMaleChild: number;
+    lactationNumber: number;
 }
 
 interface LactationDataPayload {
@@ -39,9 +50,9 @@ interface MonthlyDataPayload {
 const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params: paramsPromise }) => {
     const params = use(paramsPromise);
     const id = params.id;
-    
-    const storedId = getCookie("id"); 
-    const role = getCookie("role"); 
+
+    const storedId = getCookie("id");
+    const role = getCookie("role");
 
     const { data: farmData, loading: loadingFarms, error: errorFarms } = useFetch<FarmModel[]>(
         role == "owner" ? `${process.env.NEXT_PUBLIC_API_HOST}/farms?ownerId=${storedId}` : `${process.env.NEXT_PUBLIC_API_HOST}/farms/operator/${storedId}`,
@@ -82,130 +93,76 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
 
     const [apiError, setApiError] = useState(null);
     const [apiData, setApiData] = useState(null);
+    const [error, setError] = useState(false);
 
-    const [dropdownData, setDropdownData] = useState<string[]>([]);
-    
+    const [dropdownData, setDropdownData] = useState<{ [key: number]: string }>({});
+
     const dateNow = new Date(Date.now())
     const day = dateNow.getDate()
     const month = dateNow.getMonth()
     const year = dateNow.getFullYear()
     const fullDate = String(day + "-" + month + "-" + year)
 
+    const [idPasangan, setIdPasangan] = useState("");
+
     const [date, setDate] = useState(fullDate);
     const [value, setValue] = useState(0);
-    const [lactationNumber, setLactationNumber] = useState(0);
+    const [valueMale, setValueMale] = useState(0);
+    const [valueFemale, setValueFemale] = useState(0);
+    const [lactationNumber, setLactationNumber] = useState(1);
 
-    const handleDropdownSelect = (value: string) => {
-        setDropdownData((prev) => {
-            return [...prev, value ];
-        });
+    const handleDropdownSelect = (index: number, value: string) => {
+        setDropdownData((prev) => ({
+            ...prev,
+            [index]: value
+        }));
     };
 
-           const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 720);
-        
-        
-           useEffect(() => {
-            const checkScreenSize = () => {
-              setIsMobile(window.innerWidth <= 720);
-            };
-          
-            window.addEventListener("resize", checkScreenSize);
-            return () => window.removeEventListener("resize", checkScreenSize);
-          }, []);
+    const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 720);
+
+
+    useEffect(() => {
+        const checkScreenSize = () => {
+            setIsMobile(window.innerWidth <= 720);
+        };
+
+        window.addEventListener("resize", checkScreenSize);
+        return () => window.removeEventListener("resize", checkScreenSize);
+    }, []);
 
     const handleSubmit = async () => {
         const year = new Date(date).getFullYear();
         const month = new Date(date).toLocaleString('default', { month: 'short' });
 
         try {
-            if (livestock?.lactationData == null) {
-                const payload = {
-                    livestockId: id,
-                    yearlyData: [
-                        {
-                            year:  year,
-                            data: [
-                                {
-                                    month: month,
-                                    value: value
-                                }
-                            ]
-                        }
-                    ]
-                };
-
-                console.log(payload)
-                
+            setValue(valueFemale + valueMale)
+            if (value > 0) {
+                let payload: LactationPayload = {
+                    livestockId: Number(id),
+                    spouseId: Number(idPasangan),
+                    dob: new Date(date),
+                    totalChild: valueFemale + valueMale,
+                    totalFemaleChild: valueFemale,
+                    totalMaleChild: valueMale,
+                    lactationNumber: lactationNumber
+                }
+                console.log("payload :" + payload.livestockId)
                 const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/lactationData`, {
                     method: "POST",
                     body: JSON.stringify(payload),
                     headers: {
-                    "Content-Type": "application/json",
+                        "Content-Type": "application/json",
                     },
                 });
-
                 const data = await response.json();
                 if (response.ok) {
-                  
                     router.replace(`/defaultView/${id}`);
                 } else {
                     setApiError(data.error || "Something went wrong");
                 }
             } else {
-                let payload: LactationDataPayload = {
-                    livestockId: id,
-                    yearlyData: []
-                };
-
-                livestock.lactationData.yearlyDatas.forEach((lactationEntry: YearlyData) => {
-                    let yearData = payload.yearlyData.find((item) => item.year === lactationEntry.year);
-              
-                    if (!yearData) {
-                      // If the year doesn't exist, create new yearly data
-                      yearData = { year: lactationEntry.year, data: [] };
-                      payload.yearlyData.push(yearData);
-                    }
-              
-                    // Now populate month data
-                    lactationEntry.monthlyDatas.forEach((lactationMonthData: MonthlyData) => {
-                      let monthData = yearData.data.find((item) => item.month === lactationMonthData.month);
-                      if (monthData) {
-                        monthData.value += lactationMonthData.value;
-                      } else {
-                        yearData.data.push({ month: lactationMonthData.month, value: lactationMonthData.value });
-                      }
-                    });
-                });
-
-                let yearData = payload.yearlyData.find((item) => item.year === year);
-                if (!yearData) {
-                    yearData = { year, data: [] };
-                    payload.yearlyData.push(yearData);
-                }
-
-                let monthData = yearData.data.find((item) => item.month === month);
-                if (monthData) {
-                    monthData.value += value;
-                } else {
-                    yearData.data.push({ month, value });
-                }
-
-                const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/lactationData/${livestock?.lactationData.id}`, {
-                    method: "PUT",
-                    body: JSON.stringify(payload),
-                    headers: {
-                    "Content-Type": "application/json",
-                    },
-                });
-
-                const data = await response.json();
-                if (response.ok) {
-                    router.replace(`/defaultView/${id}`);
-                } else {
-                    setApiError(data.error || "Something went wrong");
-                }
+                setError(true)
             }
-
         } catch (error) {
         } finally {
             // setLoading(false);
@@ -216,54 +173,54 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
         <div>
             <div className="layout">
                 {
-                    isMobile?
-                    (
-                        <>
+                    isMobile ?
+                        (
+                            <>
 
-                <div className="main-content">
+                                <div className="main-content">
 
-                        <div className="content">
-                            <div className="menuSection">
-                                <div className="menuHeader">
-                                    <h1 className="menuTittle">{livestock == null ? "" : livestock.name_id}</h1>
-                                    <div className='genderIcon'>
-                                        <GenderIcon gender={livestock == null ? "jantan" : livestock.gender == "Jantan" ? 'jantan' : 'betina'}></GenderIcon>
-                                    </div>
-                                    <div className="deleteIcon">
-                                        <PrimaryButton 
-                                        label='Perbarui' 
-                                        width={130}
-                                        onClick={() => {
-                                            handleSubmit();
-                                          }}
-                                        />
-                                        {/* <DeleteButton /> */}
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='livestock'>
-                                <div className='generalInformationLivestock'>
-                                    <img
-                                    // src={livestock == null ? "" : livestock.photo_url}
-                                    src={livestock?.photo_url || "/default-image.jpg"} 
-                                    alt={livestock == null ? "" : livestock.name_id}
-                                    style={{
-                                        width: '232px',
-                                        height: '214px',
-                                        objectFit: 'cover',
-                                        borderRadius: '10px',
-                                    }}
-                                    />
-                                        <div className='verticalGeneralLivestockBoxBesideImg'>
-                                                <GeneralInfoBox title={'Tanggal Lahir'} value={livestock == null ? "" : new Date(livestock.dob).toLocaleDateString('id-ID', {
-                                                    year: 'numeric',
-                                                    month: 'long',
-                                                    day: 'numeric'
-                                                })} />
+                                    <div className="content">
+                                        <div className="menuSection">
+                                            <div className="menuHeader">
+                                                <h1 className="menuTittle">{livestock == null ? "" : livestock.name_id}</h1>
+                                                <div className='genderIcon'>
+                                                    <GenderIcon gender={livestock == null ? "jantan" : livestock.gender == "Jantan" ? 'jantan' : 'betina'}></GenderIcon>
+                                                </div>
+                                                <div className="deleteIcon">
+                                                    <PrimaryButton
+                                                        label='Perbarui'
+                                                        width={130}
+                                                        onClick={() => {
+                                                            handleSubmit();
+                                                        }}
+                                                    />
+                                                    {/* <DeleteButton /> */}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className='livestock'>
+                                            <div className='generalInformationLivestock'>
+                                                <img
+                                                    // src={livestock == null ? "" : livestock.photo_url}
+                                                    src={livestock?.photo_url || "/default-image.jpg"}
+                                                    alt={livestock == null ? "" : livestock.name_id}
+                                                    style={{
+                                                        width: '232px',
+                                                        height: '214px',
+                                                        objectFit: 'cover',
+                                                        borderRadius: '10px',
+                                                    }}
+                                                />
+                                                <div className='verticalGeneralLivestockBoxBesideImg'>
+                                                    <GeneralInfoBox title={'Tanggal Lahir'} value={livestock == null ? "" : new Date(livestock.dob).toLocaleDateString('id-ID', {
+                                                        year: 'numeric',
+                                                        month: 'long',
+                                                        day: 'numeric'
+                                                    })} />
 
-                                                <GeneralInfoBox title={'Ras'} value={livestock == null ? "" : livestock.breed} />
-                                                
-                                                {/* <div className="phaseLabelTag-livestockOwnerPage">
+                                                    <GeneralInfoBox title={'Ras'} value={livestock == null ? "" : livestock.breed} />
+
+                                                    {/* <div className="phaseLabelTag-livestockOwnerPage">
                                                     <PhaseLabelTag 
                                                     phases={phaseLabels} 
                                                     filterId={livestock == null ? "" : livestock.phase}
@@ -272,301 +229,286 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
                                                     >
                                                     </PhaseLabelTag>
                                                  </div> */}
-                                        </div>
-                                </div>
+                                                </div>
+                                            </div>
 
-                                <div>
-                                    <div className='gradeDanBerat'>
-                                            <GeneralInfoBox title={'Grade'} value={livestock == null ? "" : livestock.grade || "Undefined"} />
-                                            <GeneralInfoBox title={'Berat'} value={livestock == null ? "" : livestock.weight || "Undefined"} />
-                                            <GeneralInfoBox title={'Kondisi'} value={livestock == null ? "" : livestock.status || "Undefined"} />
-                                    </div>
+                                            <div>
+                                                <div className='gradeDanBerat'>
+                                                    <GeneralInfoBox title={'Grade'} value={livestock == null ? "" : livestock.grade || "Undefined"} />
+                                                    <GeneralInfoBox title={'Berat'} value={livestock == null ? "" : livestock.weight || "Undefined"} />
+                                                    <GeneralInfoBox title={'Kondisi'} value={livestock == null ? "" : livestock.status || "Undefined"} />
+                                                </div>
 
-                                    <div className='familyInformation'>
-                                        <h1 className='keluarga'>Keluarga</h1>  
-                                        <div className='idParents'>
-                                            <GeneralInfoBoxMobile title={'ID Ayah'} value={livestock == null ? "" : livestock.dad_name_id || "N/A"} isLink={true} />
-                                            <GeneralInfoBoxMobile title={'ID Ibu'} value={livestock == null ? "" : livestock.mom_name_id || "N/A"} isLink={true} />  
-                                        </div>
-                                    </div>
-                                </div>
+                                                <div className='familyInformation'>
+                                                    <h1 className='keluarga'>Keluarga</h1>
+                                                    <div className='idParents'>
+                                                        <GeneralInfoBoxMobile title={'ID Ayah'} value={livestock == null ? "" : livestock.dad_name_id || "N/A"} isLink={true} />
+                                                        <GeneralInfoBoxMobile title={'ID Ibu'} value={livestock == null ? "" : livestock.mom_name_id || "N/A"} isLink={true} />
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                                <div className="rowContent-lactation">
-                                
-                                <div className='fieldFormVertical-lactation'>
-                                    <h1 className='livestockHistoryTitle'>
-                                    Laktasi
-                                </h1>
-                                    <PrimaryTextField 
-                                    width={350} 
-                                    placeholder={livestock?.spouse_id} 
-                                    label={<span className="text-[20px] font-bold">ID Pasangan *</span>} 
-                                    disabled={true} 
-                                    />
-                                    <div>
-                                    <Label title={<span className="text-[18px]">Tanggal *</span>} />
-                                        <Input
-                                            disabled={false}
-                                            type="date"
-                                            value={date}
-                                            onChange={(e) => setDate(e.target.value)}
-                                        />
-                                    </div>
-{/* 
+                                            <div className="rowContent-lactation">
+
+                                                <div className='fieldFormVertical-lactation'>
+                                                    <h1 className='livestockHistoryTitle'>
+                                                        Laktasi
+                                                    </h1>
+                                                    <div>
+                                                        <Label title="ID Pasangan *" />
+                                                        <Input
+                                                            disabled={false}
+                                                            type="text"
+                                                            placeholder="ID Pasangan"
+                                                            value={idPasangan}
+                                                            onChange={(e) => setIdPasangan(e.target.value)}
+                                                        />
+                                                    </div>
+                                                    <div>
+                                                        <Label title={<span className="text-[18px]">Tanggal *</span>} />
+                                                        <Input
+                                                            disabled={false}
+                                                            type="date"
+                                                            value={date}
+                                                            onChange={(e) => setDate(e.target.value)}
+                                                        />
+                                                    </div>
+                                                    {/* 
                                     <PrimaryTextField width={350} placeholder='DD/MM/YYYY'label='Tanggal Lahir *'/> */}
-                                    {/* <h1>Date of Birth *</h1>
+                                                    {/* <h1>Date of Birth *</h1>
                                     <Input disabled={false} type="text" placeholder="DD/MM/YYY" className="styledInput" /> */}
 
-                                    {/* <Label title="Laktasi *" />
+                                                    {/* <Label title="Laktasi *" />
                                     <Input disabled={false} type="number" placeholder="Laktasi" className="styledInput" /> */}
 
-                                    <div className="row-lactation">
-                                    <PrimaryTextField 
-                                    width={76} 
-                                    placeholder="Ke-1" 
-                                    label={<span className="text-[20px] font-bold">Laktasi *</span>} 
-                                    disabled={false} 
-                                    />
-
-                                        <div>
-                                            <Label title={<span className="text-[18px]">Jumlah anak</span>} />
-                                            <div className="input-group-addTernak">
-                                                <Input disabled={false} type="number" placeholder="liter" value={value}   onChange={(e) => setValue(Number(e.target.value))}/>
-                                            </div>
-                                        </div>   
-
-                                    </div>
-
-
-                                    <div className='row-lactation'>
-                                        {/* <PrimaryTextField width={250} placeholder='Jenis Kelamin'label='Jenis Kelamin (pilihan) *'/> */}
-                                        {value != 0 && 
-                                            (() => {
-                                                const elements = [];
-                                                for (let i = 0; i < value; i++) {
-                                                    elements.push(
-                                                        <div className="textField">
-                                                            <h1 className="jenisKelaminLactationForm">Jenis Kelamin Anak {i + 1} *</h1>
-                                                            <DropdownFase
-                                                                options={['Jantan', 'Betina']}
-                                                                placeholder="Jenis Kelamin"
-                                                                onSelect={handleDropdownSelect}
+                                                    <div className="row-lactation">
+                                                        <div>
+                                                            <Label title="Laktasi Ke*" />
+                                                            <Input
+                                                                disabled={false}
+                                                                type="number"
+                                                                value={lactationNumber}
+                                                                onChange={(e) => setLactationNumber(Number(e.target.value))}
                                                             />
                                                         </div>
-                                                    );
-                                                }
-                                                return elements;
-                                            })()
-                                        }
-                                    </div>
-                                 </div>
 
-                                 <div className="separator-lactation">
+                                                        <div>
+                                                            <Label title={<span className="text-[18px]">Jumlah anak</span>} />
+                                                            <div className="input-group-addTernak">
+                                                                <Input disabled={true} type="number" placeholder="liter" value={valueFemale + valueMale} onChange={(e) => setValue(Number(e.target.value))} />
+                                                            </div>
+                                                        </div>
 
-                                </div>
-                                <div className="lactation-list">
-                                    <h1 className='livestockHistoryTitle'>
-                                        Riwayat Laktasi
-                                    </h1>
+                                                    </div>
 
-                                    {
-                                        livestock?.lactationData?.yearlyDatas.map((lactation) => (
-                                            lactation.monthlyDatas.map((
-                                                monthlyData
-                                            ) => (
-                                                <div className="lactation-detailList">
-                                            <h1>{new Date(monthlyData.updatedAt).toLocaleDateString('id-ID', {
-                                            day: '2-digit',
-                                            month: 'long',
-                                            year: 'numeric',
-                                            })}</h1>
-                                            <span>{monthlyData.value} Ekor</span> 
+
+                                                    <div className='row-lactation'>
+                                                        <div className="textField">
+                                                            <h1 className="jenisKelaminLactationForm">Jumlah Anak Jantan *</h1>
+                                                            <div className="input-group-addTernak">
+                                                                <Input disabled={false} type="number" placeholder="liter" value={valueMale} onChange={(e) => setValueMale(Number(e.target.value))} />
+                                                            </div>
+                                                        </div>
+                                                        <div className="textField">
+                                                            <h1 className="jenisKelaminLactationForm">Jumlah Anak Betina *</h1>
+                                                            <div className="input-group-addTernak">
+                                                                <Input disabled={false} type="number" placeholder="liter" value={valueFemale} onChange={(e) => setValueFemale(Number(e.target.value))} />
+                                                            </div>
+                                                        </div>
+                                                        {/* {value != 0 &&
+                                                            (() => {
+                                                                const elements = [];
+                                                                for (let i = 0; i < value; i++) {
+                                                                    elements.push(
+                                                                        <div className="textField">
+                                                                            <h1 className="jenisKelaminLactationForm">Jenis Kelamin Anak {i + 1} *</h1>
+                                                                            <DropdownFase
+                                                                                options={['Jantan', 'Betina']}
+                                                                                placeholder="Jenis Kelamin"
+                                                                                onSelect={handleDropdownSelect}
+                                                                            />
+                                                                        </div>
+                                                                    );
+                                                                }
+                                                                return elements;
+                                                            })()
+                                                        } */}
+                                                    </div>
+                                                </div>
+
+                                                <div className="separator-lactation">
+
+                                                </div>
+                                                <div className="lactation-list">
+                                                    <h1 className='livestockHistoryTitle'>
+                                                        Riwayat Laktasi
+                                                    </h1>
+                                                    <DetailHistoryCard lactations={livestock?.lactation ?? []} />
+
+                                                </div>
+
                                             </div>
-                                            )
-                                            )
-                                        ))
-                                    }
-                                </div>
 
-                                </div>
-
-                            </div>
-                        </div>
-                       </div>
-                        </>
-                    ) : (
-                        <>
-                                        <div className="sidebar">
-                    <Sidebar 
-                        setBreadcrumb={function (label: string): void {
-                            throw new Error('Function not implemented.');
-                        }} 
-                        farmList={farmData == null ? [] : farmData}
-                        setFarm={handleFarmChange}
-                        selectedFarm={selectedFarm}
-                    />
-                </div>
-
-                <div className="main-content">
-                    <TopBar ></TopBar>
-
-                        <div className="content">
-                            <div className="menuSection">
-                                <div className="menuHeader">
-                                    <h1 className="menuTittle">{livestock == null ? "" : livestock.name_id}</h1>
-                                    <div className='genderIcon'>
-                                        <GenderIcon gender={livestock == null ? "jantan" : livestock.gender == "Jantan" ? 'jantan' : 'betina'}></GenderIcon>
-                                    </div>
-                                    <div className="deleteIcon">
-                                        <PrimaryButton 
-                                        label='Perbarui' 
-                                        width={130}
-                                        onClick={() => {
-                                            handleSubmit();
-                                          }}
-                                        />
-                                        {/* <DeleteButton /> */}
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='livestock'>
-                                <div className='generalInformationLivestock'>
-                                    <img
-                                    // src={livestock == null ? "" : livestock.photo_url}
-                                    src={livestock?.photo_url || "/default-image.jpg"} 
-                                    alt={livestock == null ? "" : livestock.name_id}
-                                    style={{
-                                        width: '232px',
-                                        height: '214px',
-                                        objectFit: 'cover',
-                                        borderRadius: '10px',
-                                    }}
-                                    />
-                                    {/* <QRCodeSVG value={`${process.env.NEXT_PUBLIC_NEXT_HOST}/OwnerViewPage/livestockOwnerPage/${id}`} size={85} /> */}
-                                    <div className='generalInformationLivestockBox'>
-                                        <div className='generalInformationLivestockBoxTop'>
-                                            <GeneralInfoBox title={'Tanggal Lahir'} value={livestock == null ? "" : new Date(livestock.dob).toLocaleDateString('id-ID', {
-                                            year: 'numeric',
-                                            month: 'long',
-                                            day: 'numeric'
-                                        })} ></GeneralInfoBox>
-                                            <GeneralInfoBox title={'Ras'} value={livestock == null ? "" : livestock.breed} ></GeneralInfoBox>
-                                            <GeneralInfoBox title={'Grade'} value={livestock == null ? "" : livestock.grade || "Undefined"} ></GeneralInfoBox>
-                                            <GeneralInfoBox title={'Berat'} value={livestock == null ? "" : livestock.weight || "Undefined"} ></GeneralInfoBox>
                                         </div>
-                                        <div className='generalInformationLivestockBoxTop'>
-                                        <GeneralInfoBox title={'ID Ayah'} value={livestock == null ? "" : livestock.dad_name_id || "N/A"} ras={'Purebred'}  isLink={true} linkHref='' ></GeneralInfoBox>
-                                            <GeneralInfoBox title={'ID Ibu'} value={livestock == null ? "" : livestock.mom_name_id || "N/A"} grade={'F1'} isLink={true} linkHref='' ></GeneralInfoBox>
-                                            {/* <GeneralInfoBox title={'ID Kakak'} value={livestock == null ? "" : livestock.grandpa_name_id || "N/A"} ras={'Purebred'} isLink={true} linkHref='' ></GeneralInfoBox>
+                                    </div>
+                                </div>
+                            </>
+                        ) : (
+                            <>
+                                <div className="sidebar">
+                                    <Sidebar
+                                        setBreadcrumb={function (label: string): void {
+                                            // throw new Error('Function not implemented.');
+                                        }}
+                                        farmList={farmData == null ? [] : farmData}
+                                        setFarm={handleFarmChange}
+                                        selectedFarm={selectedFarm}
+                                    />
+                                </div>
+
+                                <div className="main-content">
+                                    <TopBar ></TopBar>
+
+                                    <div className="content">
+                                        <div className="menuSection">
+                                            <div className="menuHeader">
+                                                <h1 className="menuTittle">{livestock == null ? "" : livestock.name_id}</h1>
+                                                <div className='genderIcon'>
+                                                    <GenderIcon gender={livestock == null ? "jantan" : livestock.gender == "Jantan" ? 'jantan' : 'betina'}></GenderIcon>
+                                                </div>
+                                                <div className="deleteIcon">
+                                                    <PrimaryButton
+                                                        label='Perbarui'
+                                                        width={130}
+                                                        onClick={() => {
+                                                            handleSubmit();
+                                                        }}
+                                                    />
+                                                    {/* <DeleteButton /> */}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className='livestock'>
+                                            <div className='generalInformationLivestock'>
+                                                <img
+                                                    // src={livestock == null ? "" : livestock.photo_url}
+                                                    src={livestock?.photo_url || "/default-image.jpg"}
+                                                    alt={livestock == null ? "" : livestock.name_id}
+                                                    style={{
+                                                        width: '232px',
+                                                        height: '214px',
+                                                        objectFit: 'cover',
+                                                        borderRadius: '10px',
+                                                    }}
+                                                />
+                                                {/* <QRCodeSVG value={`${process.env.NEXT_PUBLIC_NEXT_HOST}/OwnerViewPage/livestockOwnerPage/${id}`} size={85} /> */}
+                                                <div className='generalInformationLivestockBox'>
+                                                    <div className='generalInformationLivestockBoxTop'>
+                                                        <GeneralInfoBox title={'Tanggal Lahir'} value={livestock == null ? "" : new Date(livestock.dob).toLocaleDateString('id-ID', {
+                                                            year: 'numeric',
+                                                            month: 'long',
+                                                            day: 'numeric'
+                                                        })} ></GeneralInfoBox>
+                                                        <GeneralInfoBox title={'Ras'} value={livestock == null ? "" : livestock.breed} ></GeneralInfoBox>
+                                                        <GeneralInfoBox title={'Grade'} value={livestock == null ? "" : livestock.grade || "Undefined"} ></GeneralInfoBox>
+                                                        <GeneralInfoBox title={'Berat'} value={livestock == null ? "" : livestock.weight || "Undefined"} ></GeneralInfoBox>
+                                                    </div>
+                                                    <div className='generalInformationLivestockBoxTop'>
+                                                        <GeneralInfoBox title={'ID Ayah'} value={livestock == null ? "" : livestock.dad_name_id || "N/A"} ras={'Purebred'} isLink={true} linkHref='' ></GeneralInfoBox>
+                                                        <GeneralInfoBox title={'ID Ibu'} value={livestock == null ? "" : livestock.mom_name_id || "N/A"} grade={'F1'} isLink={true} linkHref='' ></GeneralInfoBox>
+                                                        {/* <GeneralInfoBox title={'ID Kakak'} value={livestock == null ? "" : livestock.grandpa_name_id || "N/A"} ras={'Purebred'} isLink={true} linkHref='' ></GeneralInfoBox>
                                             <GeneralInfoBox title={'ID Nenek'} value={livestock == null ? "" : livestock.grandma_name_id || "N/A"} grade={'F3'} isLink={true} linkHref='' ></GeneralInfoBox> */}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className="rowContent-lactation">
+
+                                                <div className='fieldFormVertical-lactation'>
+                                                    <h1 className='livestockHistoryTitle'>
+                                                        Laktasi
+                                                    </h1>
+                                                    <div>
+                                                        <Label title="ID Pasangan *" />
+                                                        <Input
+                                                            disabled={false}
+                                                            type="text"
+                                                            placeholder="ID Pasangan"
+                                                            value={idPasangan}
+                                                            onChange={(e) => setIdPasangan(e.target.value)}
+                                                        />
+                                                    </div>
+                                                    <div>
+                                                        <Label title="Tanggal *" />
+                                                        <Input
+                                                            disabled={false}
+                                                            type="date"
+                                                            value={date}
+                                                            onChange={(e) => setDate(e.target.value)}
+                                                        />
+                                                    </div>
+                                                    {/* 
+                                    <PrimaryTextField width={350} placeholder='DD/MM/YYYY'label='Tanggal Lahir *'/> */}
+                                                    {/* <h1>Date of Birth *</h1>
+                                    <Input disabled={false} type="text" placeholder="DD/MM/YYY" className="styledInput" /> */}
+
+                                                    {/* <Label title="Laktasi *" />
+                                    <Input disabled={false} type="number" placeholder="Laktasi" className="styledInput" /> */}
+
+                                                    <div className="row-lactation">
+                                                        <div>
+                                                            <Label title="Laktasi Ke*" />
+                                                            <Input
+                                                                disabled={false}
+                                                                type="number"
+                                                                value={lactationNumber}
+                                                                onChange={(e) => setLactationNumber(Number(e.target.value))}
+                                                            />
+                                                        </div>
+
+                                                        <div>
+                                                            <Label title="Jumlah anak" />
+                                                            <div className="input-group-addTernak">
+                                                                <Input disabled={false} type="number" placeholder="liter" value={valueMale + valueFemale} onChange={(e) => setValue(Number(e.target.value))} />
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+
+                                                    <div className='row-lactation'>
+                                                        <div className="textField">
+                                                            <h1 className="jenisKelaminLactationForm">Jumlah Anak Jantan *</h1>
+                                                            <div className="input-group-addTernak">
+                                                                <Input disabled={false} type="number" placeholder="liter" value={valueMale} onChange={(e) => setValueMale(Number(e.target.value))} />
+                                                            </div>
+                                                        </div>
+                                                        <div className="textField">
+                                                            <h1 className="jenisKelaminLactationForm">Jumlah Anak Betina *</h1>
+                                                            <div className="input-group-addTernak">
+                                                                <Input disabled={false} type="number" placeholder="liter" value={valueFemale} onChange={(e) => setValueFemale(Number(e.target.value))} />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div className="separator-lactation">
+
+                                                </div>
+                                                <div className="lactation-list">
+                                                    <h1 className='livestockHistoryTitle'>
+                                                        Riwayat Laktasi
+                                                    </h1>
+                                                    <DetailHistoryCard lactations={livestock?.lactation ?? []} />
+                                                </div>
+
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
-
-                                <div className="rowContent-lactation">
-                                
-                                <div className='fieldFormVertical-lactation'>
-                                    <h1 className='livestockHistoryTitle'>
-                                    Laktasi
-                                </h1>
-                                    <PrimaryTextField 
-                                    width={350} 
-                                    placeholder={livestock?.spouse_id} 
-                                    label="ID Pasangan *" 
-                                    disabled={true} 
-                                    />
-                                    <div>
-                                        <Label title="Tanggal *" />
-                                        <Input
-                                            disabled={false}
-                                            type="date"
-                                            value={date}
-                                            onChange={(e) => setDate(e.target.value)}
-                                        />
-                                    </div>
-{/* 
-                                    <PrimaryTextField width={350} placeholder='DD/MM/YYYY'label='Tanggal Lahir *'/> */}
-                                    {/* <h1>Date of Birth *</h1>
-                                    <Input disabled={false} type="text" placeholder="DD/MM/YYY" className="styledInput" /> */}
-
-                                    {/* <Label title="Laktasi *" />
-                                    <Input disabled={false} type="number" placeholder="Laktasi" className="styledInput" /> */}
-
-                                    <div className="row-lactation">
-                                    <PrimaryTextField 
-                                    width={76} 
-                                    placeholder="Ke-1" 
-                                    label="Laktasi *" 
-                                    disabled={false} 
-                                    />
-
-                                        <div>
-                                            <Label title="Jumlah anak" />
-                                            <div className="input-group-addTernak">
-                                                <Input disabled={false} type="number" placeholder="liter" value={value}   onChange={(e) => setValue(Number(e.target.value))}/>
-                                            </div>
-                                        </div>   
-
-                                    </div>
-
-
-                                    <div className='row-lactation'>
-                                        {/* <PrimaryTextField width={250} placeholder='Jenis Kelamin'label='Jenis Kelamin (pilihan) *'/> */}
-                                        {value != 0 && 
-                                            (() => {
-                                                const elements = [];
-                                                for (let i = 0; i < value; i++) {
-                                                    elements.push(
-                                                        <div className="textField">
-                                                            <h1 className="jenisKelaminLactationForm">Jenis Kelamin Anak {i + 1} *</h1>
-                                                            <DropdownFase
-                                                                options={['Jantan', 'Betina']}
-                                                                placeholder="Jenis Kelamin"
-                                                                onSelect={handleDropdownSelect}
-                                                            />
-                                                        </div>
-                                                    );
-                                                }
-                                                return elements;
-                                            })()
-                                        }
-                                    </div>
-                                 </div>
-
-                                 <div className="separator-lactation">
-
-                                </div>
-                                <div className="lactation-list">
-                                    <h1 className='livestockHistoryTitle'>
-                                        Riwayat Laktasi
-                                    </h1>
-
-                                    {
-                                        livestock?.lactationData?.yearlyDatas.map((lactation) => (
-                                            lactation.monthlyDatas.map((
-                                                monthlyData
-                                            ) => (
-                                                <div className="lactation-detailList">
-                                            <h1>{new Date(monthlyData.updatedAt).toLocaleDateString('id-ID', {
-                                            day: '2-digit',
-                                            month: 'long',
-                                            year: 'numeric',
-                                            })}</h1>
-                                            <span>{monthlyData.value} Ekor</span> 
-                                            </div>
-                                            )
-                                            )
-                                        ))
-                                    }
-                                </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                       </div>
-                        </>
-                )}
+                            </>
+                        )}
 
             </div>
         </div>
@@ -590,55 +532,46 @@ const GeneralInfoBox: React.FC<GeneralInfoBoxProps> = ({ title, value, isLink = 
             <h1 className="generalInformationLivestockBoxTopDataTitle">{title}</h1>
             {isLink ? (
                 <div>
-                <a
-                href={linkHref}
-                className="generalInformationLivestockBoxTopDataValue hyperlinkStyle"
-                target="_blank"
-                rel="noopener noreferrer"
-                
-            >
-          
+                    <a
+                        href={linkHref}
+                        className="generalInformationLivestockBoxTopDataValue hyperlinkStyle"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        {value ?? "N/A"}
+                    </a>
+                    <p>{ras}</p>
+                    <p>{grade}</p>
+                </div>
+            ) : (
+                <h1 className="generalInformationLivestockBoxTopDataValue">{value ?? "N/A"}</h1>
 
-                {value ?? "N/A"}
-            </a>
-
-           <p>{ras}</p>
-           <p>{grade}</p>
-            
-         </div>
-        ) : (
-            <h1 className="generalInformationLivestockBoxTopDataValue">{value ?? "N/A"}</h1>
-   
-        )}
+            )}
         </div>
     );
 };
 
-interface HistoryItem {
-    title: string;
-    value: string | number;
+interface DetailLactationCardProps {
+    lactations: Lactation[]
 }
-
-interface DetailHistoryCardProps {
-    historyItems: HistoryItem[];
-}
-
-const DetailHistoryCard: React.FC<DetailHistoryCardProps> = ({
-    historyItems
+const DetailHistoryCard: React.FC<DetailLactationCardProps> = ({
+    lactations
 }) => {
     return (
         <div>
-            {historyItems.map((history, index) => (
-            <div key={index} className='livestockHistoryData'>
-                <div className='livestockHistoryItem'>
-                    <h2>{history.title}</h2>
-                    <p>{history.value}</p>
-                </div>
-            </div>
-            ))}
+            {lactations.map((lactation, index) => {
+                const dob = new Date(lactation.dob); // dob ubah menjadi Date
+                return (
+                    <div key={index} className="lactation-detailList">
+                        <h2>Laktasi ke-{lactation.lactationNumber}</h2>
+                        <span>ID Pasangan: {lactation.spouseId}</span>
+                        <span>Tanggal Lahir: {dob.getDate()} {dob.toLocaleString('default', { month: 'long' })} {dob.getFullYear()}</span>
+                        <span>{lactation?.totalFemaleChild} Betina, {lactation?.totalMaleChild} Jantan</span>
+                    </div>
+                );
+            })}
         </div>
-    );
-};
+    )
+}
 
 interface GeneralInfoBoxMobileProps {
     title: string;
@@ -657,24 +590,24 @@ const GeneralInfoBoxMobile: React.FC<GeneralInfoBoxMobileProps> = ({ title, valu
             {isLink ? (
                 <div>
                     <a
-                    href={linkHref}
-                    className="generalInformationLivestockBoxMobileTopDataValue hyperlinkStyle"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    
-                >
-              
-  
-                    {value ?? "N/A"}
-                </a>
+                        href={linkHref}
+                        className="generalInformationLivestockBoxMobileTopDataValue hyperlinkStyle"
+                        target="_blank"
+                        rel="noopener noreferrer"
 
-               <p>{ras}</p>
-               <p>{grade}</p>
-                
-             </div>
+                    >
+
+
+                        {value ?? "N/A"}
+                    </a>
+
+                    <p>{ras}</p>
+                    <p>{grade}</p>
+
+                </div>
             ) : (
                 <h1 className="generalInformationLivestockBoxMobileTopDataValue">{value ?? "N/A"}</h1>
-       
+
             )}
 
         </div>
