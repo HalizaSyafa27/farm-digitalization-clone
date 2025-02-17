@@ -3,42 +3,32 @@ import styles from '@/components/ui/StatisticsLactation/StatisticsLactation.modu
 import { LactationData } from '@/models/LivestockModel';
 import { Lactation } from '@/models/LactationModel';
 
+interface LactationStatistic {
+  lactationData: Record<string, { totalChild:number}>,
+  average: number
+}
 type StatisticLactationProps = {
   filterBy: 'year' | 'month';
   filterValue: number | string;
-  lactations?: Lactation[];
+  lactationStatistic?: LactationStatistic;
 };
 
 const StatisticsLactation: React.FC<StatisticLactationProps> = ({
   filterBy,
   filterValue,
-  lactations,
+  lactationStatistic,
 }) => {
-  // Get record dari month and totalChild
-  const datas: Record<string, { totalChild: number }> = (lactations ?? []).reduce((acc, lactation) => {
-    console.log(lactation.dob)
-    console.log(lactation.totalFemaleChild)
-    const dob = new Date(lactation.dob);
-    // const key = String(dob.toLocaleString('default', { month: 'short' })) // Format : "MMM"
-    const key = String(dob.getFullYear()) // Format : "YYYY"
-    console.log(key)
-    if (!acc[key]) {
-      acc[key] = { totalChild: 0 };
+  const average = lactationStatistic?.average ?? 0;
+  
+  let datas: Record<string, { totalChild : number}> = {}
+  for (const key in lactationStatistic?.lactationData) {
+    if (!datas[key]) {
+      datas[key] = { totalChild : 0};
     }
-    acc[key].totalChild += (lactation.totalChild);
-    console.log("total: " + acc[key].totalChild + "expected +" + lactation.totalChild)
-    return acc;
-  }, {} as Record<string, { totalChild: number }>);
+    datas[key].totalChild += lactationStatistic?.lactationData[key].totalChild;
+    console.log("totalChild: " + datas[key].totalChild)
 
-  let totalYears = 0;
-  let totalChildren = 0;
-  for (const key in datas) {
-    console.log(key + " " + datas[key].totalChild)
-    totalYears++;
-    totalChildren += datas[key]?.totalChild;
   }
-
-  const average = Number(totalChildren / totalYears) ?? 0;
 
   return (
     <div className={styles.container}>

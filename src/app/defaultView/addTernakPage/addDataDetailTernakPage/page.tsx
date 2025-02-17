@@ -66,7 +66,7 @@ function AddTernak () {
         
         const payload = {
           name_id: idTernak, 
-          gender: jenisKelamin === "Jantan" ? "MALE" : "FEMALE",
+          gender: jenisKelamin === "Jantan" ? "Jantan" : "Betina",
           dob: dob,
           weight: berat,
           phase: fase,

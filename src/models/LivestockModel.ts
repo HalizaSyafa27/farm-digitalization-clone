@@ -2,6 +2,7 @@ import statisticsLactationData from "./statisticsLactationModel";
 import statisticsMilkOutput from "./statisticsMilkModel";
 import statisticsWeightData from "./statisticsWeightModel";
 import statisticsLivestockSold from "./statisticsLivestockSold";
+import { Lactation } from "./LactationModel";
 
 export interface HistoryItem {
     id: string;
@@ -53,6 +54,7 @@ export interface MonthlyData {
     id: number;
     month: string;
     value: number;
+    date: number;
     yearlyDataId: number;
     createdAt: string;
     updatedAt: string;
@@ -123,7 +125,7 @@ export interface LivestockSold {
 export interface Livestock {
     id: number;
     name_id: string;
-    gender: 'MALE' | 'FEMALE';
+    gender: 'Jantan' | 'Betina';
     dob: string;
     weight: string;
     phase: string;
@@ -148,6 +150,7 @@ export interface Livestock {
     vitamin: Vitamin;
     vaccine: Vaccine;
     milkOutput: MilkOutput;
+    lactation: Lactation[];
     lactationData: LactationData;
     weightData: WeightData;
     livestockSold?: LivestockSold;

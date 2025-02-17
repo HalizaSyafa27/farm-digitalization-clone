@@ -165,7 +165,7 @@ const LivestockMedicationPage: React.FC<LivestockMedicationPageProps> = ({ param
                                 <div className="menuHeader">
                                     <h1 className="menuTittle">{livestock == null ? "" : livestock.name_id}</h1>
                                     <div className='genderIcon'>
-                                        <GenderIcon gender={livestock == null ? "jantan" : livestock.gender == "MALE" ? 'jantan' : 'betina'}></GenderIcon>
+                                        <GenderIcon gender={livestock == null ? "jantan" : livestock.gender == "Jantan" ? 'jantan' : 'betina'}></GenderIcon>
                                     </div>
                                     <div className="deleteIcon">
                                         <PrimaryButton 
@@ -246,7 +246,7 @@ const LivestockMedicationPage: React.FC<LivestockMedicationPageProps> = ({ param
                 <div className="sidebar">
                     <Sidebar 
                         setBreadcrumb={function (label: string): void {
-                            throw new Error('Function not implemented.');
+                            // throw new Error('Function not implemented.');
                         }} 
                         farmList={farmData == null ? [] : farmData}
                         setFarm={handleFarmChange}
@@ -262,7 +262,7 @@ const LivestockMedicationPage: React.FC<LivestockMedicationPageProps> = ({ param
                                 <div className="menuHeader">
                                     <h1 className="menuTittle">{livestock == null ? "" : livestock.name_id}</h1>
                                     <div className='genderIcon'>
-                                        <GenderIcon gender={livestock == null ? "jantan" : livestock.gender == "MALE" ? 'jantan' : 'betina'}></GenderIcon>
+                                        <GenderIcon gender={livestock == null ? "jantan" : livestock.gender == "Jantan" ? 'jantan' : 'betina'}></GenderIcon>
                                     </div>
                                     <div className="deleteIcon">
                                         <PrimaryButton 
@@ -397,11 +397,13 @@ const DetailHistoryCard: React.FC<DetailHistoryCardProps> = ({
     historyItems
 }) => {
     return (
-        <div className='livestockHistoryData'>
-            {historyItems.map((history) => (
-            <div className='livestockHistoryItem'>
-                <h2>{history.title}</h2>
-                <p>{history.value}</p>
+        <div>
+            {historyItems.map((history, index) => (
+            <div key={index} className='livestockHistoryData'>
+                <div className='livestockHistoryItem'>
+                    <h2>{history.title}</h2>
+                    <p>{history.value}</p>
+                </div>
             </div>
             ))}
         </div>

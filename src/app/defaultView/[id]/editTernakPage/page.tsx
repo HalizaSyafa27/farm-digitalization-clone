@@ -271,7 +271,7 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
   
                         if (livestockData && Array.isArray(livestockData)) {
                           const isRasTernakValid = !livestockData.some(
-                            (livestock) => livestock.name_id === inputIdPasangan && livestock.gender === "FEMALE" && inputIdPasangan == idPasangan
+                            (livestock) => livestock.name_id === inputIdPasangan && livestock.gender === "Betina" && inputIdPasangan == idPasangan
                           );
   
                           if (!isRasTernakValid) {
@@ -472,7 +472,7 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
   
                         if (livestockData && Array.isArray(livestockData)) {
                           const isRasTernakValid = !livestockData.some(
-                            (livestock) => livestock.name_id === inputIdPasangan && livestock.gender === "FEMALE" && inputIdPasangan == idPasangan
+                            (livestock) => livestock.name_id === inputIdPasangan && livestock.gender === "Betina" && inputIdPasangan == idPasangan
                           );
   
                           if (!isRasTernakValid) {

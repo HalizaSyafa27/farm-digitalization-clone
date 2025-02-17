@@ -202,8 +202,8 @@ const App: React.FC = () => {
           <div>
           <Breadcrumbs
             breadcrumbs={[
-              { label: 'Peternakan Widjaya', href: '/OwnerViewPage' },
-              { label: 'Settings', href: '' },
+              { label: selectedFarm ?? "", href: '/defaultView' },
+              { label: 'Settings', href: '/defaultView?view=settings' },
             ]}
           />
           </div>

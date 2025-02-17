@@ -13,6 +13,7 @@ import DetailLivestockDiagnosedCard from '@/components/ui/DetailLivestockDiagnos
 import livestockDiagnosedCategories from '@/models/DetailLivestockDiagnosedCategories';
 import StatisticsMilkUpdate from '@/components/ui/StatisticsMilkUpdate/StatisticsMilkUpdate';
 import StatisticsLactation from '@/components/ui/StatisticsLactation/statisticsLactation';
+import StatisticsLactationGlobal from '@/components/ui/StatisticsLactationGlobal/statisticsLactation';
 import TopBar from '@/components/ui/TopBar/topBar';
 import { getCookie } from '@/lib/cookies';
 import useFetch from '@/hooks/useFetch';
@@ -42,7 +43,7 @@ const App: React.FC = () => {
     setSelectedFarmId(farmId);
   };
 
-  const [selectedYear, setSelectedYear] = useState<number | null>(null);
+  const [selectedYear, setSelectedYear] = useState<number | null>(2025);
 
   const { data: sheepStatistics, loading: loadingSheepStatistics, error: errorSheepStatistics } = useFetch<StatisticsModel>(
       `${process.env.NEXT_PUBLIC_API_HOST}/statistics/sheep-statistics?farmId=${selectedFarmId}`
@@ -53,7 +54,7 @@ const App: React.FC = () => {
       <div className="sidebar">
         <Sidebar 
           setBreadcrumb={function (label: string): void {
-              throw new Error('Function not implemented.');
+              // throw new Error('Function not implemented.');
           }} 
           farmList={farmData == null ? [] : farmData}
           setFarm={handleFarmChange}
@@ -69,9 +70,9 @@ const App: React.FC = () => {
           <div>
           <Breadcrumbs
             breadcrumbs={[
-              { label: 'Peternakan Widjaya', href: '/OwnerViewPage' },
-              { label: 'Statistik', href: '/OwnerViewPage' },
-              { label: 'Domba', href: '/OwnerViewPage/detailStatisticsPage/dombaDetailStatisticsPage' },
+              { label: selectedFarm ?? "", href: '/defaultView' },
+              { label: 'Statistik', href: '/defaultView?view=statistik' },
+              { label: 'Domba', href: '' },
             ]}
           />
           </div>
@@ -132,11 +133,11 @@ const App: React.FC = () => {
           </div>
 
           <div className="statisticsCard">
-          <StatisticsLactation lactationData={sheepStatistics?.lactationData} filterBy="year" filterValue={2019} />
+          <StatisticsLactationGlobal lactationStatistic={sheepStatistics?.lactationData} filterBy="year" filterValue={2019} />
           
           {/* <StatisticsMilkUpdate milkOutput={sheepStatistics?.milkOutput} filterBy="year" filterValue={2019} /> */}
           
-          <StatisticsMilk milkOutput={sheepStatistics?.milkOutput} filterBy="year" filterValue={2019}/>
+          <StatisticsMilk milkOutput={sheepStatistics?.milkOutput} filterBy="year" filterValue={selectedYear ?? 2025}/>
           
           {/* <StatisticsLivestockSold filterBy="year" filterValue={2019}/> */}
           </div>

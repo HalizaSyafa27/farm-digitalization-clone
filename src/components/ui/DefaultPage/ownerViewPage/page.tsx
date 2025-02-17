@@ -84,8 +84,8 @@ const OwnerViewPage: React.FC<OwnerViewPageProps> = ({
           <div>
           <Breadcrumbs
             breadcrumbs={[
-              { label: 'Peternakan Widjaya', href: '/OwnerViewPage' },
-              { label: 'Statistik', href: '' },
+              { label: selectedFarm ?? "", href: '/defaultView' },
+              { label: 'Statistik', href: '/defaultView?view=statistik' },
             ]}
           />
           </div>

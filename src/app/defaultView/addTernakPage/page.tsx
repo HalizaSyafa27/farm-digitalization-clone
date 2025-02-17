@@ -270,7 +270,7 @@ function AddTernak () {
 
                       if (livestockData && Array.isArray(livestockData)) {
                         const isRasTernakValid = !livestockData.some(
-                          (livestock) => livestock.name_id === inputIdPasangan && livestock.gender === "FEMALE"
+                          (livestock) => livestock.name_id === inputIdPasangan && livestock.gender === "Betina"
                         );
 
                         if (!isRasTernakValid) {
