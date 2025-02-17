@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ActivityItem from "./ActivityItem"; // Import komponen ActivityItem
 import styles from "./ActivityItem.module.css"; // Import CSS jika diperlukan
+import useFetch from "@/hooks/useFetch";
 
 interface ActivityChange {
   what: string;
@@ -9,11 +10,12 @@ interface ActivityChange {
 }
 
 interface Activity {
-  id: number;
-  title: string;
-  user: string;
-  timestamp: string;
-  changes?: ActivityChange[];
+    userName: string;
+    date: string;
+    description: string;
+  //   changes?: ActivityChange[];
+  color: string; // Add color for the status indicator (green/gray)
+  details?: string[];
 }
 
 interface ActivityListProps {
@@ -21,38 +23,24 @@ interface ActivityListProps {
 }
 
 const ActivityList: React.FC<ActivityListProps> = ({ farmId }) => {
-  const [activities, setActivities] = useState<Activity[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+   
+  const { data: logActivities, loading: loadingLogActivities, error: errorLogActivities } = useFetch<Activity[]>(
+        `${process.env.NEXT_PUBLIC_API_HOST}/activities/farms/${farmId}`,
+    );
+    // useEffect(() => {
+    //     if (livestock?.lactation) {
+    //         console.log("generateLactation")
+    //         const { currentLactation, lactationHistory } = generateLactationData(livestock);
+    //         setCurrentLactation(currentLactation);
+    //         setHistory(lactationHistory);
+    //     }
+    // }, [livestock]);
 
-  useEffect(() => {
-    const fetchActivities = async () => {
-      try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/activities/farms/${farmId}`);
-        const data = await response.json();
-
-        if (data.success) {
-          setActivities(data.data);
-        } else {
-          setError("Gagal mengambil data aktivitas");
-        }
-      } catch (err) {
-        setError("Terjadi kesalahan saat mengambil data");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchActivities();
-  }, [farmId]);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
 
   return (
     <div className={styles.activityList}>
-      {activities.map((activity) => (
-        <ActivityItem key={activity.id} activity={activity} />
+{ logActivities != null && logActivities.map((activity, idx) => (
+        <ActivityItem key={idx} activity={activity} isFirst={idx==0} />
       ))}
     </div>
   );

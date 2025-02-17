@@ -744,6 +744,15 @@ video {
   gap: 10px;
 }
 
+.\!livestock {
+  display: flex !important;
+  width: 1041px !important;
+  padding: 8px !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 40px !important;
+}
+
 .livestock {
   display: flex;
   width: 1041px;
@@ -1302,9 +1311,6 @@ video {
 }
 .text-\[18px\] {
   font-size: 18px;
-}
-.text-\[20px\] {
-  font-size: 20px;
 }
 .text-base {
   font-size: 1rem;
@@ -1886,6 +1892,7 @@ line-height: 30px
 }
 
 .lactationSection {
+  width: 100%;
   display: flex; 
   gap: 16px; 
   align-items: flex-start; /* Untuk memastikan elemen sejajar di bagian atas */
@@ -2499,31 +2506,32 @@ line-height: 20px;
 
   .cardRiwayat {
     display: flex;
-    gap: 10px; /* Jarak antar card */
-    overflow-x: auto; /* Mengaktifkan scroll horizontal */
-    white-space: nowrap; /* Mencegah wrapping ke bawah */
-    padding-bottom: 10px; /* Hindari crop shadow jika ada */
-    scroll-snap-type: x mandatory; /* Membantu snap scroll */
-    -webkit-overflow-scrolling: touch; /* Smooth scroll di iOS */
-  }
-  
-  /* Setiap card memiliki lebar tetap agar bisa digeser */
-  .cardRiwayat > * {
+    gap: 10px;
+    max-width: 100%; /* Ensure it doesn't exceed container */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Prevent wrapping */
+    padding-bottom: 10px; /* Avoid cropping shadows */
+    scroll-snap-type: x mandatory; /* Smooth scrolling */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
+}
+
+/* Each card should have a fixed width for scrolling */
+.cardRiwayat > * {
     margin-top: 20px;
-    flex: 0 0 auto; /* Pastikan card tidak mengecil */
+    flex: 0 0 auto; /* Prevent shrinking */
     max-height: 188px;
-    max-width: 180px; /* Batasi agar tidak terlalu besar */
-    scroll-snap-align: start; /* Membantu snap scrolling */
-  }
-  
-  /* Sembunyikan scrollbar */
-  .cardRiwayat::-webkit-scrollbar {
-    display: none; /* Untuk Chrome, Safari */
-  }
-  .cardRiwayat {
-    -ms-overflow-style: none;  /* Untuk IE */
-    scrollbar-width: none; /* Untuk Firefox */
-  }
+    max-width: 180px; /* Keep cards from being too large */
+    scroll-snap-align: start; /* Help with snap scrolling */
+}
+
+/* Hide scrollbar */
+.cardRiwayat::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari */
+}
+.cardRiwayat {
+    -ms-overflow-style: none;  /* For IE */
+    scrollbar-width: none; /* For Firefox */
+}
 
   .statisticInformationLivestockVertical {
     display: flex;

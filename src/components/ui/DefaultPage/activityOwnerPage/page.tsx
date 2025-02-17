@@ -135,7 +135,7 @@ const ActivityPage: React.FC = () => {
                                         isFirst={index === 0}
                                       />
                                     ))} */}
-                                    <ActivityList farmId={farmId} />
+                                    <ActivityList farmId={selectedFarmModel?.id??0} />
                                   </div>
                                 </div>
                             </div>
