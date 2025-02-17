@@ -50,7 +50,7 @@ const DefaultOwnerViewPage: React.FC<{ setIsFarmInvited: (value: boolean) => voi
     <div className="layout">
       <div className="sidebar">
       <SidebarDisabled setBreadcrumb={setBreadcrumb} setFarm={function (farmName: string): void {
-            throw new Error('Function not implemented.');
+            // throw new Error('Function not implemented.');
           } } />
       </div>
 

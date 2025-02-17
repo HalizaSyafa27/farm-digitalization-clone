@@ -28,7 +28,7 @@ import detaillivestockMaleCategories from '@/models/DetailLivestockMaleCategorie
 import DetailLivestockDiagnosedCard from '@/components/ui/DetailLivestockDiagnosedCard/detailLivestockDiagnosedCard';
 import livestockDiagnosedCategories from '@/models/DetailLivestockDiagnosedCategories';
 import StatisticsMilk from '@/components/ui/StatisticsMilk/statisticsMilk';
-import StatisticsLactation from '@/components/ui/StatisticsLactation/statisticsLactation';
+import StatisticsLactationGlobal from '@/components/ui/StatisticsLactationGlobal/statisticsLactation';
 // import StatisticsLivestockSold from '@/components/ui/StatisticsLivestockSold/StatisticsLivestockSold';
 
 import TopBar from '@/components/ui/TopBar/topBar';
@@ -63,7 +63,7 @@ const App: React.FC = () => {
       console.log(farmName)
   };
 
-  const [selectedYear, setSelectedYear] = useState<number | null>(null);
+  const [selectedYear, setSelectedYear] = useState<number | null>(2025);
 
   const { data: cowStatistics, loading: loadingCowStatistics, error: errorCowStatistics } = useFetch<StatisticsModel>(
       `${process.env.NEXT_PUBLIC_API_HOST}/statistics/cow-statistics?farmId=${selectedFarmId}`
@@ -74,7 +74,7 @@ const App: React.FC = () => {
       <div className="sidebar">
       <Sidebar 
           setBreadcrumb={function (label: string): void {
-              throw new Error('Function not implemented.');
+              // throw new Error('Function not implemented.');
           }} 
           farmList={farmData == null ? [] : farmData}
           setFarm={handleFarmChange}
@@ -90,9 +90,9 @@ const App: React.FC = () => {
           <div>
           <Breadcrumbs
             breadcrumbs={[
-              { label: 'Peternakan Widjaya', href: '/OwnerViewPage' },
-              { label: 'Statistik', href: '/OwnerViewPage' },
-              { label: 'Sapi', href: '/OwnerViewPage/detailStatisticsPage/sapiDetailStatisticsPage' },
+              { label: selectedFarm ?? "", href: '/defaultView' },
+              { label: 'Statistik', href: '/defaultView?view=statistik' },
+              { label: 'Sapi', href: '' },
             ]}
           />
           </div>
@@ -156,9 +156,9 @@ const App: React.FC = () => {
 
           <div className="statisticsCard">
           
-          <StatisticsLactation lactationData={cowStatistics?.lactationData} filterBy="year" filterValue={2019} />
+          <StatisticsLactationGlobal lactationStatistic={cowStatistics?.lactationData} filterBy="year" filterValue={2019} />
           {/* <StatisticsMilkUpdate milkOutput={cowStatistics?.milkOutput} filterBy="year" filterValue={2019} /> */}
-          <StatisticsMilk milkOutput={cowStatistics?.milkOutput} filterBy="year" filterValue={2019}/>
+          <StatisticsMilk milkOutput={cowStatistics?.milkOutput} filterBy="year" filterValue={selectedYear ?? 2025}/>
          
 
           {/* <StatisticsLivestockSold filterBy="year" filterValue={2019}/> */}

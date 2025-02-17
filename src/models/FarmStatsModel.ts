@@ -9,6 +9,9 @@ export interface StatisticsModel {
         femalePhaseStats: Record<string, any>;
         livestockConditionStats: Record<string, number>;
     }
-    lactationData: LactationData;
+    lactationData: {
+        lactationData: Record<string, { totalChild : number }>,
+        average: number
+    };
     milkOutput: MilkOutput;
 }
