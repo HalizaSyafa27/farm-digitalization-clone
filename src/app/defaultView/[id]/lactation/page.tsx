@@ -185,6 +185,25 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
             } else {
                 setError(true)
             }
+
+            const payload = {
+                "farmId": livestock?.farmId,
+                "userId": getCookie("id"),
+                "action": "ADD_LACTATION",
+                "details": {
+                    "livestockId": livestock?.id,
+                    "lactationNum": value
+                }
+            }
+            
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/activities`, {
+                method: "POST",
+                body: JSON.stringify(payload),
+                headers: {
+                "Content-Type": "application/json",
+                },
+            });
+
         } catch (error) {
         } finally {
             // setLoading(false);

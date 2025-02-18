@@ -204,6 +204,24 @@ const LivestockDetailPage: React.FC<LivestockDetailPageProps> = ({ params: param
                 });
 
                 const data = await response.json();
+                
+                const payload = {
+                    "farmId": livestock?.farmId,
+                    "userId": getCookie("id"),
+                    "action": "DELETE_LIVESTOCK",
+                    "details": {
+                        "livestockId":  livestock?.id
+                    }
+                }
+                
+                const responseActivities = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/activities`, {
+                    method: "POST",
+                    body: JSON.stringify(payload),
+                    headers: {
+                    "Content-Type": "application/json",
+                    },
+                });
+
                 if (response.ok) {
                     router.push("/defaultView?view=livestock");
                 } else {

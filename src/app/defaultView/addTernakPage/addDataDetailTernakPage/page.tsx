@@ -94,6 +94,23 @@ function AddTernak () {
         });
   
         const data = await response.json();
+
+        const payloadActivites = {
+          "farmId": farmId,
+          "userId": getCookie("id"),
+          "action": "ADD_LIVESTOCK",
+          "details": {
+              "livestockId": data.data.id
+          }
+      }
+      
+      const responseActivities = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/activities`, {
+          method: "POST",
+          body: JSON.stringify(payloadActivites),
+          headers: {
+          "Content-Type": "application/json",
+          },
+      });
         if (response.ok) {
           router.push("/defaultView?view=livestock");
 
@@ -107,9 +124,14 @@ function AddTernak () {
               "Content-Type": "application/json",
             },
           });
+
         } else {
           setApiError(data.error || "Something went wrong");
         }
+
+        
+
+
       } catch (error) {
       } finally {
         // setLoading(false);

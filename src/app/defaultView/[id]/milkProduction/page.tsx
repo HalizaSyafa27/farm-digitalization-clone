@@ -192,6 +192,24 @@ const LivestockMilkProductionPage: React.FC<LivestockMilkProductionPageProps> = 
                 }
             }
 
+            const payload = {
+                "farmId": livestock?.farmId,
+                "userId": getCookie("id"),
+                "action": "ADD_MILKPRODUCTION",
+                "details": {
+                    "livestockId": livestock?.id,
+                    "quantity": value
+                }
+            }
+            
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/activities`, {
+                method: "POST",
+                body: JSON.stringify(payload),
+                headers: {
+                "Content-Type": "application/json",
+                },
+            });
+
         } catch (error) {
         } finally {
             // setLoading(false);

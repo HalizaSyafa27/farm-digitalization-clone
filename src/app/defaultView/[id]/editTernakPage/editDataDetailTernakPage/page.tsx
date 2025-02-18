@@ -128,13 +128,17 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
           },
         });
   
-        const data = await response.json();
-        if (response.ok) {
+        console.log("A")
+        if (true) {
+          const data = await response.json();
+          console.log("B")
           if (idPasangan && idPasangan !== "") {
-            const latestLactationNumber = 
-              livestock?.lactation[livestock?.lactation.length - 1].lactationNumber != null 
-                ? livestock?.lactation[livestock?.lactation.length - 1].lactationNumber + 1 
-                : 0;
+            console.log("C")
+            let latestLactationNumber = (livestock?.lactation?.length ?? 0) > 0
+            ? (livestock?.lactation[livestock.lactation.length - 1]?.lactationNumber ?? -1) + 1
+            : 0;
+            
+                console.log("D")
             let lactationPayload: LactationPayload = {
               livestockId: Number(id),
               spouseId: Number(idPasangan),
@@ -144,6 +148,7 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
               totalMaleChild: 0,
               lactationNumber: latestLactationNumber ?? 0
             }
+            console.log("E")
             const lactationDataResponse = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/lactationData`, {
               method: "POST",
               body: JSON.stringify(lactationPayload),
@@ -152,17 +157,58 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
               },
             });
 
+            console.log("F")
             if (lactationDataResponse.ok) {
               router.push("/defaultView?view=livestock");
             } else {
               setApiError(data.error || "Something went wrong when creating new Lactation Data for Livestock")
             }
           }
+          const payloadActivites = {
+            "farmId": livestock?.farmId,
+            "userId": getCookie("id"),
+            "action": "UPDATE_LIVESTOCK",
+            "details": {
+                "livestockId": livestock?.id
+            }
+        }
+        
+        const responseActivities = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/activities`, {
+            method: "POST",
+            body: JSON.stringify(payloadActivites),
+            headers: {
+            "Content-Type": "application/json",
+            },
+        });
+  
+        if (livestock?.phase != fase) {
+          const payload = {
+              "farmId": livestock?.farmId,
+              "userId": getCookie("id"),
+              "action": "CHANGE_PHASE",
+              "details": {
+                  "livestockId": livestock?.id,
+                  "oldPhase": livestock?.phase,
+                  "newPhase": fase
+              }
+          }
           
+          const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/activities`, {
+              method: "POST",
+              body: JSON.stringify(payload),
+              headers: {
+              "Content-Type": "application/json",
+              },
+          });
+        }
+
           router.push("/defaultView?view=livestock");
         } else {
-          setApiError(data.error || "Something went wrong");
+          // setApiError("Something went wrong");
         }
+
+
+
       } catch (error) {
       } finally {
         // setLoading(false);

@@ -191,18 +191,23 @@ const LivestockWeightPage: React.FC<LivestockWeightPageProps> = ({ params: param
             }
 
             const payload = {
-                date: date,
-                mass: value,
-                livestockId: livestock?.id
+                "farmId": livestock?.farmId,
+                "userId": getCookie("id"),
+                "action": "ADD_BODYMASS",
+                "details": {
+                    "livestockId": livestock?.id,
+                    "weight": value
+                }
             }
-
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/weights`, {
+            
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/activities`, {
                 method: "POST",
                 body: JSON.stringify(payload),
                 headers: {
-                    "Content-Type": "application/json",
+                "Content-Type": "application/json",
                 },
             });
+
         } catch (error) {
         } finally {
             // setLoading(false);
@@ -540,7 +545,7 @@ const DetailHistoryCard: React.FC<DetailHistoryCardProps> = ({
                         {yearlyData?.monthlyDatas?.map((monthlyData, index) => (
                             <div key={index} className="milk-detailList">
                                 <h1>{String(monthlyData?.date != null ? monthlyData?.date : "" + " " + monthlyData?.month + " " + yearlyData.year)}</h1>
-                                <span>{monthlyData?.value + " liter"}</span>
+                                <span>{monthlyData?.value + " kg"}</span>
                             </div>
                         ))}
                     </div>
