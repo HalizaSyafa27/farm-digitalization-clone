@@ -263,16 +263,6 @@ const LivestockWeightPage: React.FC<LivestockWeightPageProps> = ({ params: param
                                                 })} />
 
                                                 <GeneralInfoBox title={'Ras'} value={livestock == null ? "" : livestock.breed} />
-
-                                                {/* <div className="phaseLabelTag-livestockOwnerPage">
-                                                    <PhaseLabelTag 
-                                                    phases={phaseLabels} 
-                                                    filterId={livestock == null ? "" : livestock.phase}
-                                                    width={60}
-                                                    textSize={10}                                    
-                                                    >
-                                                    </PhaseLabelTag>
-                                                 </div> */}
                                             </div>
                                         </div>
 
