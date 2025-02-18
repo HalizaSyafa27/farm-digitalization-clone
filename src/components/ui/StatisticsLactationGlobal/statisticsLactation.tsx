@@ -64,12 +64,12 @@ const StatisticsLactation: React.FC<StatisticLactationProps> = ({
                 {/* Batang Hijau */}
                 <div
                   className={styles.greenBar}
-                  style={{ height: `${(details.totalChild / 40) * 100}%`, width: '41px' , maxHeight: '30%' }}
+                  style={{ height: `min(200px, ${(details.totalChild / 40) * 100}%)`, width: '41px'  }}
                 ></div>
                 {/* Batang grafik */}
                 <div
                   className={styles.bar}
-                  style={{ height: `${(details.totalChild / 40) * 100}%` }}
+                  style={{ height: `${(details.totalChild / 40) * 100}%`, maxHeight: '25%' }}
                 ></div>
                 <p className={styles.month}>{year}</p>
               </div>

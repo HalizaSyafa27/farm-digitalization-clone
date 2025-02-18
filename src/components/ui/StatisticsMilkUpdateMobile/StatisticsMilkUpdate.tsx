@@ -84,7 +84,7 @@ const StatisticsMilkUpdateMobile: React.FC<StatisticsMilkUpdateMobileProps> = ({
               {/* Bar hijau */}
               <div
                 className={styles.greenBar}
-                style={{ height: `${(data.value / 4000) * 100}%`, width: '41px', maxHeight: '30%' }}
+                style={{ height: `min(25%, ${(data.value / 4000) * 100}%)`, width: '41px', maxHeight: '30%' }}
               ></div>
               {/* Batang grafik */}
               <div

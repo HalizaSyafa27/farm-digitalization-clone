@@ -623,7 +623,7 @@ const DetailInformationCard: React.FC<DetailInformationCardProps> = ({
 
     const getPageUrl = (title: string) => {
         switch (title) {
-            case "Riwayat Sakit":
+            case "Riwayat Penyakit":
                 return "/defaultView/[id]/sickness";
             case "Riwayat Obat":
                 return "/defaultView/[id]/medication";

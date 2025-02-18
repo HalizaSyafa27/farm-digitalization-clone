@@ -24,7 +24,7 @@ interface LivestockLactationPageProps {
 
 interface LactationPayload {
     livestockId: number;
-    spouseId: number;
+    spouseId: string;
     dob: Date;
     totalChild: number;
     totalFemaleChild: number;
@@ -148,7 +148,7 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
             if (value > 0) {
                 let payload: LactationPayload = {
                     livestockId: Number(id),
-                    spouseId: Number(idPasangan),
+                    spouseId: idPasangan,
                     dob: new Date(date),
                     totalChild: valueFemale + valueMale,
                     totalFemaleChild: valueFemale,
@@ -282,7 +282,7 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
                                                             disabled={false}
                                                             type="text"
                                                             placeholder="ID Pasangan"
-                                                            value={idPasangan}
+                                                            value={idPasangan ?? ""}
                                                             onChange={(e) => setIdPasangan(e.target.value)}
                                                         />
                                                     </div>
@@ -456,7 +456,7 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
                                                             disabled={false}
                                                             type="text"
                                                             placeholder="ID Pasangan"
-                                                            value={idPasangan}
+                                                            value={idPasangan ?? ""}
                                                             onChange={(e) => setIdPasangan(e.target.value)}
                                                         />
                                                     </div>

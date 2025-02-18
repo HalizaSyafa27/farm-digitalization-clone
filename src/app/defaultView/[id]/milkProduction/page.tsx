@@ -540,14 +540,14 @@ const DetailHistoryCard: React.FC<DetailHistoryCardProps> = ({
 }) => {
     return (
         <div>
-            {yearlyDatas.map((yearlyData, index) => (
-                <div key={index} className='livestockHistoryData'>
-                    <div className='livestockHistoryItem'>
+            {yearlyDatas.map((yearlyData, yearIndex) => (
+                <div key={`year-${yearIndex}`} className='livestockHistoryData'>
+                    <div key={`year-item-${yearIndex}`} className='livestockHistoryItem'>
                         {yearlyData?.monthlyDatas?.map((monthlyData, index) => (
-                            <div className="milk-detailList">
-                            <h1>{String(monthlyData?.date != null ? monthlyData?.date : "" + " " + monthlyData?.month + " " + yearlyData.year)}</h1>
-                            <span>{monthlyData?.value + " liter"}</span>
-                        </div>
+                            <div key={index} className="milk-detailList">
+                                <h1>{String(monthlyData?.date != null ? monthlyData?.date : "" + " " + monthlyData?.month + " " + yearlyData.year)}</h1>
+                                <span>{monthlyData?.value + " liter"}</span>
+                            </div>
                         ))}
                     </div>
                 </div>

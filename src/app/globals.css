@@ -407,7 +407,7 @@ body {
 .detailInformationLivestockCardMobile {
   display: flex;
   width: 232.5px;
-  height: 300px;
+  height: max(188px, fit-content);
   padding: 24px;
   align-items: top;
   gap: 10px;
@@ -1556,7 +1556,7 @@ line-height: 20px;
 }
 
 .cardRiwayat > * {
-    max-height: 188px;
+    max-height: max(188px, fit-content);
     max-width: 180px;
 }
 

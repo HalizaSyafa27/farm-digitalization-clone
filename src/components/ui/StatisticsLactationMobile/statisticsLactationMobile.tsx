@@ -94,7 +94,7 @@ const StatisticsLactationMobile: React.FC<StatisticLactationMobileProps> = ({
                 {/* Batang Hijau */}
                 <div
                   className={styles.greenBar}
-                  style={{ height: `${(details.totalChild / 40) * 100}%`, width: '41px', maxHeight: '30%'}}
+                  style={{ height: `min(200px, ${(details.totalChild / 40) * 100}%)`, width: '41px', maxHeight: '25%'}}
                 ></div>
                 {/* Batang grafik */}
                 <div
