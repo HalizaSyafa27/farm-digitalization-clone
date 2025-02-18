@@ -404,6 +404,20 @@ body {
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.30);
 }
 
+.detailInformationLivestockCardMobile {
+  display: flex;
+  width: 232.5px;
+  height: 300px;
+  padding: 24px;
+  align-items: top;
+  gap: 10px;
+  flex-shrink: 0;
+
+  border-radius: 17px;
+  background: var(--Base-Surface, #FFF);
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.30);
+}
+
 .detailInformationLivestockCardData {
   display: flex;
   width: 184px;
@@ -1436,7 +1450,7 @@ line-height: 20px;
     display: flex;
     justify-content: space-between; 
     align-items: center;
-    width: 60%;
+    max-width: 600px;
   }
   
   .menuIcon {
@@ -1524,6 +1538,7 @@ line-height: 20px;
 
   .riwayatInformation{
     display: flex;
+    margin-bottom: 5%;
     /* justify-content: space-between; */
   }
 
@@ -1533,39 +1548,23 @@ line-height: 20px;
   }
 
   .cardRiwayat {
-    display: flex;
-    gap: 10px;
-    max-width: 100%; /* Ensure it doesn't exceed container */
-    overflow-x: auto; /* Enable horizontal scrolling */
-    white-space: nowrap; /* Prevent wrapping */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    gap: 16px; /* Space between cards */
+    max-width: 100%; /* Ensure it fits the container */
     padding-bottom: 10px; /* Avoid cropping shadows */
-    scroll-snap-type: x mandatory; /* Smooth scrolling */
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
 }
 
-/* Each card should have a fixed width for scrolling */
 .cardRiwayat > * {
-    margin-top: 20px;
-    flex: 0 0 auto; /* Prevent shrinking */
     max-height: 188px;
-    max-width: 180px; /* Keep cards from being too large */
-    scroll-snap-align: start; /* Help with snap scrolling */
-}
-
-/* Hide scrollbar */
-.cardRiwayat::-webkit-scrollbar {
-    display: none; /* For Chrome, Safari */
-}
-.cardRiwayat {
-    -ms-overflow-style: none;  /* For IE */
-    scrollbar-width: none; /* For Firefox */
+    max-width: 180px;
 }
 
   .statisticInformationLivestockVertical {
     display: flex;
     flex-direction: column;
     align-items: left;
-    gap: 15px; /* Jarak antar komponen */
+    gap: 50px; /* Jarak antar komponen */
   }
 
   .statisticInformationLivestockVertical > * {

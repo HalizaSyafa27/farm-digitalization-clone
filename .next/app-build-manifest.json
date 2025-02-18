@@ -6,12 +6,6 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/defaultView/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/defaultView/page.css",
-      "static/chunks/app/defaultView/page.js"
-    ],
     "/defaultView/[id]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -24,28 +18,17 @@
       "static/css/app/defaultView/[id]/editTernakPage/page.css",
       "static/chunks/app/defaultView/[id]/editTernakPage/page.js"
     ],
-    "/defaultView/addTernakPage/page": [
+    "/defaultView/[id]/editTernakPage/editDataDetailTernakPage/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/defaultView/addTernakPage/page.css",
-      "static/chunks/app/defaultView/addTernakPage/page.js"
+      "static/css/app/defaultView/[id]/editTernakPage/editDataDetailTernakPage/page.css",
+      "static/chunks/app/defaultView/[id]/editTernakPage/editDataDetailTernakPage/page.js"
     ],
-    "/defaultView/addTernakPage/addDataDetailTernakPage/page": [
+    "/defaultView/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/defaultView/addTernakPage/addDataDetailTernakPage/page.css",
-      "static/chunks/app/defaultView/addTernakPage/addDataDetailTernakPage/page.js"
-    ],
-    "/defaultView/[id]/lactation/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/defaultView/[id]/lactation/page.css",
-      "static/chunks/app/defaultView/[id]/lactation/page.js"
-    ],
-    "/_not-found/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
+      "static/css/app/defaultView/page.css",
+      "static/chunks/app/defaultView/page.js"
     ]
   }
 }

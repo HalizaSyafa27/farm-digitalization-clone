@@ -1,8 +1,6 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
+  "/defaultView/[id]/editTernakPage/page": "app/defaultView/[id]/editTernakPage/page.js",
   "/defaultView/page": "app/defaultView/page.js",
   "/defaultView/[id]/page": "app/defaultView/[id]/page.js",
-  "/defaultView/[id]/lactation/page": "app/defaultView/[id]/lactation/page.js",
-  "/defaultView/addTernakPage/addDataDetailTernakPage/page": "app/defaultView/addTernakPage/addDataDetailTernakPage/page.js",
-  "/defaultView/addTernakPage/page": "app/defaultView/addTernakPage/page.js"
+  "/defaultView/[id]/editTernakPage/editDataDetailTernakPage/page": "app/defaultView/[id]/editTernakPage/editDataDetailTernakPage/page.js"
 }

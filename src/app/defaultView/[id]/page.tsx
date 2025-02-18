@@ -2,7 +2,7 @@
 
 import React, { use, useEffect, useState } from 'react';
 import useFetch from '@/hooks/useFetch';
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { Livestock, YearlyData } from '@/models/LivestockModel';
 import QRCode from 'qrcode';
 
@@ -62,6 +62,10 @@ const LivestockDetailPage: React.FC<LivestockDetailPageProps> = ({ params: param
     );
     const [selectedFarm, setSelectedFarm] = useState<string | null>(null);
     const [selectedFarmId, setSelectedFarmId] = useState<number | null>(null);
+    const [kondisiTernak, setKondisiTernak] = useState("");
+    const router = useRouter()
+    const [Livestock, setLivestock] = useState<any>(null);
+
     useEffect(() => {
         if (farmData && farmData.length > 0) {
             setSelectedFarm(farmData[0].name);
@@ -78,17 +82,23 @@ const LivestockDetailPage: React.FC<LivestockDetailPageProps> = ({ params: param
     const { data: livestock, loading: loadingLivestock, error: errorLivestock } = useFetch<Livestock>(
         `${process.env.NEXT_PUBLIC_API_HOST}/livestocks/${id}`,
     );
+
     useEffect(() => {
-        if (livestock?.lactation) {
+        if (livestock){
+            setKondisiTernak(livestock.condition || "Undefined");
+            if (livestock?.lactation) {
             console.log("generateLactation")
             const { currentLactation, lactationHistory } = generateLactationData(livestock);
             setCurrentLactation(currentLactation);
             setHistory(lactationHistory);
+         }
         }
+        
     }, [livestock]);
 
     const [currentLactation, setCurrentLactation] = useState<LactationDetail | null>();
     const [history, setHistory] = useState<LactationDetail[] | null>([]);
+  
 
     const generateLactationData = (livestock: Livestock) => {
         if (!livestock?.lactation || livestock.lactation.length === 0) {
@@ -206,7 +216,7 @@ const LivestockDetailPage: React.FC<LivestockDetailPageProps> = ({ params: param
         }
     };
 
-    const router = useRouter()
+   
     const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 720);
 
     useEffect(() => {
@@ -237,21 +247,18 @@ const LivestockDetailPage: React.FC<LivestockDetailPageProps> = ({ params: param
                                                 </div>
                                             </div>
 
+                                            <div className='moreIcon'>
+                                                    <MoreOptions
+                                                    role="owner"
+                                                    id="123"
+                                                    selectedFarm="farmA"
+                                                    selectedFarmId="456"
+                                                    handleDeleteData={handleDeleteData}
+                                                    handleDownloadQR={handleDownloadQR}
+                                                    handleUbahDataRoute={() => router.push(`/defaultView/${id}/editTernakPage?selectedFarm=${selectedFarm}&farmId=${selectedFarmId}`)}
+                                                /> 
+                                            </div>
 
-                                            {/* <div className='moreIcon'>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="31" viewBox="0 0 30 31" fill="none">
-                                        <path d="M15 8.9375C14.7514 8.9375 14.5129 8.83873 14.3371 8.66291C14.1613 8.4871 14.0625 8.24864 14.0625 8C14.0625 7.75136 14.1613 7.5129 14.3371 7.33709C14.5129 7.16127 14.7514 7.0625 15 7.0625C15.2486 7.0625 15.4871 7.16127 15.6629 7.33709C15.8387 7.5129 15.9375 7.75136 15.9375 8C15.9375 8.24864 15.8387 8.4871 15.6629 8.66291C15.4871 8.83873 15.2486 8.9375 15 8.9375ZM15 16.4375C14.7514 16.4375 14.5129 16.3387 14.3371 16.1629C14.1613 15.9871 14.0625 15.7486 14.0625 15.5C14.0625 15.2514 14.1613 15.0129 14.3371 14.8371C14.5129 14.6613 14.7514 14.5625 15 14.5625C15.2486 14.5625 15.4871 14.6613 15.6629 14.8371C15.8387 15.0129 15.9375 15.2514 15.9375 15.5C15.9375 15.7486 15.8387 15.9871 15.6629 16.1629C15.4871 16.3387 15.2486 16.4375 15 16.4375ZM15 23.9375C14.7514 23.9375 14.5129 23.8387 14.3371 23.6629C14.1613 23.4871 14.0625 23.2486 14.0625 23C14.0625 22.7514 14.1613 22.5129 14.3371 22.3371C14.5129 22.1613 14.7514 22.0625 15 22.0625C15.2486 22.0625 15.4871 22.1613 15.6629 22.3371C15.8387 22.5129 15.9375 22.7514 15.9375 23C15.9375 23.2486 15.8387 23.4871 15.6629 23.6629C15.4871 23.8387 15.2486 23.9375 15 23.9375Z" stroke="black" stroke-width="1.875" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                        </div> */}
-                                            <MoreOptions
-                                                role="owner"
-                                                id="123"
-                                                selectedFarm="farmA"
-                                                selectedFarmId="456"
-                                                handleDeleteData={handleDeleteData}
-                                                handleDownloadQR={handleDownloadQR}
-                                                handleUbahDataRoute={() => router.push(`/defaultView/${id}/editTernakPage?selectedFarm=${selectedFarm}&farmId=${selectedFarmId}`)}
-                                            />
                                         </div>
                                     </div>
                                     <div className="livestock">
@@ -293,7 +300,7 @@ const LivestockDetailPage: React.FC<LivestockDetailPageProps> = ({ params: param
                                             <div className='gradeDanBerat'>
                                                 <GeneralInfoBox title={'Grade'} value={livestock == null ? "" : livestock.grade || "Undefined"} />
                                                 <GeneralInfoBox title={'Berat'} value={livestock == null ? "" : livestock.weight || "Undefined"} />
-                                                <GeneralInfoBox title={'Kondisi'} value={livestock == null ? "" : livestock.status || "Undefined"} />
+                                                <GeneralInfoBox title={'Kondisi'} value={kondisiTernak} />
                                             </div>
 
                                             <div className='familyInformation'>
@@ -306,14 +313,12 @@ const LivestockDetailPage: React.FC<LivestockDetailPageProps> = ({ params: param
 
                                             <div className='riwayatInformation'>
                                                 <h1 className='riwayat'>Riwayat</h1>
-
-
                                             </div>
 
                                             <div className='cardRiwayat'>
                                                 <DetailInformationCardMobile
 
-                                                    historyTitle="Riwayat Sakit"
+                                                    historyTitle="Riwayat Penyakit"
                                                     historyItems={livestock?.health == null ? [] : livestock.health.historyItems.length > 2 ? livestock.health.historyItems.slice(0, 2) : livestock.health.historyItems}
                                                     livestock={livestock}
                                                 />
@@ -451,8 +456,9 @@ const LivestockDetailPage: React.FC<LivestockDetailPageProps> = ({ params: param
                                         </div>
                                         <div className='detailInformationLivestock'>
                                             <DetailInformationCard
-
-                                                historyTitle="Riwayat Sakit"
+                                                historyStatus="Kondisi"
+                                                historyStatusValue={livestock == null ? "Undefined" : livestock.status}
+                                                historyTitle="Riwayat Penyakit"
                                                 historyItems={livestock?.health == null ? [] : livestock.health.historyItems.length > 2 ? livestock.health.historyItems.slice(0, 2) : livestock.health.historyItems}
                                                 livestock={livestock}
                                             />
@@ -510,9 +516,10 @@ interface GeneralInfoBoxProps {
     ras?: string;
     grade?: string;
     className?: string;
+    kondisiTernak?: string;
 }
 
-const GeneralInfoBox: React.FC<GeneralInfoBoxProps> = ({ title, value, isLink = false, linkHref = "#", ras, grade }) => {
+const GeneralInfoBox: React.FC<GeneralInfoBoxProps> = ({ title, value, isLink = false, linkHref = "#", ras, grade, kondisiTernak }) => {
     return (
         <div className="generalInformationLivestockBoxTopData">
             <h1 className="generalInformationLivestockBoxTopDataTitle">{title}</h1>
@@ -535,7 +542,9 @@ const GeneralInfoBox: React.FC<GeneralInfoBoxProps> = ({ title, value, isLink = 
 
                 </div>
             ) : (
-                <h1 className="generalInformationLivestockBoxTopDataValue">{value ?? "N/A"}</h1>
+                <h1 className="generalInformationLivestockBoxTopDataValue">
+                    {title === "Kondisi" && kondisiTernak ? kondisiTernak : value ?? "N/A"}
+                </h1>
 
             )}
 
@@ -593,6 +602,8 @@ interface DetailInformationCardProps {
     // conditionTitle: string;
     // conditionValue: string;
     historyTitle: string;
+    historyStatus?: string;
+    historyStatusValue?: string;
     historyItems: HistoryItem[];
     livestock: null | Livestock;
 }
@@ -601,6 +612,8 @@ const DetailInformationCard: React.FC<DetailInformationCardProps> = ({
     // conditionTitle,
     // conditionValue,
     historyTitle,
+    historyStatus,
+    historyStatusValue,
     historyItems,
     livestock,
 
@@ -633,8 +646,16 @@ const DetailInformationCard: React.FC<DetailInformationCardProps> = ({
     return (
         <div className="detailInformationLivestockCard">
             <div className="detailInformationLivestockCardData">
+                <div className="detailInformationLivestockCardDataHistory">
                 {/* Condition Section */}
-
+                {historyStatus && (
+                    <div className="detailInformationLivestockCardStatus">
+                        <h2 className="detailInformationLivestockCardDataCategoryTitle">{historyStatus}</h2>
+                        {historyStatusValue && <p>{historyStatusValue}</p>} 
+                    </div>
+                )}
+                </div>
+                
                 {/* History Section */}
                 <div className="detailInformationLivestockCardDataHistory">
                     <h1 className="detailInformationLivestockCardDataCategoryTitle">{historyTitle}</h1>
@@ -708,7 +729,7 @@ const DetailInformationCardMobile: React.FC<DetailInformationCardMobileProps> = 
     };
 
     return (
-        <div className="detailInformationLivestockCard">
+        <div className="detailInformationLivestockCardMobile">
             <div className="detailInformationLivestockCardData">
                 {/* Condition Section */}
 
