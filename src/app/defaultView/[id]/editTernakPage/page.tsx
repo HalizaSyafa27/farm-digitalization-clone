@@ -70,10 +70,10 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
   const farmId = searchParams.get('farmId');
 
   const handleUpdateData = () => {
-    if (idPasangan === "AJW-015") {
+    if (error) {
       setError(true);
       alert(
-        "ID pasangan satu garis keturunan dengan ternak SPW-015. Masukkan ID lain untuk menghindari perkawinan sedarah."
+        "Data tidak valid, coba cek data yang diisi kembali!"
       );
     } else {
       setError(false);
@@ -243,7 +243,7 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
                   <Label title="Fase (pilihan) *" />
                   <DropdownFase
                     options={jenisKelamin == "Jantan" ? ['Cempe', 'Dara', 'Siap Kawin', 'Lepas Sapih', 'Afkir'] : ['Cempe', 'Dara', 'Hamil', 'Siap Kawin', 'Lepas Sapih', 'Afkir']}
-                    placeholder="Fase"
+                    placeholder={livestock?.phase ?? "Fase"}
                     onSelect={handleFaseSelect}
                   />
                 </div>
@@ -252,7 +252,7 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
                   <Label title="Jenis Kelamin (pilihan) *" />
                   <DropdownFase
                     options={['Jantan', 'Betina']}
-                    placeholder="Jenis Kelamin"
+                    placeholder={livestock?.gender ?? "Jenis Kelamin"}
                     onSelect={handleJenisKelaminSelect}
                   />
                 </div>
@@ -329,7 +329,7 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
                 <Label title="Status (Pilihan) *" />
                 <DropdownFase
                   options={['Tersedia', 'Hilang', 'Mati', 'Terjual']}
-                  placeholder="Status"
+                  placeholder={livestock?.status ?? "Status"}
                   onSelect={handleStatusSelect}
                 />
               </div>
@@ -338,7 +338,7 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
                 <Label title="Kategori Hewan (Pilihan) *" />
                 <DropdownFase
                   options={['Kambing', 'Sapi', 'Domba']}
-                  placeholder="Kategori Hewan"
+                  placeholder={livestock?.category ?? "Kategori Hewan"}
                   onSelect={handleKategoriHewanSelect}
                 />
               </div>
@@ -444,7 +444,7 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
                   <Label title="Fase (pilihan) *" />
                   <DropdownFase
                     options={jenisKelamin == "Jantan" ? ['Cempe', 'Dara', 'Siap Kawin', 'Lepas Sapih', 'Afkir'] : ['Cempe', 'Dara', 'Hamil', 'Siap Kawin', 'Lepas Sapih', 'Afkir']}
-                    placeholder="Fase"
+                    placeholder={livestock?.phase ?? "Fase"}
                     onSelect={handleFaseSelect}
                   />
                 </div>
@@ -453,7 +453,7 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
                   <Label title="Jenis Kelamin (pilihan) *" />
                   <DropdownFase
                     options={['Jantan', 'Betina']}
-                    placeholder="Jenis Kelamin"
+                    placeholder={livestock?.gender ?? "Jenis Kelamin"}
                     onSelect={handleJenisKelaminSelect}
                   />
                 </div>
@@ -464,7 +464,7 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
                     <Input
                       disabled={false}
                       type="text"
-                      placeholder="AJW-015"
+                      placeholder="ID Pasangan"
                       value={idPasangan}
                       onChange={(e) => {
                         const inputIdPasangan = e.target.value;
@@ -478,7 +478,7 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
                           if (!isRasTernakValid) {
                             setError(true);
                           } else {
-                            console.log(inputIdPasangan)
+                            console.log("idPasangan: " + inputIdPasangan)
                             console.log(livestock?.dad_name_id)
                             if (inputIdPasangan.toString() == livestock?.dad_name_id) {
                               setError(true);
@@ -530,7 +530,7 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
                 <Label title="Status (Pilihan) *" />
                 <DropdownFase
                   options={['Tersedia', 'Hilang', 'Mati', 'Terjual']}
-                  placeholder="Status"
+                  placeholder={livestock?.status ?? "Status"}
                   onSelect={handleStatusSelect}
                 />
               </div>
@@ -539,7 +539,7 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
                 <Label title="Kategori Hewan (Pilihan) *" />
                 <DropdownFase
                   options={['Kambing', 'Sapi', 'Domba']}
-                  placeholder="Kategori Hewan"
+                  placeholder={livestock?.category ?? "Kategori Hewan"}
                   onSelect={handleKategoriHewanSelect}
                 />
               </div>

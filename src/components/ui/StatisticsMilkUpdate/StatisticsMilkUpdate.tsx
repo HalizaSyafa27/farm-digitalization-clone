@@ -83,12 +83,12 @@ const StatisticsMilkUpdate: React.FC<StatisticsMilkUpdateProps> = ({
               {/* Bar hijau */}
               <div
                 className={styles.greenBar}
-                style={{ height: `${(data.value / 1000) * 100}%`, width: '41px' }}
+                style={{ height: `${(data.value / 4000) * 100}%`, width: '41px', maxHeight: '30%' }}
               ></div>
               {/* Batang grafik */}
               <div
                 className={styles.bar}
-                style={{ height: `${(data.value / 1000) * 100}%` }}
+                style={{ height: `${(data.value / 4000) * 100}%` }}
               ></div>
               <p className={styles.month}>{data.month}</p>
             </div>

@@ -103,14 +103,15 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
     const year = dateNow.getFullYear()
     const fullDate = String(day + "-" + month + "-" + year)
 
-    const [idPasangan, setIdPasangan] = useState("");
-
+    const [idPasangan, setIdPasangan] = useState(livestock?.lactation[livestock?.lactation.length - 1].spouseId ?? "");
+    //TODO laktasi masi belum
     const [date, setDate] = useState(fullDate);
     const [value, setValue] = useState(0);
     const [valueMale, setValueMale] = useState(0);
     const [valueFemale, setValueFemale] = useState(0);
-    const [lactationNumber, setLactationNumber] = useState(1);
+    const [lactationNumber, setLactationNumber] = useState(livestock?.lactation.length ?? 1);
 
+    const [isHamil, setIsHamil] = useState(Boolean);
     const handleDropdownSelect = (index: number, value: string) => {
         setDropdownData((prev) => ({
             ...prev,
@@ -120,6 +121,14 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
 
     const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 720);
 
+    useEffect(() => {
+        setIsHamil(livestock?.phase === "Hamil");
+        if (livestock?.lactation && isHamil) {
+            const index = livestock?.lactation.length - 1
+            setIdPasangan(livestock?.lactation[index].spouseId)
+            setLactationNumber(livestock?.lactation.length)
+        }
+    }, [livestock])
 
     useEffect(() => {
         const checkScreenSize = () => {
@@ -147,18 +156,31 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
                     lactationNumber: lactationNumber
                 }
                 console.log("payload :" + payload.livestockId)
-                const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/lactationData`, {
-                    method: "POST",
-                    body: JSON.stringify(payload),
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                });
-                const data = await response.json();
-                if (response.ok) {
-                    router.replace(`/defaultView/${id}`);
+                const length = livestock?.lactation != null ? livestock?.lactation.length : 0;
+                let response;
+                if (isHamil && length > 1) {
+                    response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/lactationData/${livestock?.lactation[length - 1]?.id}`, {
+                        method: "PUT",
+                        body: JSON.stringify(payload),
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    });
+                    const data = await response.json();
+                    if (response.ok) {
+                        router.replace(`/defaultView/${id}`);
+                    } else {
+                        setApiError(data.error || "Something went wrong");
+                    }
                 } else {
-                    setApiError(data.error || "Something went wrong");
+                    alert("Data tidak valid untuk menambahkan riwayat laktasi!");
+                    // response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/lactationData`, {
+                    //     method: "POST",
+                    //     body: JSON.stringify(payload),
+                    //     headers: {
+                    //         "Content-Type": "application/json",
+                    //     },
+                    // });
                 }
             } else {
                 setError(true)

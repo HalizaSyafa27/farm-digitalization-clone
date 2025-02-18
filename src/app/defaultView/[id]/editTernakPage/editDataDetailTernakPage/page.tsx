@@ -12,6 +12,16 @@ import { FarmModel } from '@/models/FarmModel';
 import { Livestock } from '@/models/LivestockModel';
 // import { farmListData } from '@/data/farmData';
 
+interface LactationPayload {
+  livestockId: number;
+  spouseId: number;
+  dob: Date;
+  totalChild: number;
+  totalFemaleChild: number;
+  totalMaleChild: number;
+  lactationNumber: number;
+}
+
 interface EditLivestockPageProps {
   params: Promise<{
       id: number;
@@ -120,6 +130,35 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
   
         const data = await response.json();
         if (response.ok) {
+          if (idPasangan && idPasangan !== "") {
+            const latestLactationNumber = 
+              livestock?.lactation[livestock?.lactation.length - 1].lactationNumber != null 
+                ? livestock?.lactation[livestock?.lactation.length - 1].lactationNumber + 1 
+                : 0;
+            let lactationPayload: LactationPayload = {
+              livestockId: Number(id),
+              spouseId: Number(idPasangan),
+              dob: new Date(Date.now()),
+              totalChild: 0,
+              totalFemaleChild: 0,
+              totalMaleChild: 0,
+              lactationNumber: latestLactationNumber ?? 0
+            }
+            const lactationDataResponse = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/lactationData`, {
+              method: "POST",
+              body: JSON.stringify(lactationPayload),
+              headers: {
+                  "Content-Type": "application/json",
+              },
+            });
+
+            if (lactationDataResponse.ok) {
+              router.push("/defaultView?view=livestock");
+            } else {
+              setApiError(data.error || "Something went wrong when creating new Lactation Data for Livestock")
+            }
+          }
+          
           router.push("/defaultView?view=livestock");
         } else {
           setApiError(data.error || "Something went wrong");

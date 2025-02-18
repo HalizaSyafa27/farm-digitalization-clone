@@ -21,6 +21,7 @@ interface LactationRecord {
 }
 
 export interface Lactation {
+  id: number;
   livestockId: number;
   spouseId: number;
   dob: Date;
