@@ -1,6 +1,9 @@
 {
-  "/defaultView/[id]/editTernakPage/page": "app/defaultView/[id]/editTernakPage/page.js",
-  "/defaultView/page": "app/defaultView/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
   "/defaultView/[id]/page": "app/defaultView/[id]/page.js",
-  "/defaultView/[id]/editTernakPage/editDataDetailTernakPage/page": "app/defaultView/[id]/editTernakPage/editDataDetailTernakPage/page.js"
+  "/defaultView/[id]/editTernakPage/editDataDetailTernakPage/page": "app/defaultView/[id]/editTernakPage/editDataDetailTernakPage/page.js",
+  "/defaultView/[id]/editTernakPage/page": "app/defaultView/[id]/editTernakPage/page.js",
+  "/auth/loginPage/page": "app/auth/loginPage/page.js",
+  "/defaultView/page": "app/defaultView/page.js"
 }

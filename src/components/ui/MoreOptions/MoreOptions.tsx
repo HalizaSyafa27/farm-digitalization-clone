@@ -2,6 +2,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import router from "next/router";
+import { getCookie } from '@/lib/cookies';
+
 
 interface MoreOptionsProps {
   role: string;
@@ -9,14 +11,12 @@ interface MoreOptionsProps {
   selectedFarm: string;
   selectedFarmId: string;
   handleDeleteData: () => void;
-  handleDownloadQR: () => void;
   handleUbahDataRoute: () => void;
 }
 
 
-const MoreOptions: React.FC<MoreOptionsProps> = ({ role, id, selectedFarm, selectedFarmId, handleDeleteData, handleDownloadQR, handleUbahDataRoute }) => {
+const MoreOptions: React.FC<MoreOptionsProps> = ({ role = "", id, selectedFarm, selectedFarmId, handleDeleteData, handleUbahDataRoute }) => {
     const [showOptions, setShowOptions] = useState(false);
-
   return (
     <div className="relative">
       <div className="moreIcon cursor-pointer" onClick={() => setShowOptions(!showOptions)}>
@@ -36,7 +36,7 @@ const MoreOptions: React.FC<MoreOptionsProps> = ({ role, id, selectedFarm, selec
           >
             Ubah Data
           </button>
-          {role === "owner" && (
+          {role.toLowerCase() === "owner" && (
             <button 
               className="w-full text-left p-2 text-red-600 hover:bg-red-100" 
               onClick={handleDeleteData}

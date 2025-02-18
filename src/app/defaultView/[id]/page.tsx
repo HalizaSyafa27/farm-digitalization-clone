@@ -56,6 +56,7 @@ const LivestockDetailPage: React.FC<LivestockDetailPageProps> = ({ params: param
 
     const storedId = getCookie("id");
     const role = getCookie("role");
+    
 
     const { data: farmData, loading: loadingFarms, error: errorFarms } = useFetch<FarmModel[]>(
         role == "owner" ? `${process.env.NEXT_PUBLIC_API_HOST}/farms?ownerId=${storedId}` : `${process.env.NEXT_PUBLIC_API_HOST}/farms/operator/${storedId}`,
@@ -249,12 +250,12 @@ const LivestockDetailPage: React.FC<LivestockDetailPageProps> = ({ params: param
 
                                             <div className='moreIcon'>
                                                     <MoreOptions
-                                                    role="owner"
+                                                    role={role as string}
                                                     id="123"
                                                     selectedFarm="farmA"
                                                     selectedFarmId="456"
                                                     handleDeleteData={handleDeleteData}
-                                                    handleDownloadQR={handleDownloadQR}
+
                                                     handleUbahDataRoute={() => router.push(`/defaultView/${id}/editTernakPage?selectedFarm=${selectedFarm}&farmId=${selectedFarmId}`)}
                                                 /> 
                                             </div>
