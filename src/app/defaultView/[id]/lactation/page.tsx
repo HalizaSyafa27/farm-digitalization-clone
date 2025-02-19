@@ -158,7 +158,7 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
                 console.log("payload :" + payload.livestockId)
                 const length = livestock?.lactation != null ? livestock?.lactation.length : 0;
                 let response;
-                if (isHamil && length > 1) {
+                if (isHamil && length >= 1) {
                     response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/lactationData/${livestock?.lactation[length - 1]?.id}`, {
                         method: "PUT",
                         body: JSON.stringify(payload),

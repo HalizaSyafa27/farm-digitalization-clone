@@ -135,8 +135,8 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
           if (idPasangan && idPasangan !== "") {
             console.log("C")
             let latestLactationNumber = (livestock?.lactation?.length ?? 0) > 0
-            ? (livestock?.lactation[livestock.lactation.length - 1]?.lactationNumber ?? -1) + 1
-            : 0;
+            ? (livestock?.lactation[livestock.lactation.length - 1]?.lactationNumber ?? 0) + 1
+            : 1;
             
                 console.log("D")
             let lactationPayload: LactationPayload = {
