@@ -20,7 +20,7 @@ import useFetch from '@/hooks/useFetch';
 import { FarmModel } from '@/models/FarmModel';
 import { StatisticsModel } from '@/models/FarmStatsModel';
 import StatisticsMilk from '../../StatisticsMilk/statisticsMilk';
-// import StatisticsLivestockSold from '@/components/ui/StatisticsLivestockSold/StatisticsLivestockSold';
+import StatisticsLivestockSold from '@/components/ui/StatisticsLivestockSold/StatisticsLivestockSold';
 
 const App: React.FC = () => {
 
@@ -124,6 +124,7 @@ const App: React.FC = () => {
                 title="Status dan Kondisi Ternak"
                 sehat={sheepStatistics?.summary.livestockConditionStats?.["Sehat"] ?? 0}
                 tersedia={sheepStatistics?.summary.livestockConditionStats?.["Tersedia"] ?? 0}
+                terjual={sheepStatistics?.summary.livestockConditionStats?.["Terjual"] ?? 0}
                 sakit={sheepStatistics?.summary.livestockConditionStats?.["Sakit"] ?? 0}
                 hilang={sheepStatistics?.summary.livestockConditionStats?.["Hilang"] ?? 0}
                 mati={sheepStatistics?.summary.livestockConditionStats?.["Mati"] ?? 0}
@@ -139,7 +140,12 @@ const App: React.FC = () => {
           
           <StatisticsMilk milkOutput={sheepStatistics?.milkOutput} filterBy="year" filterValue={selectedYear ?? 2025}/>
           
-          {/* <StatisticsLivestockSold filterBy="year" filterValue={2019}/> */}
+          {/* <StatisticsLivestockSold 
+              livestockSold={sheepStatistics?.livestockSold}
+              filterBy="year" 
+              filterValue={selectedYear ?? 2025}
+          /> */}
+
           </div>
 
           <div className="statisticsLactation">

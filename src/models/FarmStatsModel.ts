@@ -1,4 +1,4 @@
-import { LactationData, MilkOutput } from "./LivestockModel";
+import { LactationData, Livestock, LivestockSold, MilkOutput } from "./LivestockModel";
 
 export interface StatisticsModel {
     summary: {
@@ -14,4 +14,5 @@ export interface StatisticsModel {
         average: number
     };
     milkOutput: MilkOutput;
+    livestockSold: LivestockSold;
 }

@@ -10,6 +10,7 @@ interface DetailLivestockDiagnosedCardProps {
   sakit: number;
   hilang: number;
   mati: number;
+  terjual: number;
 }
 
 const DetailLivestockDiagnosedCard: React.FC<DetailLivestockDiagnosedCardProps> = ({
@@ -18,8 +19,8 @@ const DetailLivestockDiagnosedCard: React.FC<DetailLivestockDiagnosedCardProps> 
   tersedia,
   sakit,
   hilang,
-  mati
-  
+  mati,
+  terjual
 }) => {
   return (
     <div className={styles.card}>
@@ -36,6 +37,12 @@ const DetailLivestockDiagnosedCard: React.FC<DetailLivestockDiagnosedCardProps> 
             <span className={styles.tersedia}>{tersedia}</span>
             <br/>
             <span>Tersedia</span>
+      </p>
+
+      <p>
+            <span className={styles.tersedia}>{terjual}</span>
+            <br/>
+            <span>Terjual</span>
       </p>
 
      </div>

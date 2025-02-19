@@ -115,7 +115,11 @@ export interface WeightData {
 // };
 
 export interface LivestockSold {
-    yearlyData: YearlyData[];
+    id: number;
+    livestockId: number;
+    createdAt: string;
+    updatedAt: string;
+    yearlyDatas: YearlyData[];
 }
 
 // export const defaultLivestockSold: LivestockSold = {

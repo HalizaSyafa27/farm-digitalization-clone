@@ -476,7 +476,7 @@ const LivestockDetailPage: React.FC<LivestockDetailPageProps> = ({ params: param
                                         <div className='detailInformationLivestock'>
                                             <DetailInformationCard
                                                 historyStatus="Kondisi"
-                                                historyStatusValue={livestock == null ? "Undefined" : livestock.status}
+                                                historyStatusValue={livestock == null ? "Undefined" : livestock.condition}
                                                 historyTitle="Riwayat Penyakit"
                                                 historyItems={livestock?.health == null ? [] : livestock.health.historyItems.length > 2 ? livestock.health.historyItems.slice(0, 2) : livestock.health.historyItems}
                                                 livestock={livestock}

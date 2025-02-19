@@ -146,6 +146,7 @@ const App: React.FC = () => {
                 title="Status dan Kondisi Ternak"
                 sehat={cowStatistics?.summary.livestockConditionStats?.["Sehat"] ?? 0}
                 tersedia={cowStatistics?.summary.livestockConditionStats?.["Tersedia"] ?? 0}
+                terjual={cowStatistics?.summary.livestockConditionStats?.["Terjual"] ?? 0}
                 sakit={cowStatistics?.summary.livestockConditionStats?.["Sakit"] ?? 0}
                 hilang={cowStatistics?.summary.livestockConditionStats?.["Hilang"] ?? 0}
                 mati={cowStatistics?.summary.livestockConditionStats?.["Mati"] ?? 0}
