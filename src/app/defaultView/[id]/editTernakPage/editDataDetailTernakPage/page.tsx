@@ -114,6 +114,7 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
           breed: rasTernak,
           type_id: kategoriHewan,
           farm_name: selectedFarm,
+          status: status, 
           farmId: farmId,
           dad_name_id: idAyah,
           mom_name_id: idIbu,

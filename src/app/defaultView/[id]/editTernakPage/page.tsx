@@ -303,9 +303,9 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
                       type="radio"
                       id="sehat"
                       name="kondisi"
-                      value="sehat"
-                      checked={kondisiTernak === "sehat"}
-                      onChange={() => setKondisiTernak("sehat")}
+                      value="Sehat"
+                      checked={kondisiTernak === "Sehat"}
+                      onChange={() => setKondisiTernak("Sehat")}
                     />
                     <label htmlFor="sehat">Sehat</label>
                   </div>
@@ -314,9 +314,9 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
                       type="radio"
                       id="sakit"
                       name="kondisi"
-                      value="sakit"
-                      checked={kondisiTernak === "sakit"}
-                      onChange={() => setKondisiTernak("sakit")}
+                      value="Sakit"
+                      checked={kondisiTernak === "Sakit"}
+                      onChange={() => setKondisiTernak("Sakit")}
                     />
                     <label htmlFor="sakit">Sakit</label>
                   </div>
@@ -504,9 +504,9 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
                       type="radio"
                       id="sehat"
                       name="kondisi"
-                      value="sehat"
-                      checked={kondisiTernak === "sehat"}
-                      onChange={() => setKondisiTernak("sehat")}
+                      value="Sehat"
+                      checked={kondisiTernak === "Sehat"}
+                      onChange={() => setKondisiTernak("Sehat")}
                     />
                     <label htmlFor="sehat">Sehat</label>
                   </div>
@@ -515,9 +515,9 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
                       type="radio"
                       id="sakit"
                       name="kondisi"
-                      value="sakit"
-                      checked={kondisiTernak === "sakit"}
-                      onChange={() => setKondisiTernak("sakit")}
+                      value="Sakit"
+                      checked={kondisiTernak === "Sakit"}
+                      onChange={() => setKondisiTernak("Sakit")}
                     />
                     <label htmlFor="sakit">Sakit</label>
                   </div>
