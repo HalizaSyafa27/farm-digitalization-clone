@@ -48,7 +48,7 @@ const StatisticsLactation: React.FC<StatisticLactationProps> = ({
 
       <div className={styles.header}>
         <div>
-          <h1>{isNaN(average) ? 0 : average} Pedet</h1>
+          <h1>{isNaN(average) ? 0 : average.toFixed(2)} Pedet</h1>
           <p>Rata-rata/tahun</p>
         </div>
       </div>

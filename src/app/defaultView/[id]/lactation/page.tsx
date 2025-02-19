@@ -103,7 +103,7 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
     const year = dateNow.getFullYear()
     const fullDate = String(day + "-" + month + "-" + year)
 
-    const [idPasangan, setIdPasangan] = useState(livestock?.lactation[livestock?.lactation.length - 1].spouseId ?? "");
+    const [idPasangan, setIdPasangan] = useState(livestock?.lactation[livestock?.lactation.length - 1]?.spouseId ?? "");
     //TODO laktasi masi belum
     const [date, setDate] = useState(fullDate);
     const [value, setValue] = useState(0);
@@ -158,7 +158,7 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
                 console.log("payload :" + payload.livestockId)
                 const length = livestock?.lactation != null ? livestock?.lactation.length : 0;
                 let response;
-                if (isHamil && length > 1) {
+                if (isHamil && length >= 1) {
                     response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/lactationData/${livestock?.lactation[length - 1]?.id}`, {
                         method: "PUT",
                         body: JSON.stringify(payload),

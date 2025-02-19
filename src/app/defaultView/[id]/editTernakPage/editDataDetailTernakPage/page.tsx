@@ -14,7 +14,7 @@ import { Livestock } from '@/models/LivestockModel';
 
 interface LactationPayload {
   livestockId: number;
-  spouseId: number;
+  spouseId: string;
   dob: Date;
   totalChild: number;
   totalFemaleChild: number;
@@ -135,13 +135,13 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
           if (idPasangan && idPasangan !== "") {
             console.log("C")
             let latestLactationNumber = (livestock?.lactation?.length ?? 0) > 0
-            ? (livestock?.lactation[livestock.lactation.length - 1]?.lactationNumber ?? -1) + 1
-            : 0;
+            ? (livestock?.lactation[livestock.lactation.length - 1]?.lactationNumber ?? 0) + 1
+            : 1;
             
                 console.log("D")
             let lactationPayload: LactationPayload = {
               livestockId: Number(id),
-              spouseId: Number(idPasangan),
+              spouseId: idPasangan,
               dob: new Date(Date.now()),
               totalChild: 0,
               totalFemaleChild: 0,
