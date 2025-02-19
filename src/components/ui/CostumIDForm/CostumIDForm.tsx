@@ -102,7 +102,7 @@ const CustomIDForm: React.FC<CustomIDFormProps> = ({ onPrefixChange, sapiPrefix,
           value={localKambingPrefix}
           onChange={handleInputChange}
           />
-        <input type="text" className={styles.idInput} value="0002" disabled />
+        <input type="text" className={styles.idInput} value="0001" disabled />
       </div>
 
       {/* Domba */}
@@ -123,11 +123,11 @@ const CustomIDForm: React.FC<CustomIDFormProps> = ({ onPrefixChange, sapiPrefix,
           name='domba'
           type="text"
           className={styles.prefixInput}
-          placeholder="Contoh: KB"
+          placeholder="Contoh: DB"
           value={localDombaPrefix}
           onChange={handleInputChange}
           />
-        <input type="text" className={styles.idInput} value="0002" disabled />
+        <input type="text" className={styles.idInput} value="0001" disabled />
       </div>
     </div>
   );

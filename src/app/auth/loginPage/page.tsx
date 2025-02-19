@@ -30,7 +30,7 @@ export default function InputDemo() {
     const validation = validateEmail(email);
   
     if (!validation.valid) {
-      setErrorMessage("Masukkan email atau nomor HP yang valid.");
+      setErrorMessage("Masukkan email yang valid.");
     } else if (!password) {
       setErrorMessage("Password tidak boleh kosong.");
     } else {

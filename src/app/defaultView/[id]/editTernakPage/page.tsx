@@ -275,11 +275,13 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
                           );
   
                           if (!isRasTernakValid) {
+                            alert(`ID pasangan satu garis keturunan dengan ternak ${inputIdPasangan}. Masukkan ID lain untuk menghindari perkawinan sedarah.`);
                             setError(true);
                           } else {
                             console.log(inputIdPasangan)
                             console.log(livestock?.dad_name_id)
                             if (inputIdPasangan.toString() == livestock?.dad_name_id) {
+                              alert(`ID pasangan satu garis keturunan dengan ternak ${inputIdPasangan}. Masukkan ID lain untuk menghindari perkawinan sedarah.`);
                               setError(true);
                             } else {
                               setError(false);
@@ -476,11 +478,13 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
                           );
   
                           if (!isRasTernakValid) {
+                            alert(`ID pasangan satu garis keturunan dengan ternak ${inputIdPasangan}. Masukkan ID lain untuk menghindari perkawinan sedarah.`);
                             setError(true);
                           } else {
                             console.log("idPasangan: " + inputIdPasangan)
                             console.log(livestock?.dad_name_id)
                             if (inputIdPasangan.toString() == livestock?.dad_name_id) {
+                              alert(`ID pasangan satu garis keturunan dengan ternak ${inputIdPasangan}. Masukkan ID lain untuk menghindari perkawinan sedarah.`);
                               setError(true);
                             } else {
                               setError(false);
