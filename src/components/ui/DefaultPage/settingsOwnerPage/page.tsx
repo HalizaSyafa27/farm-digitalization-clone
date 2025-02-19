@@ -203,7 +203,7 @@ const App: React.FC = () => {
           <Breadcrumbs
             breadcrumbs={[
               { label: selectedFarm ?? "", href: '/defaultView' },
-              { label: 'Settings', href: '/defaultView?view=settings' },
+              { label: 'Pengaturan', href: '/defaultView?view=settings' },
             ]}
           />
           </div>
