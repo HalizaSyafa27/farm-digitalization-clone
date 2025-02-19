@@ -68,6 +68,10 @@ const LivestockDetailPage: React.FC<LivestockDetailPageProps> = ({ params: param
     const [Livestock, setLivestock] = useState<any>(null);
 
     useEffect(() => {
+        if (!role) {
+            router.push("/auth/loginPage");
+        }
+
         if (farmData && farmData.length > 0) {
             setSelectedFarm(farmData[0].name);
             setSelectedFarmId(farmData[0].id);
