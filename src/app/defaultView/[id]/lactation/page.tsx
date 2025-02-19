@@ -103,7 +103,7 @@ const LivestockLactationPage: React.FC<LivestockLactationPageProps> = ({ params:
     const year = dateNow.getFullYear()
     const fullDate = String(day + "-" + month + "-" + year)
 
-    const [idPasangan, setIdPasangan] = useState(livestock?.lactation[livestock?.lactation.length - 1].spouseId ?? "");
+    const [idPasangan, setIdPasangan] = useState(livestock?.lactation[livestock?.lactation.length - 1]?.spouseId ?? "");
     //TODO laktasi masi belum
     const [date, setDate] = useState(fullDate);
     const [value, setValue] = useState(0);
