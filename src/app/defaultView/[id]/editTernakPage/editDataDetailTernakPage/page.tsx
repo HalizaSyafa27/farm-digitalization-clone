@@ -14,7 +14,7 @@ import { Livestock } from '@/models/LivestockModel';
 
 interface LactationPayload {
   livestockId: number;
-  spouseId: number;
+  spouseId: string;
   dob: Date;
   totalChild: number;
   totalFemaleChild: number;
@@ -141,7 +141,7 @@ const app: React.FC<EditLivestockPageProps> = ({ params: paramsPromise }) => {
                 console.log("D")
             let lactationPayload: LactationPayload = {
               livestockId: Number(id),
-              spouseId: Number(idPasangan),
+              spouseId: idPasangan,
               dob: new Date(Date.now()),
               totalChild: 0,
               totalFemaleChild: 0,
